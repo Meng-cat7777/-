@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Aira 艾拉的能量手串與單顆水晶介紹。每一串都有自己的頻率，挑一串此刻與你共鳴的，陪你走一段路。">
+<meta name="theme-color" content="#F3E0E2">
+<meta property="og:type" content="website">
+<meta property="og:title" content="石間有光｜Aira 艾拉能量手串">
+<meta property="og:description" content="每一串都有自己的頻率，挑一串此刻與你共鳴的，陪你走一段路。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%23B04E68' stroke-width='3'/%3E%3Cg fill='%23B04E68'%3E%3Ccircle cx='32' cy='10' r='5'/%3E%3Ccircle cx='54' cy='32' r='5'/%3E%3Ccircle cx='32' cy='54' r='5'/%3E%3Ccircle cx='10' cy='32' r='5'/%3E%3C/g%3E%3C/svg%3E">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>石間有光</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: a framed blush price sheet. Hairline side rails, small spaced labels top and bottom, rose section bars per series, soft light streaks behind. Single deliberate light look. */
+:root{
+  color-scheme:light;
+  --blush:#F3E0E2; --blush-deep:#EAD0D4; --bar:#E9C9D0; --paper:#F8ECEE;
+  --rail:#D9C3C7; --ink:#4A3440; --soft:#8C7680; --rose:#A3536A; --rose-deep:#7E3A50; --white:#FFFFFF;
+  --f:"Noto Serif TC","Songti TC","PMingLiU",serif;
+}
+*{box-sizing:border-box}
+html{background:var(--blush)}
+body{background:var(--blush);color:var(--ink);font-family:var(--f);font-weight:400;font-size:15px;line-height:1.85;min-height:100%;position:relative;overflow-x:hidden}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:1.5px solid var(--rose);outline-offset:3px}
+
+/* ambient light */
+.light{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.light::before{content:"";position:absolute;width:42vmax;height:42vmax;right:-12vmax;top:4vh;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.85),rgba(255,255,255,0) 62%)}
+.light::after{content:"";position:absolute;width:36vmax;height:36vmax;left:-14vmax;bottom:-6vh;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.6),rgba(255,255,255,0) 60%)}
+.streak{position:absolute;top:-20%;height:140%;width:9vmax;transform:rotate(18deg);
+  background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.42),rgba(255,255,255,0));animation:sweep 9s ease-in-out infinite}
+.streak.s1{left:8%} .streak.s2{left:52%;width:4vmax;opacity:.7;animation-delay:-4s}
+.spark{position:absolute;width:5px;height:5px;border-radius:50%;background:var(--white);box-shadow:0 0 10px 3px rgba(255,255,255,.9);animation:twinkle 4s ease-in-out infinite}
+@keyframes sweep{0%,100%{translate:-6vw 0;opacity:.55}50%{translate:6vw 0;opacity:1}}
+@keyframes twinkle{0%,100%{opacity:.25;scale:.6}50%{opacity:1;scale:1}}
+@media (prefers-reduced-motion:reduce){.streak,.spark{animation:none}}
+
+/* frame */
+.sheet{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding-inline:16px}
+.frame{border-inline:1px solid var(--rail);min-height:100vh;display:flex;flex-direction:column}
+.bar-top,.bar-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 22px;font-size:12px;letter-spacing:.24em;color:var(--soft)}
+.bar-top{border-bottom:1px solid var(--rail)}
+.bar-bottom{border-top:1px solid var(--rail);margin-top:auto}
+.inner{padding-inline:clamp(16px,4vw,48px);padding-block:40px 48px}
+
+.title{text-align:center}
+.title h1{font-weight:500;font-size:clamp(30px,5.6vw,44px);letter-spacing:.18em;margin:0;text-wrap:balance;color:var(--ink)}
+.title .rule{height:1px;background:var(--rail);margin:18px auto 10px;max-width:760px}
+.title .eng{font-size:12px;letter-spacing:.6em;color:var(--soft);padding-left:.6em}
+.title p{margin:18px auto 0;color:var(--soft);font-size:clamp(11px,3.3vw,15px);letter-spacing:.06em;white-space:nowrap}
+.modes{display:flex;justify-content:center;margin:30px auto 0;border:1px solid var(--rail);border-radius:999px;width:max-content;max-width:100%;padding:3px;background:rgba(255,255,255,.35)}
+.modes button{all:unset;cursor:pointer;padding:6px 22px;border-radius:999px;font-size:14px;letter-spacing:.2em;color:var(--soft)}
+.modes button[aria-pressed="true"]{background:var(--rose);color:var(--white)}
+.modes button:focus-visible{outline:1.5px solid var(--rose);outline-offset:2px}
+.tools:empty{display:none}
+.row b.slink{all:unset;cursor:pointer;font-weight:500;white-space:nowrap;border-bottom:1px dotted var(--rose);color:var(--rose-deep)}
+.row b.slink:hover{color:var(--rose)}
+.uses{display:flex;flex-wrap:wrap;gap:8px}
+.uses button{all:unset;cursor:pointer;font-size:13px;letter-spacing:.08em;border:1px solid var(--rail);border-radius:999px;padding:2px 12px;background:rgba(255,255,255,.45)}
+.uses button:hover{border-color:var(--rose);color:var(--rose)}
+.kw{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.kw span{font-size:12px;letter-spacing:.1em;color:var(--rose);border:1px solid rgba(163,83,106,.35);border-radius:999px;padding:0 10px}
+
+.tools{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:30px 0 8px}
+.pill{border:1px solid var(--rail);background:rgba(255,255,255,.35);border-radius:999px;padding:5px 18px;font-size:13px;letter-spacing:.14em;color:var(--soft)}
+.pill:hover{border-color:var(--rose);color:var(--rose)}
+.pill[aria-pressed="true"]{background:var(--rose);border-color:var(--rose);color:var(--white)}
+
+.admin-note{margin:18px auto 0;max-width:760px;border:1px dashed var(--rose);border-radius:10px;padding:10px 16px;font-size:13px;color:var(--rose-deep);background:rgba(255,255,255,.35);display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center}
+
+section.series{margin-top:40px}
+.sec-bar{background:linear-gradient(90deg,var(--bar),#EFD5DA 50%,var(--bar));border-radius:6px;text-align:center;padding:9px 12px;font-size:19px;letter-spacing:.32em;color:var(--rose);font-weight:500}
+.sec-bar small{display:block;font-size:11px;letter-spacing:.3em;color:var(--soft);font-weight:400;margin-top:-2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:20px}
+
+.card{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;background:rgba(255,255,255,.38);border:1px solid rgba(217,195,199,.8);border-radius:4px;overflow:hidden;transition:background .2s,border-color .2s,translate .2s}
+.card:hover{background:rgba(255,255,255,.62);border-color:var(--rose);translate:0 -2px}
+.card:focus-visible{outline:1.5px solid var(--rose);outline-offset:3px}
+.pic{display:block;width:100%;max-width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--paper)}
+.cbody{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
+.code{font-size:12px;letter-spacing:.26em;color:var(--rose)}
+.theme{font-size:16px;font-weight:500;line-height:1.5;color:var(--ink)}
+.stones{font-size:13px;color:var(--soft);line-height:1.6}
+.foot{margin-top:auto;padding-top:10px;border-top:1px solid var(--rail);display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.beads{font-size:12px;color:var(--soft);letter-spacing:.08em;font-variant-numeric:tabular-nums}
+.price{font-size:19px;color:var(--rose);font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.price::before{content:"NT$ ";font-size:11px;letter-spacing:.1em;color:var(--soft)}
+.edit{all:unset;cursor:pointer;font-size:12px;letter-spacing:.14em;color:var(--white);background:var(--rose);border-radius:999px;padding:1px 12px}
+
+.empty{margin-top:40px;text-align:center;color:var(--soft);padding:48px 16px;border:1px dashed var(--rail);border-radius:6px;letter-spacing:.06em}
+.empty b{display:block;color:var(--ink);font-weight:500;font-size:19px;letter-spacing:.14em;margin-bottom:6px}
+.closing{text-align:center;margin-top:44px;color:var(--ink);letter-spacing:.12em;font-size:14px}
+
+.btn{border:1px solid var(--rail);background:rgba(255,255,255,.5);border-radius:999px;padding:7px 18px;font-size:13px;letter-spacing:.14em;color:var(--ink)}
+.btn:hover{border-color:var(--rose)}
+.btn.primary{background:var(--rose);border-color:var(--rose);color:var(--white)}
+.btn.on{border-color:var(--rose);color:var(--rose)}
+.btn.danger{border-color:#A33B3B;color:#A33B3B;background:transparent}
+.btn.danger.armed{background:#A33B3B;color:var(--white)}
+.linkish{all:unset;cursor:pointer;letter-spacing:.24em}
+.linkish:hover{color:var(--rose)}
+
+/* dialogs */
+dialog{border:1px solid var(--rail);padding:0;background:var(--blush);color:var(--ink);border-radius:6px;width:min(720px,calc(100vw - 32px));max-height:calc(100vh - 40px)}
+dialog::backdrop{background:rgba(74,52,64,.42)}
+.d-top{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--rail);font-size:12px;letter-spacing:.24em;color:var(--soft)}
+.x{all:unset;cursor:pointer;font-size:20px;line-height:1;color:var(--soft);padding:2px 6px}
+.d-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+.d-grid .pic{height:100%;aspect-ratio:auto;min-height:300px;border-right:1px solid var(--rail)}
+.d-body{padding:22px 24px 26px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.d-body h2{margin:0;text-align:center;font-weight:500;font-size:24px;letter-spacing:.14em;line-height:1.5;text-wrap:balance}
+.d-body .eng{text-align:center;font-size:11px;letter-spacing:.5em;color:var(--soft);margin-top:-8px}
+.d-sec{background:linear-gradient(90deg,var(--bar),#EFD5DA 50%,var(--bar));border-radius:5px;text-align:center;padding:4px;font-size:14px;letter-spacing:.3em;color:var(--rose)}
+.row{display:flex;justify-content:space-between;gap:14px;font-size:14px;padding:3px 2px}
+.row b{font-weight:500;white-space:nowrap}
+.row span{color:var(--soft);text-align:right}
+.d-text{font-size:14px;margin:0;padding:0 2px}
+.story{font-size:15px;line-height:2;margin:0;padding:12px 2px 0;border-top:1px solid var(--rail)}
+.d-price{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--rail);padding-top:12px}
+.d-price .price{font-size:26px}
+@media (max-width:620px){.d-grid{grid-template-columns:1fr}.d-grid .pic{min-height:0;aspect-ratio:4/3;border-right:none;border-bottom:1px solid var(--rail)}}
+
+form.editor{padding:20px 22px 22px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:3px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-size:12px;letter-spacing:.14em;color:var(--soft)}
+.field input,.field select,.field textarea{border:1px solid var(--rail);border-radius:6px;padding:7px 10px;background:rgba(255,255,255,.6);width:100%}
+.field textarea{min-height:84px;resize:vertical;line-height:1.7}
+.hint{font-size:12px;color:var(--soft)}
+.photo{display:flex;gap:12px;align-items:center;min-width:0}
+.photo img{width:72px;height:72px;object-fit:cover;border-radius:4px;flex:none;border:1px solid var(--rail)}
+.photo input{min-width:0}
+.actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;border-top:1px solid var(--rail);padding-top:14px}
+.status{font-size:13px;color:var(--soft)} .status.err{color:#A33B3B}
+@media (max-width:560px){form.editor{grid-template-columns:1fr}}
+
+/* ---- accents & borders: each series / chakra carries its own color ---- */
+:root{--paper2:#FFF9FA;--line-strong:#C9A3AE;--gold:#B08D57;--plum:#5A2E44;--acc:#B04E68;--acc-soft:#F6DDE3}
+.frame{border-inline:3px double var(--line-strong)}
+.bar-top,.bar-bottom{border-color:var(--line-strong)!important;color:var(--plum)}
+.title h1{color:var(--plum)}
+.title .rule{background:linear-gradient(90deg,transparent,var(--gold) 15%,var(--gold) 85%,transparent);position:relative;overflow:visible}
+.title .rule::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;background:var(--blush);border:1px solid var(--gold);transform:translate(-50%,-50%) rotate(45deg)}
+.modes{border-color:var(--line-strong);background:var(--paper2)}
+.modes button[aria-pressed="true"]{background:var(--plum)}
+.pill{background:var(--paper2);border-color:var(--line-strong);color:var(--plum)}
+.pill:hover{border-color:var(--acc);color:var(--acc)}
+.pill[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:var(--white)}
+.pill.all[aria-pressed="true"]{background:var(--plum);border-color:var(--plum)}
+.sec-bar{background:var(--acc);color:var(--white);border-radius:3px;box-shadow:0 0 0 3px var(--blush),0 0 0 4px var(--acc);margin-inline:4px;display:flex;justify-content:center;align-items:baseline;gap:14px;flex-wrap:wrap}
+.sec-bar small{display:inline;color:rgba(255,255,255,.85);margin:0;border:1px solid rgba(255,255,255,.55);border-radius:999px;padding:0 10px;letter-spacing:.2em}
+.grid{gap:20px;margin-top:24px}
+.card{background:var(--paper2);border:1px solid var(--line-strong);border-top:4px solid var(--acc);padding:8px;border-radius:4px}
+.card:hover{background:var(--white);border-color:var(--acc);box-shadow:0 10px 22px -14px var(--acc)}
+.card .pic{border:1px solid var(--acc-soft);border-radius:2px}
+.cbody{padding:12px 6px 4px}
+.code{align-self:flex-start;background:var(--acc);color:var(--white);padding:0 10px;border-radius:2px;letter-spacing:.2em;font-size:12px}
+.theme{color:var(--plum)}
+.stones{color:#7A6470}
+.foot{border-top:1px dashed var(--line-strong)}
+.price{color:var(--acc);font-weight:500}
+.edit{background:var(--acc)}
+.closing{display:inline-block;position:relative;left:50%;translate:-50% 0;border:1px solid var(--line-strong);border-radius:999px;padding:4px 22px;background:var(--paper2);color:var(--plum)}
+dialog{background:var(--paper2);border:1px solid var(--line-strong);border-top:5px solid var(--acc)}
+.d-top{background:var(--acc-soft);color:var(--plum);border-color:var(--line-strong)}
+.d-top>span:last-child{color:var(--acc);font-weight:500}
+.d-body h2{color:var(--plum)}
+.d-sec{background:var(--acc-soft);color:var(--acc);border-left:3px solid var(--acc);border-radius:2px;text-align:left;padding:3px 12px;font-weight:500}
+.row{border-bottom:1px dotted var(--line-strong);padding:5px 2px}
+.row b.slink{color:var(--acc);border-bottom-color:var(--acc)}
+.kw span{color:var(--acc);border-color:var(--acc)}
+.uses button{border-color:var(--acc);color:var(--acc);background:var(--white)}
+.uses button:hover{background:var(--acc);color:var(--white)}
+.d-price{border-top:1px solid var(--line-strong)}
+.d-price .price{border:1px solid var(--acc);border-radius:3px;padding:0 14px}
+.btn.primary{background:var(--plum);border-color:var(--plum)}
+.admin-note{border-color:var(--plum);color:var(--plum);background:var(--paper2)}
+
+.quiz{margin:28px auto 0;max-width:560px;border:1px solid var(--line-strong);outline:1px solid var(--line-strong);outline-offset:4px;border-radius:4px;background:var(--paper2);padding:16px 20px;display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;justify-content:space-between}
+.quiz small{display:block;font-size:11px;letter-spacing:.32em;color:var(--gold)}
+.quiz b{display:block;font-weight:500;font-size:17px;letter-spacing:.1em;color:var(--plum)}
+.quiz a,.quiz-end a{display:inline-flex;align-items:center;gap:8px;background:var(--plum);color:var(--white);text-decoration:none;border-radius:999px;padding:8px 22px;font-size:14px;letter-spacing:.16em;white-space:nowrap;transition:background .2s}
+.quiz a:hover,.quiz-end a:hover{background:var(--acc)}
+.quiz a::after,.quiz-end a::after{content:"→";letter-spacing:0}
+.quiz-end{text-align:center;margin-top:18px;font-size:13px;color:var(--soft);letter-spacing:.08em;display:flex;flex-direction:column;align-items:center;gap:10px}
+@media (max-width:480px){.quiz{justify-content:center;text-align:center}}
+.quiz>div{flex:1 1 260px;min-width:0}
+.quiz-desc{display:block;margin-top:4px;font-size:13px;line-height:1.7;color:#7A6470;letter-spacing:.04em}
+
+.bar-bottom{position:relative;justify-content:center;text-align:center}
+.foot-text{letter-spacing:.2em}
+.admin-link{position:absolute;right:22px;top:50%;translate:0 -50%;font-size:11px;opacity:.7}
+.admin-link:hover{opacity:1}
+@media (max-width:480px){.bar-bottom{flex-direction:column;gap:6px}.admin-link{position:static;translate:none}}
+.d-body em{font-style:normal}
+.hl-stone{color:var(--acc);font-weight:600;border-bottom:1px solid var(--acc)}
+.hl-key{color:var(--plum);font-weight:600;background:linear-gradient(transparent 58%,var(--acc-soft) 58%);padding:0 1px}
+.hl-chakra{color:var(--acc);font-weight:600}
+.hl-num{display:inline-block;min-width:1.6em;text-align:center;color:var(--white);background:var(--acc);border-radius:3px;padding:0 5px;margin:0 2px;font-weight:500;line-height:1.5;font-variant-numeric:tabular-nums}
+.story::first-letter{font-size:1.5em;color:var(--acc);font-weight:600}
+form.pw{grid-template-columns:1fr}
+
+/* line breaks typed in the back office show on the front page */
+.story,.d-text,.row span,.quiz-desc{white-space:pre-line}
+/* back office page */
+.adm-links{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.adm-links a{color:inherit;text-decoration:none}
+.adm-title h1{font-size:clamp(24px,4.4vw,34px)}
+.gate{max-width:420px;margin:36px auto 0;background:var(--paper2);border:1px solid var(--line-strong);outline:1px solid var(--line-strong);outline-offset:5px;border-radius:4px;padding:26px 24px;display:flex;flex-direction:column;gap:12px}
+.gate h2{margin:0;text-align:center;font-weight:500;font-size:20px;letter-spacing:.2em;color:var(--plum)}
+.gate .hint{text-align:center;margin:0}
+.gate form{display:flex;flex-direction:column;gap:12px}
+.gate-actions{display:flex;gap:10px;justify-content:flex-end}
+.adm-lead{text-align:center;color:var(--soft);font-size:14px;margin:26px 0 0}
+.adm-tools{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;margin:26px 0 6px}
+.adm-tools input{flex:1 1 240px;min-width:0;border:1px solid var(--line-strong);border-radius:999px;padding:7px 16px;background:var(--paper2)}
+.adm-group{margin-top:26px}
+.adm-group .sec-bar{font-size:16px;padding:6px 12px}
+.adm-rows{margin-top:14px;border:1px solid var(--line-strong);border-radius:4px;background:var(--paper2);overflow:hidden}
+.adm-row{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:grid;grid-template-columns:56px minmax(0,1fr) auto auto;gap:14px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--rail);border-left:4px solid var(--acc)}
+.adm-row:last-child{border-bottom:none}
+.adm-row:hover{background:var(--white)}
+.adm-row:focus-visible{outline:1.5px solid var(--acc);outline-offset:-3px}
+.adm-row img{width:56px;height:56px;object-fit:cover;border-radius:3px;border:1px solid var(--acc-soft)}
+.r-main{min-width:0;display:flex;flex-direction:column}
+.r-main b{font-weight:500;color:var(--plum);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.r-main small{color:var(--soft);font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.r-main .code{margin-bottom:2px}
+.r-price{color:var(--acc);font-variant-numeric:tabular-nums;font-weight:500}
+.r-edit{font-size:12px;letter-spacing:.14em;color:var(--white);background:var(--acc);border-radius:999px;padding:2px 12px}
+@media (max-width:520px){.adm-row{grid-template-columns:48px minmax(0,1fr) auto}.adm-row img{width:48px;height:48px}.r-price{display:none}}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));translate:-50% 0;z-index:20;background:var(--plum);color:var(--white);padding:9px 22px;border-radius:999px;font-size:14px;letter-spacing:.12em;box-shadow:0 10px 24px -12px rgba(90,46,68,.6)}
+
+/* stone composition cards */
+.stone-list{display:flex;flex-direction:column;gap:10px}
+.stone-item{background:var(--white);border:1px solid var(--line-strong);border-left:5px solid var(--sc,var(--acc));border-radius:4px;padding:9px 12px 10px;display:flex;flex-direction:column;gap:7px}
+.stone-item[role="button"]{cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.stone-item[role="button"]:hover{border-color:var(--acc);border-left-color:var(--sc,var(--acc));box-shadow:0 6px 16px -12px var(--acc)}
+.stone-item:focus-visible{outline:1.5px solid var(--acc);outline-offset:2px}
+.si-head{display:flex;align-items:center;gap:8px}
+.si-head b{font-weight:600;color:var(--acc);letter-spacing:.12em;font-size:15px}
+.dot{width:14px;height:14px;border-radius:50%;flex:none;box-shadow:inset -2px -2px 3px rgba(0,0,0,.15),inset 2px 2px 3px rgba(255,255,255,.6),0 0 0 1px var(--line-strong)}
+.more{margin-left:auto;font-size:11px;letter-spacing:.14em;color:var(--acc);border:1px solid var(--acc);border-radius:999px;padding:0 9px}
+.more::after{content:" ›"}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:13px;line-height:1.6;color:var(--plum);background:var(--acc-soft);border:1px solid color-mix(in srgb,var(--acc) 35%,transparent);border-radius:3px;padding:1px 10px;white-space:normal}
+.chip .hl-key{background:none;color:var(--acc)}
+/* framed text blocks */
+.d-box{background:var(--white);border:1px dashed color-mix(in srgb,var(--acc) 55%,transparent);border-radius:4px;padding:10px 14px;line-height:1.95}
+.story{position:relative;background:linear-gradient(var(--acc-soft),var(--acc-soft)) padding-box;border:1px solid var(--line-strong);outline:1px solid var(--line-strong);outline-offset:3px;border-radius:3px;padding:18px 18px 16px;margin-top:6px;border-top:1px solid var(--line-strong)}
+.story::before{content:"STORY";position:absolute;top:-10px;left:14px;background:var(--paper2);color:var(--gold);font-size:10px;letter-spacing:.36em;padding:0 8px}
+.d-sec{margin-top:4px}
+
+/* designer */
+.designer{margin-top:34px}
+.dz-head p{text-align:center;color:#7A6470;font-size:14px;margin:16px auto 0;max-width:34em}
+.dz-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:22px;margin-top:22px}
+@media (max-width:760px){.dz-grid{grid-template-columns:1fr}}
+.dz-preview,.dz-pick,.estimate{background:var(--paper2);border:1px solid var(--line-strong);outline:1px solid var(--line-strong);outline-offset:4px;border-radius:4px;padding:16px;min-width:0}
+.dz-preview{display:flex;flex-direction:column;gap:12px;align-items:stretch}
+.ring{max-width:320px;width:100%;margin:0 auto;aspect-ratio:1/1;border:1px solid var(--acc-soft);border-radius:4px;overflow:hidden}
+.ring svg{display:block;width:100%;height:100%}
+.meter{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--plum);text-align:center}
+.meter .bar{height:6px;border-radius:99px;background:var(--acc-soft);overflow:hidden;border:1px solid var(--line-strong)}
+.meter .bar i{display:block;height:100%;background:var(--acc);transition:width .3s}
+.wrist{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;font-size:14px}
+.wrist select{border:1px solid var(--line-strong);border-radius:999px;padding:4px 12px;background:var(--white)}
+.dz-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.dz-actions .btn{font-size:12px;padding:5px 12px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.dz-pick{display:flex;flex-direction:column;gap:12px}
+.step{display:flex;align-items:center;gap:10px;font-weight:500;color:var(--plum);letter-spacing:.14em;border-bottom:1px solid var(--line-strong);padding-bottom:6px}
+.step .no{width:22px;height:22px;border-radius:50%;background:var(--plum);color:var(--white);display:inline-grid;place-items:center;font-size:12px;letter-spacing:0}
+.palette{display:flex;flex-wrap:wrap;gap:7px}
+.swatch{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-size:13px;border:1px solid var(--line-strong);border-left:4px solid var(--sc);border-radius:3px;padding:3px 10px 3px 7px;background:var(--white);color:var(--plum)}
+.swatch:hover{border-color:var(--acc);border-left-color:var(--sc)}
+.swatch.on{background:var(--acc);color:var(--white);border-color:var(--acc);border-left-color:var(--sc)}
+.swatch:focus-visible,.size:focus-visible{outline:1.5px solid var(--acc);outline-offset:2px}
+.swatch .dot{width:11px;height:11px}
+.picked{display:flex;flex-wrap:wrap;align-items:center;gap:6px;background:var(--acc-soft);border:1px dashed var(--acc);border-radius:4px;padding:8px 10px}
+.picked b{color:var(--acc);font-weight:600;letter-spacing:.1em;margin-right:4px}
+.picked .more{all:unset;cursor:pointer;margin-left:auto;font-size:11px;letter-spacing:.14em;color:var(--acc);border:1px solid var(--acc);border-radius:999px;padding:0 9px;background:var(--white)}
+.sizes{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
+.size{all:unset;cursor:pointer;text-align:center;border:1px solid var(--line-strong);border-radius:4px;padding:7px 4px;background:var(--white);display:flex;flex-direction:column}
+.size b{font-weight:600;color:var(--plum);font-variant-numeric:tabular-nums}
+.size small{font-size:11px;color:var(--soft)}
+.size.on{border-color:var(--plum);box-shadow:inset 0 0 0 1px var(--plum);background:var(--acc-soft)}
+.add-row{display:flex;gap:10px;flex-wrap:wrap}
+.estimate{margin-top:22px;display:flex;flex-direction:column;gap:10px}
+.est-head{text-align:center;letter-spacing:.32em;color:var(--white);background:var(--plum);border-radius:3px;padding:5px;font-weight:500}
+.sum-list{display:flex;flex-direction:column}
+.sum-row{display:grid;grid-template-columns:14px minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:7px 4px;border-bottom:1px dotted var(--line-strong);font-size:14px}
+.sum-row .dot{background:var(--sc)}
+.sum-row b{font-weight:500;color:var(--plum)}
+.sum-row .mm{color:var(--soft);font-size:13px;font-variant-numeric:tabular-nums}
+.sum-row .amt{color:var(--acc);font-variant-numeric:tabular-nums;min-width:6.5em;text-align:right}
+.est-line{display:flex;justify-content:space-between;font-size:14px;color:var(--plum);padding:0 4px}
+.est-total{display:flex;justify-content:space-between;align-items:baseline;border:1px solid var(--acc);border-radius:4px;background:var(--white);padding:8px 14px}
+.est-total>span:first-child{letter-spacing:.2em;color:var(--plum)}
+.est-total .price{font-size:26px}
+.est-total small{font-size:12px;margin-left:2px}
+.est-note{font-size:12px;color:var(--soft);margin:0}
+.est-cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.copy-pre{white-space:pre-wrap;font-family:inherit;font-size:13px;background:var(--white);border:1px dashed var(--line-strong);padding:10px;border-radius:4px;user-select:all;width:100%}
+/* admin pricing */
+.cfg{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px;background:var(--paper2);border:1px solid var(--line-strong);border-radius:4px;padding:16px}
+@media (max-width:560px){.cfg{grid-template-columns:1fr}}
+.ptable-wrap{overflow-x:auto;margin-top:12px;border:1px solid var(--line-strong);border-radius:4px;background:var(--paper2)}
+.ptable{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+.ptable th,.ptable td{padding:7px 12px;border-bottom:1px solid var(--rail);text-align:right;white-space:nowrap}
+.ptable thead th{background:var(--acc-soft);color:var(--acc);font-weight:500;letter-spacing:.1em}
+.ptable tbody th{text-align:left;font-weight:500;color:var(--plum);display:flex;gap:8px;align-items:center}
+.ptable tbody tr{cursor:pointer}
+.ptable tbody tr:hover{background:var(--white)}
+.ptable td.empty-c{color:#B9A3AB;font-size:12px}
+.ptable thead th:first-child{text-align:left}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.pz{display:flex;align-items:center;gap:6px;border:1px solid var(--rail);border-radius:6px;padding:3px 8px;background:rgba(255,255,255,.6)}
+.pz span{font-size:12px;color:var(--soft);white-space:nowrap}
+.pz input{border:none;background:transparent;padding:4px 0;width:100%;min-width:0}
+
+/* ================= phone layout ================= */
+.m-only{display:none}
+.m-br{display:none}
+@media (max-width:600px){
+  .m-only{display:inline}
+  .d-only{display:none!important}
+  .m-br{display:inline}
+  body{font-size:14px}
+  .sheet{padding-inline:8px}
+  .inner{padding-inline:14px;padding-block:26px 30px}
+  .bar-top,.bar-bottom{padding:12px 14px;font-size:11px;letter-spacing:.12em}
+  .title h1{font-size:30px;letter-spacing:.14em}
+  .title .rule{margin:14px auto 8px}
+  .title .eng{font-size:10px;letter-spacing:.42em}
+  .title p{white-space:normal;font-size:13px;line-height:1.85;margin-top:14px}
+
+  /* quiz card stacks; its button spans the card */
+  .quiz{margin-top:22px;padding:14px;flex-direction:column;align-items:stretch;text-align:center;gap:10px;outline-offset:3px}
+  .quiz>div{flex:none}
+  .quiz b{font-size:16px}
+  .quiz-desc{font-size:12.5px}
+  .quiz a{justify-content:center}
+
+  /* every button row stays on one line */
+  button,.btn,.pill,.quiz a,.quiz-end a{white-space:nowrap}
+  .modes{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:22px}
+  .modes button{text-align:center;padding:7px 0;font-size:13px;letter-spacing:.08em}
+  .tools,.palette,.uses,.sizes{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+  .tools::-webkit-scrollbar,.palette::-webkit-scrollbar,.uses::-webkit-scrollbar,.sizes::-webkit-scrollbar{display:none}
+  .tools{justify-content:flex-start;margin:16px -14px 2px;padding:2px 14px 6px;gap:8px}
+  .tools>:first-child{margin-left:auto}.tools>:last-child{margin-right:auto}
+  .pill{flex:none;padding:4px 14px;font-size:12.5px;letter-spacing:.1em;scroll-snap-align:start}
+  .uses button,.swatch,.size{flex:none;scroll-snap-align:start}
+
+  /* product cards: two per row */
+  section.series{margin-top:28px}
+  .sec-bar{font-size:16px;padding:7px 10px;letter-spacing:.24em}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+  .card{padding:5px;border-top-width:3px}
+  .cbody{padding:8px 3px 2px;gap:2px}
+  .code{font-size:11px;padding:0 7px;letter-spacing:.14em}
+  .theme{font-size:14px;line-height:1.45}
+  .stones{font-size:11.5px;line-height:1.55}
+  .foot{flex-direction:column;align-items:flex-start;gap:0;padding-top:6px}
+  .foot .beads{font-size:11px;letter-spacing:.04em}
+  .price{font-size:16px}
+  .closing{font-size:12px;letter-spacing:.04em;padding:4px 14px;margin-top:32px;max-width:100%}
+  .quiz-end{font-size:12.5px}
+
+  /* detail and editor windows open full screen */
+  dialog{width:100%;max-width:100%;height:100%;max-height:100%;margin:0;border-radius:0;border-inline:none;border-bottom:none}
+  dialog .d-top{position:sticky;top:0;z-index:3;padding-top:calc(12px + env(safe-area-inset-top,0px));padding-block-end:12px}
+  .d-body{padding:18px 16px calc(24px + env(safe-area-inset-bottom,0px))}
+  .d-body h2{font-size:21px}
+  .uses{gap:6px;padding-bottom:4px}
+  form.editor{padding:16px 16px calc(20px + env(safe-area-inset-bottom,0px))}
+  .actions{flex-wrap:wrap}
+  .actions .status{order:-1;flex-basis:100%}
+  .actions>span:last-child{margin-left:auto}
+  .actions .btn,.gate .btn{padding:7px 14px;letter-spacing:.08em}
+
+  /* designer */
+  .designer{margin-top:24px}
+  .dz-head p{font-size:13px}
+  .dz-grid{gap:16px;margin-top:16px}
+  .dz-preview,.dz-pick,.estimate{padding:12px;outline-offset:3px}
+  .ring{max-width:230px}
+  .dz-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .dz-actions .btn{padding:6px 2px;font-size:12px;letter-spacing:.04em;text-align:center}
+  .step{font-size:14px;letter-spacing:.1em}
+  .swipe{margin-left:auto;font-size:11px;font-weight:400;letter-spacing:.06em;color:var(--soft)}
+  .palette{margin-inline:-12px;padding:2px 12px 6px;gap:6px}
+  .swatch{font-size:12.5px}
+  .sizes{display:flex;gap:6px}
+  .size{flex:1 0 64px;padding:6px 2px}
+  .size small{font-size:10px}
+  .add-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .add-row .btn{text-align:center}
+  .est-cta{flex-direction:column;align-items:stretch;text-align:center}
+  .est-total .price{font-size:22px}
+  .sum-row{font-size:13px;gap:8px}
+
+  /* back office */
+  #adminApp .bar-top{flex-direction:column;gap:6px}
+  .adm-links{gap:16px;justify-content:center}
+  .adm-tools{flex-wrap:nowrap;gap:8px}
+  .adm-tools input{flex:1 1 auto;padding:6px 12px}
+  .adm-tools .btn{flex:none;padding:6px 12px;letter-spacing:.06em}
+  .adm-lead{font-size:13px}
+}
+
+.modes button[hidden]{display:none}
+@media (max-width:600px){.modes{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr)}}
+.switch{display:flex;align-items:center;gap:12px;cursor:pointer;background:var(--white);border:1px solid var(--line-strong);border-radius:4px;padding:10px 12px}
+.switch input{position:absolute;opacity:0;width:1px;height:1px}
+.switch .track{flex:none;width:42px;height:24px;border-radius:99px;background:var(--rail);position:relative;transition:background .2s}
+.switch .track i{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--white);box-shadow:0 1px 3px rgba(0,0,0,.2);transition:translate .2s}
+.switch input:checked+.track{background:var(--acc)}
+.switch input:checked+.track i{translate:18px 0}
+.switch input:focus-visible+.track{outline:1.5px solid var(--acc);outline-offset:2px}
+.switch b{display:block;font-weight:500;color:var(--plum);font-size:14px;letter-spacing:.06em}
+.switch small{display:block;font-size:12px;color:var(--soft);letter-spacing:.02em}
+[hidden],.admin-link[hidden],.linkish[hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+
+<div class="light" aria-hidden="true">
+  <div class="streak s1"></div><div class="streak s2"></div>
+  <i class="spark" style="left:12%;top:16%"></i><i class="spark" style="left:84%;top:30%;animation-delay:-1.4s"></i>
+  <i class="spark" style="left:30%;top:72%;animation-delay:-2.6s"></i><i class="spark" style="left:70%;top:86%;animation-delay:-.7s"></i>
+</div>
+
+<div class="sheet"><div class="frame">
+  <div class="bar-top"><span>Aira 艾拉</span><span>@meng.cat_47777</span></div>
+
+  <div class="inner">
+    <div class="title">
+      <h1>石間有光</h1>
+      <div class="rule"></div>
+      <div class="eng">LIGHT BETWEEN STONES</div>
+      <p>每一串都有自己的頻率，<br class="m-br">挑一串此刻與你共鳴的，陪你走一段路。</p>
+    </div>
+
+    <div class="quiz">
+      <div><small>FREQUENCY TEST</small><b>你現在處在什麼頻率？</b><span class="quiz-desc">想知道現在的狀態適合哪一條手串？花一分鐘做個小測驗，找到此刻與你同頻的水晶夥伴。</span></div>
+      <a href="https://script.google.com/macros/s/AKfycbyFHSzOXvf2lEkSgn1k6FW2gGfrAxdp4OIkBAjdzeij4qiEoF3eGuqn_CkdeRHK8r_K9g/exec" target="_blank" rel="noopener">開始測驗</a>
+    </div>
+
+    <nav class="modes" id="modes" aria-label="切換瀏覽方式">
+      <button data-m="bracelets" aria-pressed="true">能量手串</button>
+      <button data-m="stones" aria-pressed="false">單顆水晶</button>
+      <button data-m="design" aria-pressed="false">自行設計</button>
+    </nav>
+    <nav class="tools" id="filters" aria-label="篩選"></nav>
+
+    <div id="list" aria-live="polite"></div>
+    <div class="closing" id="closing">點選手串，查看完整水晶組成與能量說明</div>
+    <div class="quiz-end">還不確定哪一串適合你？先測測看此刻的頻率<a href="https://script.google.com/macros/s/AKfycbyFHSzOXvf2lEkSgn1k6FW2gGfrAxdp4OIkBAjdzeij4qiEoF3eGuqn_CkdeRHK8r_K9g/exec" target="_blank" rel="noopener">頻率小測驗</a></div>
+  </div>
+
+  <div class="bar-bottom"><span class="foot-text">Aira 艾拉｜自我探索 x 能量調頻</span></div>
+</div></div>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<dialog id="detail"></dialog>
+
+<!--SHOP-DATA-START--><script type="application/json" id="shop-data">{"bracelets": [{"beads": "8 X 8 X 4", "chakra": "心輪與海底輪同時運作，一邊療癒情感，一邊穩固生活根基。", "code": "A1", "image": "", "numerology": "雙 8 疊加豐盛能量，如無限循環般源源不絕\n4 則穩穩扎根，讓好運不只是曇花一現，而是踏實累積", "order": 1, "price": 1250, "series": "A", "stones": [{"meaning": "喚醒活力，穩定情緒，招來溫柔好運", "name": "番石榴石"}, {"meaning": "平安辟邪，溫潤守護", "name": "翡翠"}, {"meaning": "滋養愛與慈悲，撫平內心疲憊", "name": "紫鋰輝"}], "story": "當生活需要一份溫柔的力量，讓這串手串陪著你\n番石榴石喚醒你內在沉睡的活力，翡翠靜靜守護日常平安，\n紫鋰輝溫柔療癒每一次的疲憊\n願你在穩定中，盛開屬於自己的好運", "theme": "療癒 / 穩定 / 溫柔盛運", "id": "A1"}, {"beads": "8 X 8 X 4", "chakra": "太陽神經叢與海底輪並行，一邊燃起行動的自信，一邊穩住向前的步伐。", "code": "A2", "image": "", "numerology": "雙 8 帶來源源不絕的推進力，象徵事業運勢節節攀升；4 則為每一步行動打好穩固地基。", "order": 2, "price": 1150, "series": "A", "stones": [{"meaning": "喚醒活力，注入行動力", "name": "番石榴石"}, {"meaning": "招福辟邪，穩固根基", "name": "翡翠"}, {"meaning": "推進事業，強化決心與執行力", "name": "阿魯沙"}], "story": "給正在努力前進的你。番石榴石為你注入向前的動力，翡翠穩穩守護每一步，阿魯沙帶來突破現況的勇氣。這是一串陪你把想法化為行動的手串，成長，正在發生。", "theme": "成長 / 行動 / 事業推進", "id": "A2"}, {"beads": "8 X 8 X 4", "chakra": "眉心輪與臍輪共振，一邊開啟直覺，一邊喚醒由內而外的自信魅力。", "code": "A3", "image": "", "numerology": "雙 8 放大魅力磁場的循環流動；4 則讓直覺與現實之間，維持穩定的平衡感。", "order": 3, "price": 1150, "series": "A", "stones": [{"meaning": "活絡氣場，增添個人魅力", "name": "番石榴石"}, {"meaning": "溫潤守護，平衡能量", "name": "翡翠"}, {"meaning": "開啟直覺，柔化情緒", "name": "藍月光石"}], "story": "喚醒內在光芒的搭配，番石榴石為你增添自信與魅力，翡翠溫潤守護日常，藍月光石打開你的直覺之眼。願你在每個抉擇的時刻，都能相信自己內心的聲音。", "theme": "直覺 / 魅力 / 靈光平衡", "id": "A3"}, {"beads": "8 X 8 X 4", "chakra": "海底輪與頂輪同步運作，一邊穩固物質根基，一邊淨化並放大顯化的意念。", "code": "A4", "image": "", "numerology": "雙 8 是最直接的豐盛象徵，能量循環不息；4 為財富顯化打下穩固的地基，讓好運不輕易流失。", "order": 4, "price": 1050, "series": "A", "stones": [{"meaning": "啟動財富能量，加速顯化", "name": "沙佛萊"}, {"meaning": "招福聚財，穩固根基", "name": "翡翠"}, {"meaning": "淨化能量，放大願望磁場", "name": "白水晶"}], "story": "給準備迎接豐盛的你，沙佛萊點燃財富顯化的火花，翡翠溫潤守護聚財之路，白水晶淨化雜訊，讓你的願望更清晰有力。相信自己值得富足，好運自然靠近。", "theme": "財富 / 顯化 / 聚財", "id": "A4"}, {"beads": "8 X 8 X 4", "chakra": "海底輪與頂輪同步運作，穩固根基的同時放大顯化的力量。", "code": "A5", "image": "", "numerology": "雙 8 是最直接的豐盛象徵，能量循環不息；4 為財富顯化打下穩固的地基。", "order": 5, "price": 1050, "series": "A", "stones": [{"meaning": "啟動財富能量，加速顯化", "name": "沙佛萊"}, {"meaning": "招福聚財，穩固根基", "name": "翡翠"}, {"meaning": "淨化能量，放大願望磁場", "name": "白水晶"}], "story": "沙佛萊、翡翠、白水晶三者合一，為你打造聚財顯化的能量場，願富足與機會，穩穩流向你。", "theme": "財富 / 顯化 / 聚財", "id": "A5"}, {"beads": "8 X 8 X 4", "chakra": "眉心輪與海底輪共同作用，一邊看清方向，一邊穩穩扎根前行。", "code": "A6", "image": "", "numerology": "雙 8 象徵成長能量不斷循環擴張；4 則穩住每一步布局，讓智慧化為踏實的成果。", "order": 6, "price": 1050, "series": "A", "stones": [{"meaning": "開啟智慧，提升洞察力", "name": "青金石"}, {"meaning": "溫潤守護，穩固根基", "name": "翡翠"}, {"meaning": "帶來豐盛，加速顯化成長", "name": "彩幽靈"}], "story": "給正在為未來布局的你，青金石打開智慧之眼，讓你看清方向；翡翠穩穩守護每個決定；彩幽靈悄悄為你的努力加速成長。願你穩紮穩打，走向豐盛的未來。", "theme": "智慧 / 布局 / 穩定成長", "id": "A6"}, {"beads": "8 X 8 X 4", "chakra": "眉心輪與太陽神經叢並行，一邊清晰判斷，一邊自信執行。", "code": "A7", "image": "", "numerology": "雙 8 推動策略持續運轉、成果不斷擴大；4 則確保每個執行步驟都紮實落地。", "order": 7, "price": 1150, "series": "A", "stones": [{"meaning": "提升洞察與判斷力", "name": "青金石"}, {"meaning": "穩固根基，招福守護", "name": "翡翠"}, {"meaning": "加速顯化，帶來具體成果", "name": "彩幽靈"}], "story": "全面提升行動力的搭配，青金石助你看清全局、擬定策略，翡翠為你穩住每一步執行，彩幽靈將努力轉化為看得見的成果。願你所計畫的一切，都能如實顯化。", "theme": "策略 / 執行 / 成果顯化", "id": "A7"}, {"beads": "8 X 8 X 4", "chakra": "喉輪與頂輪同時甦醒，一邊表達真實需求，一邊接引全新的能量流。", "code": "A8", "image": "", "numerology": "雙 8 象徵舊能量循環結束、新豐盛即將展開；4 為轉變期提供穩固的支撐力量。", "order": 8, "price": 1150, "series": "A", "stones": [{"meaning": "打開溝通與學習力，帶來新的視野", "name": "藍磷輝石"}, {"meaning": "溫潤守護，穩定過渡期", "name": "翡翠"}, {"meaning": "強力轉運，突破現況能量", "name": "極光"}], "story": "給準備好重新出發的你，藍磷輝石為你打開嶄新的視野，翡翠陪你穩穩度過轉變期，極光石為你注入突破現況的勇氣。這一次，讓自己活得更靠近想要的模樣。", "theme": "突破 / 轉運 / 重啟人生", "id": "A8"}, {"beads": "8 X 8 X 4", "chakra": "心輪與海底輪共同運作，一邊溫柔療癒情感創傷，一邊重新扎穩生活的根。", "code": "A9", "image": "", "numerology": "雙 8 讓療癒的能量持續循環擴大；4 為重建之路提供堅實的地基，讓修復不再搖晃不定。", "order": 9, "price": 1350, "series": "A", "stones": [{"meaning": "療癒情傷，重拾內在溫柔", "name": "薔薇輝石"}, {"meaning": "辟邪招福，穩固守護", "name": "翡翠"}, {"meaning": "強力防護，隔絕負能量", "name": "黑金超"}], "story": "療癒你曾受過傷的內心，薔薇輝石溫柔撫平過往的疼痛，翡翠靜靜守護你的日常，黑金超為你築起防護的牆，隔絕外界的紛擾。願你在自己的節奏裡，慢慢重建，慢慢完整。", "theme": "療癒 / 防護 / 自我重建", "id": "A9"}, {"beads": "8 X 8 X 4", "chakra": "喉輪為主要能量核心，讓真實的想法能被溫柔而清晰地說出口。", "code": "B1", "image": "", "numerology": "雙 8 讓溝通與人脈能量持續流動擴展；4 則穩住每一次表達背後的底氣。", "order": 10, "price": 1050, "series": "B", "stones": [{"meaning": "打開表達力，招來貴人", "name": "藍兔毛"}, {"meaning": "清晰思緒，助溝通順暢", "name": "藍磷輝石"}, {"meaning": "平靜心緒，勇敢發聲", "name": "海藍寶"}], "story": "給說不出口的心情，一個溫柔的出口。藍兔毛引導你自在表達，藍磷輝石讓思緒更清晰，海藍寶給你勇敢說出真心話的力量。願你的聲音，被世界溫柔聽見。", "theme": "表達 / 溝通 / 清晰行動", "id": "B1"}, {"beads": "5 X 10 X 5", "chakra": "眉心輪與喉輪並行，一邊柔化直覺與情緒，一邊讓關係中的溝通更加自在流動。", "code": "B2", "image": "", "numerology": "雙 5 帶來變動與自由流動的能量，象徵關係中的彈性與新鮮感；10 則是圓滿俱足，代表一段關係走向和諧完整的循環。", "order": 11, "price": 1050, "series": "B", "stones": [{"meaning": "啟發靈感，招來貴人緣", "name": "藍兔毛"}, {"meaning": "柔化情緒，增添魅力", "name": "藍月光石"}, {"meaning": "平靜溝通，滋潤關係", "name": "海藍寶"}], "story": "就讓祂來協助你在關係中能夠更為柔軟的流動吧！藍兔毛為你帶來靈感與貴人，藍月光石柔化過於緊繃的情緒，海藍寶讓你在人際互動中更自在坦然。願你所遇見的每段關係，都溫柔而流動。", "theme": "靈感 / 柔和魅力 / 關係流動", "id": "B2"}, {"beads": "4 X 4 X 8 X 4", "chakra": "喉輪與眉心輪共同運作，一邊安定表達，一邊清晰指引內在方向。", "code": "B3", "image": "", "numerology": "三個 4 疊加，構築出極為穩固的安定感；8 則讓內在的平靜循環流動，不輕易被外界干擾動搖。", "order": 12, "price": 1150, "series": "B", "stones": [{"meaning": "穩定情緒，助溝通", "name": "海藍寶"}, {"meaning": "開啟直覺，柔化能量", "name": "藍月光石"}, {"meaning": "打開心靈視野，指引方向", "name": "堇青石"}], "story": "當內心紛亂、方向模糊，就讓祂成為你的定心錨，雙重海藍寶溫柔安撫情緒，藍月光石喚醒直覺，堇青石為你指出前行的方向。願你在平靜中，看見最清晰的自己。", "theme": "平靜溝通 / 直覺清晰", "id": "B3"}, {"beads": "4 X 8 X 4", "chakra": "喉輪與頂輪同時開啟，一邊誠實表達，一邊接引更高層次的靈性覺察。", "code": "B4", "image": "", "numerology": "雙 4 給予轉化過程穩固的支撐；8 則讓靈性成長的能量持續循環擴展，不因改變而中斷。", "order": 13, "price": 2250, "series": "B", "stones": [{"meaning": "勇敢表達，穩定情緒，滋潤人際", "name": "海藍寶"}, {"meaning": "提升靈性，深層轉化能量", "name": "坦桑石"}], "story": "別擔心，祂會引導你向內探索，找回你真實的自我，雙重海藍寶溫柔安定你的情緒與表達，坦桑石則帶來更深層的靈性轉化。當你願意誠實面對自己，蛻變便會自然發生。", "theme": "深層轉化 / 靈性溝通", "id": "B4"}, {"beads": "8 X 8 X 8", "chakra": "喉輪與頂輪深度連結，讓表達與靈性覺察同步提升。", "code": "B5", "image": "", "numerology": "三個 8 相疊，是極強的豐盛與循環能量，象徵蛻變後迎來源源不絕的新生。", "order": 14, "price": 2250, "series": "B", "stones": [{"meaning": "平靜勇敢，清晰表達", "name": "海藍寶"}, {"meaning": "靈性提升，深層轉化", "name": "坦桑石"}, {"meaning": "打開學習與溝通的能量", "name": "藍磷輝石"}], "story": "給正走在自我覺醒路上的你，海藍寶給你表達真實的勇氣，坦桑石帶你走向更深的靈性蛻變，藍磷輝石開啟新的學習與領悟。這一次的轉變，會讓你遇見更完整的自己。", "theme": "靈性覺醒 / 深度蛻變", "id": "B5"}, {"beads": "8 X 4 X 8", "chakra": "心輪與喉輪共同運作，讓愛能被溫柔而清楚地說出口。", "code": "B6", "image": "", "numerology": "雙 8 讓愛與表達的能量循環流動、生生不息；4 則穩住每一次發聲背後的勇氣與底氣。", "order": 15, "price": 850, "series": "B", "stones": [{"meaning": "溫柔而堅定的愛與表達力", "name": "藍摩根石"}, {"meaning": "鼓勵真實發聲，舒緩壓力", "name": "天河石"}, {"meaning": "清晰思緒，助溝通順暢", "name": "藍磷輝石"}], "story": "請記得，溫柔也可以很有力量，藍摩根石讓愛與表達並存，天河石鼓勵你說出真實的想法，藍磷輝石讓每一次溝通都更加清晰順暢。願你不再委屈自己，也能溫柔而堅定。", "theme": "溫柔溝通 / 真誠表達", "id": "B6"}, {"beads": "7 X 3 X 8 X 6", "chakra": "眉心輪與喉輪並行，一邊指引方向，一邊給予表達的勇氣。", "code": "B7", "image": "", "numerology": "7 帶來直覺與靈性的深度連結；3 是創造與成長的種子；8 讓能量持續循環擴展；6 則為整體帶來圓融與和諧的收尾。", "order": 16, "price": 850, "series": "B", "stones": [{"meaning": "打開心靈視野，指引方向", "name": "堇青石"}, {"meaning": "鼓勵真實表達，舒緩壓力", "name": "天河石"}, {"meaning": "清晰思緒", "name": "藍磷輝石"}, {"meaning": "撫平焦慮，平靜情緒", "name": "藍方解石"}], "story": "給時常感到迷惘的你，堇青石為你指引方向，天河石給你說真話的勇氣，藍磷輝石理清紛亂的思緒，藍方解石則溫柔撫平內心的不安，願你在迷霧中，也能找到屬於自己的路。", "theme": "直覺勇氣 / 心靈方向", "id": "B7"}, {"beads": "8 X 10 X 4", "chakra": "喉輪為核心，讓內在的平靜能夠自然而清晰地傳遞出來。", "code": "B8", "image": "", "numerology": "8 帶來循環流動的平靜能量；10 象徵圓滿俱足，代表情緒終將回歸和諧；4 則穩穩守住這份安定。", "order": 17, "price": 750, "series": "B", "stones": [{"meaning": "平靜情緒，滋潤人際", "name": "海藍寶"}, {"meaning": "清晰思緒，助溝通", "name": "藍磷輝石"}, {"meaning": "平靜心靈，穩定磁場", "name": "藍晶石"}], "story": "就讓祂協助你將內心的紛亂慢慢的安定下來吧！海藍寶撫平情緒的波動，藍磷輝石理清思緒的雜亂，藍晶石則穩穩守住內在的平靜。願你在喧囂的世界裡，依然能找到屬於自己的安定。", "theme": "平靜清晰 / 安定人心", "id": "B8"}, {"beads": "4 X 8 X 8", "chakra": "喉輪為主要能量核心，讓被壓抑的心聲得以溫柔釋放。", "code": "B9", "image": "", "numerology": "4 為表達的勇氣打好根基；雙 8 讓療癒與溝通的能量循環不息，持續擴展流動。", "order": 18, "price": 750, "series": "B", "stones": [{"meaning": "鼓勵真實表達，舒緩壓力", "name": "天河石"}, {"meaning": "撫平焦慮，平靜情緒", "name": "藍方解石"}, {"meaning": "清晰思緒，助溝通順暢", "name": "藍磷輝石"}], "story": "給總是把話悶在心裡的你，天河石鼓勵你說出真實的感受，藍方解石溫柔撫平焦慮與壓力，藍磷輝石讓你的表達更加清晰。願你不再壓抑，勇敢說出屬於自己的心聲。", "theme": "勇敢發聲 / 舒心療癒", "id": "B9"}, {"beads": "4 X 8 X 8", "chakra": "眉心輪與頂輪共同運作，一邊穩定思緒，一邊提升靈性覺察。", "code": "C1", "image": "", "numerology": "4 穩固內在的安全感；雙 8 讓靈性能量持續循環擴展，帶來源源不絕的守護力量。", "order": 19, "price": 750, "series": "C", "stones": [{"meaning": "平靜心靈，穩定磁場", "name": "藍晶石"}, {"meaning": "提升靈性，安神助眠", "name": "紫水晶"}, {"meaning": "舒緩焦慮，平衡情緒", "name": "紫雲母"}], "story": "祂將成為你安放疲憊心靈的堡壘，藍晶石穩定紛亂的磁場，紫水晶提升靈性、安撫心神，紫雲母溫柔舒緩焦慮情緒。願你在喧囂的日子裡，依然保有一份內在的清明。", "theme": "靈性防護 / 心靈清明", "id": "C1"}, {"beads": "6 X 8 X 4", "chakra": "心輪與頂輪同時運作，一邊滋養愛的能量，一邊安撫躁動的心神。", "code": "C2", "image": "", "numerology": "6 帶來圓融與關愛的能量；8 讓療癒的力量循環流動；4 則為情緒的安定打下穩固基礎。", "order": 20, "price": 750, "series": "C", "stones": [{"meaning": "安神助眠，提升靈性", "name": "紫水晶"}, {"meaning": "溫柔療癒，撫平情緒", "name": "薰衣草紫水晶"}, {"meaning": "滋養愛與慈悲", "name": "紫鋰輝"}], "story": "給需要好好休息的你，紫水晶安撫躁動的心神，薰衣草紫水晶像一場溫柔的擁抱，紫鋰輝則滋養內在的愛與慈悲。願你放下緊繃，好好被自己溫柔以待。", "theme": "溫柔療癒 / 安神舒壓", "id": "C2"}, {"beads": "8 X 4 X 4 X 4", "chakra": "心輪與喉輪並行，一邊滋養內在的愛，一邊給予溫柔而堅定的表達力量。", "code": "C3", "image": "", "numerology": "8 讓溫柔療癒的能量持續循環；三個 4 疊加，為情緒、表達與內在平衡打造穩固的三重支撐。", "order": 21, "price": 950, "series": "C", "stones": [{"meaning": "溫柔療癒，撫平情緒", "name": "薰衣草紫水晶"}, {"meaning": "滋養愛與慈悲", "name": "紫鋰輝"}, {"meaning": "平靜心靈，穩定磁場", "name": "藍晶石"}, {"meaning": "鼓勵真實表達", "name": "天河石"}], "story": "祂將為你帶來溫柔而有力量的支持，薰衣草紫水晶療癒情緒的起伏，紫鋰輝滋養內心的愛，藍晶石穩定紛亂的思緒，天河石則鼓勵你勇敢說出真心話。願你在溫柔中，找到表達自己的力量。", "theme": "溫柔表達 / 內在平衡", "id": "C3"}], "stones": [{"care": "避免與硬物碰撞，用軟布擦拭即可。", "chakra": "海底輪", "color": "#C6806A", "desc": "番石榴石屬於石榴石家族，色澤溫暖，像剛熟的果實。它被認為能喚醒沉睡的活力，讓情緒穩下來，也為氣場增添自然的魅力。適合覺得自己提不起勁、總在消耗狀態裡的時候配戴。", "en": "Grossular Garnet", "image": "", "keywords": ["活力", "穩定情緒", "魅力"], "name": "番石榴石", "order": 1, "id": "s01"}, {"care": "避免高溫與化學清潔劑，定期用清水擦拭。", "chakra": "心輪", "color": "#7FAE86", "desc": "翡翠自古就是東方人心中的守護石，質地溫潤，象徵平安與福氣。它在手串裡常扮演穩定根基的角色，靜靜守護日常，讓其他水晶的能量更踏實。", "en": "Jadeite", "image": "", "keywords": ["平安", "守護", "招福"], "name": "翡翠", "order": 2, "id": "s02"}, {"care": "顏色怕曬，收在陰涼處，避免長時間日照。", "chakra": "心輪", "color": "#CDA8CF", "desc": "紫鋰輝帶著柔和的粉紫色，被稱為愛的石頭。它滋養內在的愛與慈悲，陪伴總是照顧別人、卻忘了照顧自己的人，慢慢撫平心裡的疲憊。", "en": "Kunzite", "image": "", "keywords": ["愛與慈悲", "撫平疲憊", "溫柔"], "name": "紫鋰輝", "order": 3, "id": "s03"}, {"care": "避免撞擊，用乾布保養光澤。", "chakra": "太陽神經叢", "color": "#D9975C", "desc": "阿魯沙帶著像陽光般的橘金光澤，象徵熱情與行動。它被認為能推進事業、強化決心與執行力，適合正卡在想做卻遲遲沒有開始的階段。", "en": "Arusha Sunstone", "image": "", "keywords": ["行動力", "決心", "事業"], "name": "阿魯沙", "order": 4, "id": "s04"}, {"care": "硬度較低，與其他飾品分開收納，避免刮傷。", "chakra": "眉心輪", "color": "#C9D5E6", "desc": "藍月光石屬於長石家族，轉動時會浮現柔和的藍色光暈。它和月亮與直覺的意象相連，幫助柔化起伏的情緒，讓你更相信內心的聲音。", "en": "Blue Moonstone", "image": "", "keywords": ["直覺", "柔化情緒", "魅力"], "name": "藍月光石", "order": 5, "id": "s05"}, {"care": "避免高溫與撞擊，用軟布擦拭。", "chakra": "心輪", "color": "#3F9160", "desc": "沙佛萊是綠色系的石榴石，色澤鮮亮清透。它常被連結到財富與豐盛，被認為能點燃顯化的火花，陪你相信自己值得富足。", "en": "Tsavorite", "image": "", "keywords": ["財富", "顯化", "豐盛"], "name": "沙佛萊", "order": 6, "id": "s06"}, {"care": "耐受度高，可用清水沖洗後擦乾。", "chakra": "頂輪", "color": "#F4F4F6", "desc": "白水晶是最純淨的石英結晶，被視為萬用的能量放大器。它幫助淨化雜訊，讓你的意念與願望更清晰，也能和其他水晶互相搭配。", "en": "Clear Quartz", "image": "", "keywords": ["淨化", "放大願望", "專注"], "name": "白水晶", "order": 7, "id": "s07"}, {"care": "質地較軟且怕水，避免浸泡與香水接觸。", "chakra": "眉心輪", "color": "#304C8E", "desc": "青金石深藍中帶著金色黃鐵礦點綴，像夜空裡的星。它被稱為智慧之石，幫助看清全局、提升判斷力，適合正在為未來布局的人。", "en": "Lapis Lazuli", "image": "", "keywords": ["智慧", "洞察", "判斷力"], "name": "青金石", "order": 8, "id": "s08"}, {"care": "可用清水沖洗，避免與硬物碰撞。", "chakra": "心輪", "color": "#A3B58F", "desc": "彩幽靈是水晶在生長過程中包覆了多彩礦物，形成層層疊疊的幻影。它象徵一步步累積的成長，陪你把努力慢慢轉化為看得見的成果。", "en": "Phantom Quartz", "image": "", "keywords": ["豐盛", "顯化成長", "累積"], "name": "彩幽靈", "order": 9, "id": "s09"}, {"care": "硬度較低，避免碰撞與長時間浸泡。", "chakra": "喉輪", "color": "#5FAEBB", "desc": "藍磷輝石帶著湖水般的藍綠色，被認為能打開溝通與學習的能量。思緒紛亂的時候，它幫你理清頭緒，讓說出口的話更清楚。", "en": "Blue Apatite", "image": "", "keywords": ["溝通", "學習", "清晰思緒"], "name": "藍磷輝石", "order": 10, "id": "s10"}, {"care": "避免撞擊，用軟布擦拭。", "chakra": "頂輪", "color": "#B9A7DC", "desc": "極光石內含多種礦物，光線下呈現夢幻的層次。它被視為強力轉運的石頭，陪伴想突破現況、重新出發的人，迎接全新的能量流。", "en": "", "image": "", "keywords": ["轉運", "突破", "新視野"], "name": "極光", "order": 11, "id": "s11"}, {"care": "避免撞擊與化學清潔劑，用清水擦拭。", "chakra": "心輪", "color": "#D98C9C", "desc": "薔薇輝石粉色中帶著黑色紋路，像傷口癒合後留下的痕跡。它被認為能溫柔療癒情傷，讓你重新拾回內在的柔軟。", "en": "Rhodonite", "image": "", "keywords": ["療癒情傷", "內在溫柔", "修復"], "name": "薔薇輝石", "order": 12, "id": "s12"}, {"care": "避免撞擊，用乾布擦拭。", "chakra": "海底輪", "color": "#2E262C", "desc": "黑金超深色中閃著金色光點，給人沉穩有力的感覺。它被視為強力的防護石，幫你隔絕外界紛擾，在重建自己的路上築起一道安全的牆。", "en": "", "image": "", "keywords": ["防護", "隔絕負能量", "穩定"], "name": "黑金超", "order": 13, "id": "s13"}, {"care": "避免撞擊，可用清水沖洗後擦乾。", "chakra": "喉輪", "color": "#93BBD9", "desc": "藍兔毛內含細細的藍色絲狀礦物，像兔毛般柔軟。它被認為能打開表達力、招來貴人，也為你帶來新的靈感。", "en": "", "image": "", "keywords": ["表達", "貴人", "靈感"], "name": "藍兔毛", "order": 14, "id": "s14"}, {"care": "避免長時間日曬，用清水沖洗後擦乾。", "chakra": "喉輪", "color": "#AFD8E2", "desc": "海藍寶像海水般清透，被視為勇氣與平靜之石。它幫助安定情緒，讓你在人際互動裡更自在，勇敢說出真心話。", "en": "Aquamarine", "image": "", "keywords": ["平靜", "勇敢發聲", "人際"], "name": "海藍寶", "order": 15, "id": "s15"}, {"care": "避免撞擊，用軟布擦拭。", "chakra": "眉心輪", "color": "#5C61A2", "desc": "堇青石從不同角度看會呈現藍紫與淡黃的變化，古時航海者用它辨別方向。它被認為能打開心靈視野，在迷惘的時候指引前行的路。", "en": "Iolite", "image": "", "keywords": ["方向", "直覺", "心靈視野"], "name": "堇青石", "order": 16, "id": "s16"}, {"care": "硬度較低，避免撞擊與高溫。", "chakra": "頂輪", "color": "#5D51A4", "desc": "坦桑石只產於坦尚尼亞，藍紫色調深邃迷人。它被視為靈性轉化之石，陪伴正在自我覺醒、經歷深度蛻變的人。", "en": "Tanzanite", "image": "", "keywords": ["靈性提升", "深層轉化", "蛻變"], "name": "坦桑石", "order": 17, "id": "s17"}, {"care": "避免長時間日曬，用軟布擦拭。", "chakra": "心輪", "color": "#BCD0E3", "desc": "藍摩根石色澤柔和淡雅，帶著溫柔而堅定的能量。它提醒你，愛與表達可以同時存在，溫柔也能很有力量。", "en": "", "image": "", "keywords": ["溫柔", "堅定", "愛的表達"], "name": "藍摩根石", "order": 18, "id": "s18"}, {"care": "硬度較低，避免碰撞與浸泡。", "chakra": "喉輪", "color": "#82C4B6", "desc": "天河石帶著清新的藍綠色，被稱為勇氣之石。它鼓勵你說出真實的想法，也幫助舒緩累積的壓力。", "en": "Amazonite", "image": "", "keywords": ["真實表達", "舒緩壓力", "勇氣"], "name": "天河石", "order": 19, "id": "s19"}, {"care": "質地很軟，避免碰撞與浸水，單獨收納。", "chakra": "喉輪", "color": "#A2C8E3", "desc": "藍方解石像淡淡的天空，質地柔和。它被認為能溫柔撫平焦慮與不安，讓緊繃的情緒慢慢放鬆下來。", "en": "Blue Calcite", "image": "", "keywords": ["撫平焦慮", "平靜", "放鬆"], "name": "藍方解石", "order": 20, "id": "s20"}, {"care": "沿紋理容易斷裂，避免撞擊與彎折。", "chakra": "喉輪", "color": "#527CAB", "desc": "藍晶石有著刀刃般的纖維紋理與深淺不一的藍。它被認為能平靜心靈、穩定磁場，在紛亂中守住內在的安定。", "en": "Kyanite", "image": "", "keywords": ["平靜心靈", "穩定磁場", "安定"], "name": "藍晶石", "order": 21, "id": "s21"}, {"care": "避免長時間日曬，紫色會慢慢變淡。", "chakra": "頂輪", "color": "#8E6BB8", "desc": "紫水晶的紫色來自微量的鐵離子，被視為幫助思緒沉澱的石頭。它安撫躁動的心神，適合想太多、睡前停不下來的時候放在身邊。", "en": "Amethyst", "image": "", "keywords": ["安神", "靈性", "好眠"], "name": "紫水晶", "order": 22, "id": "s22"}, {"care": "質地很軟，避免碰撞與浸水。", "chakra": "眉心輪", "color": "#AB8DBB", "desc": "紫雲母帶著細緻的珠光，含有天然的鋰元素。它被認為能舒緩焦慮、平衡情緒，像一個讓心安靜下來的深呼吸。", "en": "Lepidolite", "image": "", "keywords": ["舒緩焦慮", "平衡情緒", "放鬆"], "name": "紫雲母", "order": 23, "id": "s23"}, {"care": "顏色怕曬，收在陰涼處。", "chakra": "頂輪", "color": "#C6B3DC", "desc": "薰衣草紫水晶是顏色較淺的紫水晶，帶著柔和的粉紫調。它的能量像一場溫柔的擁抱，陪你撫平情緒的起伏。", "en": "Lavender Amethyst", "image": "", "keywords": ["溫柔療癒", "撫平情緒", "擁抱"], "name": "薰衣草紫水晶", "order": 24, "id": "s24"}], "settings": {"enabled": false, "labor": 0, "note": "", "sizes": [6, 8, 10, 12]}, "updatedAt": "2026-10-07T07:15:35Z"}</script><!--SHOP-DATA-END-->
+
+<script>
+const COL="bracelets",SCOL="stones";
+const STONE={"番石榴石":"#C6806A","翡翠":"#7FAE86","紫鋰輝":"#CDA8CF","阿魯沙":"#D9975C","藍月光石":"#C9D5E6","沙佛萊":"#3F9160","白水晶":"#F4F4F6","青金石":"#304C8E","彩幽靈":"#A3B58F","藍磷輝石":"#5FAEBB","極光":"#B9A7DC","薔薇輝石":"#D98C9C","黑金超":"#2E262C","藍兔毛":"#93BBD9","海藍寶":"#AFD8E2","堇青石":"#5C61A2","坦桑石":"#5D51A4","藍摩根石":"#BCD0E3","天河石":"#82C4B6","藍方解石":"#A2C8E3","藍晶石":"#527CAB","紫水晶":"#8E6BB8","紫雲母":"#AB8DBB","薰衣草紫水晶":"#C6B3DC"};
+const ACC={A:["#B04E68","#F6DDE3"],B:["#3F6F94","#DCE8F1"],C:["#7A5BA6","#E9E1F3"],
+ "海底輪":["#A8453F","#F4DEDB"],"臍輪":["#B5602C","#F6E2D4"],"太陽神經叢":["#94701E","#F3EAD2"],"心輪":["#4A7F57","#DDEBDF"],
+ "喉輪":["#3F7896","#DAE9F1"],"眉心輪":["#4A5698","#E0E3F2"],"頂輪":["#7A5BA6","#E9E1F3"]};
+const CHK=["海底輪","臍輪","太陽神經叢","心輪","喉輪","眉心輪","頂輪"];
+const reEsc=t=>t.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+const themeWords=it=>String(it.theme||"").split(/[\/／、]/).map(w=>w.trim()).filter(w=>w.length>=2);
+const termsFor=it=>[...(it.stones||[]).map(s=>s.name),...CHK,...themeWords(it)];
+function hl(text,terms){
+  let out=esc(text);const t=[...new Set(terms.filter(Boolean))].sort((a,b)=>b.length-a.length);
+  if(!t.length)return out;
+  const stones=new Set(S.stones.map(x=>x.name).concat(Object.keys(STONE)));
+  return out.replace(new RegExp(t.map(w=>reEsc(esc(w))).join("|"),"g"),m=>`<em class="${stones.has(m)?"hl-stone":CHK.includes(m)?"hl-chakra":"hl-key"}">${m}</em>`);
+}
+const hlNum=text=>esc(text).replace(/(雙\s?\d+|三個\s?\d+|\d+)/g,'<em class="hl-num">$1</em>');
+const accStyle=k=>{const a=ACC[k]||ACC.A;return `--acc:${a[0]};--acc-soft:${a[1]}`};
+const S={mode:"bracelets",items:[],stones:[],filter:"全部",editor:false,admin:false,db:null,assets:null,editing:null,newFile:null,sEditing:null,sFile:null};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt=n=>Number(n||0).toLocaleString("en-US");
+const stoneByName=n=>S.stones.find(s=>s.name===n);
+const colorOf=n=>stoneByName(n)?.color||STONE[n]||"#D8B4BC";
+const usesOf=n=>S.items.filter(i=>(i.stones||[]).some(s=>s.name===n));
+
+/* illustrations */
+function bracelet(stones){
+  const cols=(stones||[]).map(s=>colorOf(s.name));if(!cols.length)cols.push("#D8B4BC");
+  const n=20,R=62,cx=100,cy=100;let beads="";
+  for(let i=0;i<n;i++){const a=i/n*Math.PI*2-Math.PI/2,x=cx+R*Math.cos(a),y=cy+R*Math.sin(a),c=cols[i%cols.length];
+    beads+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="10.2" fill="${c}" stroke="#fff" stroke-opacity=".6" stroke-width=".8"/><circle cx="${(x-3).toFixed(1)}" cy="${(y-3.4).toFixed(1)}" r="3" fill="#fff" fill-opacity=".55"/>`}
+  return svgURI(`<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#D9C3C7" stroke-width="1"/>${beads}`);
+}
+function bead(color){
+  const c=/^#[0-9a-f]{6}$/i.test(color||"")?color:"#D8B4BC";
+  return svgURI(`<ellipse cx="100" cy="166" rx="44" ry="7" fill="#C9A9B0" fill-opacity=".35"/><circle cx="100" cy="100" r="56" fill="${c}" stroke="#fff" stroke-opacity=".7" stroke-width="1.2"/><circle cx="100" cy="100" r="56" fill="url(#s)"/><ellipse cx="80" cy="76" rx="17" ry="11" fill="#fff" fill-opacity=".6" transform="rotate(-30 80 76)"/>`,
+    `<radialGradient id="s" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".18"/></radialGradient>`);
+}
+function svgURI(body,defs=""){
+  return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><radialGradient id="g" cx=".7" cy=".25" r=".8"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#F3E0E2"/></radialGradient>${defs}</defs><rect width="200" height="200" fill="url(#g)"/>${body}</svg>`);
+}
+const pic=it=>it.image?it.image:bracelet(it.stones);
+const spic=st=>st.image?st.image:bead(st.color);
+document.addEventListener("error",e=>{const el=e.target;if(el.tagName!=="IMG"||el.dataset.f)return;el.dataset.f=1;
+  if(el.dataset.id){const it=S.items.find(i=>i.id===el.dataset.id);el.src=bracelet(it?.stones)}
+  else if(el.dataset.sid){const st=S.stones.find(i=>i.id===el.dataset.sid);el.src=bead(st?.color)}},true);
+
+/* ---------- render ---------- */
+function seriesOf(){return [...new Set(S.items.map(i=>i.series||"其他"))].sort()}
+const CHAKRAS=["海底輪","臍輪","太陽神經叢","心輪","喉輪","眉心輪","頂輪"];
+function chakrasOf(){return CHAKRAS.filter(c=>S.stones.some(s=>s.chakra===c))}
+const designOn=()=>S.cfg?.enabled!==false;
+function renderFilters(){
+  const dBtn=document.querySelector('#modes [data-m="design"]');if(dBtn)dBtn.hidden=!designOn();
+  if(S.mode==="design"&&!designOn())S.mode="bracelets";
+  if(S.mode==="design"){$("filters").innerHTML="";document.querySelectorAll("#modes button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.m===S.mode));$("closing").textContent="想要現成的搭配？也可以回到「能量手串」看看";return}
+  const isB=S.mode==="bracelets";
+  const vals=isB?seriesOf():chakrasOf();const opts=["全部",...vals];if(!opts.includes(S.filter))S.filter="全部";
+  const has=isB?S.items.length:S.stones.length;
+  $("filters").innerHTML=has?opts.map(o=>`<button class="pill${o==="全部"?" all":""}" style="${o==="全部"?"":accStyle(o)}" aria-pressed="${o===S.filter}" data-f="${esc(o)}">${o==="全部"||!isB?esc(o):esc(o)+" 系列"}</button>`).join(""):"";
+  
+  document.querySelectorAll("#modes button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.m===S.mode));
+  $("closing").textContent=isB?"點選手串，查看完整水晶組成與能量說明":"點選水晶，查看單顆說明與搭配的手串";
+}
+function card(it){
+  return `<button class="card" data-id="${esc(it.id)}">
+    <img class="pic" src="${pic(it)}" data-id="${esc(it.id)}" alt="${esc(it.code)} 手串照片" loading="lazy">
+    <div class="cbody">
+      <span class="code">${esc(it.code)}</span>
+      <span class="theme">${esc(it.theme)}</span>
+      <span class="stones">${(it.stones||[]).map(s=>esc(s.name)).join("・")}</span>
+      <span class="foot"><span class="beads">${esc(it.beads)}</span>
+        ${S.admin?`<span class="edit" data-edit="${esc(it.id)}">編輯</span>`:`<span class="price">${fmt(it.price)}</span>`}</span>
+    </div></button>`;
+}
+function scard(st){
+  const n=usesOf(st.name).length;
+  return `<button class="card" data-sid="${esc(st.id)}">
+    <img class="pic" src="${spic(st)}" data-sid="${esc(st.id)}" alt="${esc(st.name)}照片" loading="lazy">
+    <div class="cbody">
+      <span class="code">${esc(st.en||st.chakra||"")}</span>
+      <span class="theme">${esc(st.name)}</span>
+      <span class="stones">${(st.keywords||[]).map(esc).join("・")}</span>
+      <span class="foot"><span class="beads">${esc(st.chakra||"")}</span>
+        ${S.admin?`<span class="edit" data-sedit="${esc(st.id)}">編輯</span>`:`<span class="beads">${n?"搭配 "+n+" 款手串":""}</span>`}</span>
+    </div></button>`;
+}
+function renderList(msg){
+  const L=$("list");
+  if(msg){L.innerHTML=`<div class="empty"><b>${esc(msg[0])}</b>${esc(msg[1])}</div>`;return}
+  if(S.mode==="design"){renderDesign();return}
+  if(S.mode==="bracelets"){
+    if(!S.items.length){L.innerHTML=`<div class="empty"><b>手串整理中</b>${S.editor?"打開下方「後台」，按「新增手串」放上第一款。":"新的手串即將上架，晚點再回來看看。"}</div>`;return}
+    const groups=seriesOf().filter(s=>S.filter==="全部"||s===S.filter);
+    L.innerHTML=groups.map(s=>{const list=S.items.filter(i=>(i.series||"其他")===s);
+      return `<section class="series" style="${accStyle(s)}"><div class="sec-bar">${esc(s)} 系列<small>${list.length} 款</small></div><div class="grid">${list.map(card).join("")}</div></section>`}).join("");
+  }else{
+    if(!S.stones.length){L.innerHTML=`<div class="empty"><b>水晶說明整理中</b>${S.editor?"打開下方「後台」，按「新增水晶」寫下第一顆的說明。":"單顆水晶說明即將上線。"}</div>`;return}
+    const groups=chakrasOf().filter(c=>S.filter==="全部"||c===S.filter);
+    L.innerHTML=groups.map(c=>{const list=S.stones.filter(s=>s.chakra===c);
+      return `<section class="series" style="${accStyle(c)}"><div class="sec-bar">${esc(c)}<small>${list.length} 種</small></div><div class="grid">${list.map(scard).join("")}</div></section>`}).join("");
+  }
+}
+function render(){renderFilters();renderList()}
+
+$("modes").addEventListener("click",e=>{const b=e.target.closest("[data-m]");if(!b||b.dataset.m===S.mode)return;S.mode=b.dataset.m;S.filter="全部";render()});
+$("filters").addEventListener("click",e=>{const b=e.target.closest("[data-f]");if(b){S.filter=b.dataset.f;render()}});
+$("list").addEventListener("click",e=>{
+  const c=e.target.closest(".card");if(!c)return;
+  if(c.dataset.id)openDetail(c.dataset.id);
+  else openStone(c.dataset.sid);
+});
+
+/* ---------- detail views ---------- */
+function show(html){
+  const d=$("detail");d.innerHTML=html;d.querySelector(".x").onclick=()=>d.close();
+  d.querySelectorAll("[data-goto-stone]").forEach(b=>b.onclick=()=>openStone(b.dataset.gotoStone));
+  d.querySelectorAll("[data-goto-b]").forEach(b=>b.onclick=()=>openDetail(b.dataset.gotoB));
+  if(!d.open)d.showModal();d.scrollTop=0;
+}
+function openDetail(id){
+  const it=S.items.find(i=>i.id===id);if(!it)return;
+  $("detail").style.cssText=accStyle(it.series);
+  show(`
+    <div class="d-top"><span>${esc(it.series||"")} 系列</span><span style="display:flex;gap:14px;align-items:center">${esc(it.code)}<button class="x" aria-label="關閉">×</button></span></div>
+    <div class="d-grid">
+      <img class="pic" src="${pic(it)}" data-id="${esc(it.id)}" alt="${esc(it.code)} 手串照片">
+      <div class="d-body">
+        <h2>${esc(it.theme)}</h2><div class="eng">${esc(it.beads)}</div>
+        <div class="d-sec">水晶組成</div>
+        <div class="stone-list">${(it.stones||[]).map(s=>{const st=stoneByName(s.name),c=colorOf(s.name);
+          const chips=String(s.meaning||"").split(/[，,、；;]/).map(x=>x.trim()).filter(Boolean).map(x=>`<span class="chip">${hl(x,themeWords(it))}</span>`).join("");
+          const head=`<span class="dot" style="background:${esc(c)}"></span><b>${esc(s.name)}</b>${st?`<span class="more">看說明</span>`:""}`;
+          return st?`<div class="stone-item" style="--sc:${esc(c)}" role="button" tabindex="0" data-goto-stone="${esc(st.id)}"><div class="si-head">${head}</div><div class="chips">${chips}</div></div>`
+                   :`<div class="stone-item" style="--sc:${esc(c)}"><div class="si-head">${head}</div><div class="chips">${chips}</div></div>`}).join("")}</div>
+        ${it.numerology?`<div class="d-sec">數字能量</div><p class="d-text d-box">${hlNum(it.numerology)}</p>`:""}
+        ${it.chakra?`<div class="d-sec">對應脈輪</div><p class="d-text d-box">${hl(it.chakra,termsFor(it))}</p>`:""}
+        ${it.story?`<p class="story">${hl(it.story,termsFor(it))}</p>`:""}
+        <div class="d-price"><span class="beads">售價</span><span class="price">${fmt(it.price)}</span></div>
+      </div>
+    </div>`);
+}
+function openStone(sid){
+  const st=S.stones.find(s=>s.id===sid);if(!st)return;
+  const uses=usesOf(st.name);$("detail").style.cssText=accStyle(st.chakra);
+  const paras=String(st.desc||"").split(/\n+/).filter(Boolean).map(p=>`<p class="d-text">${esc(p)}</p>`).join("");
+  show(`
+    <div class="d-top"><span>單顆水晶</span><span style="display:flex;gap:14px;align-items:center">${esc(st.chakra||"")}<button class="x" aria-label="關閉">×</button></span></div>
+    <div class="d-grid">
+      <img class="pic" src="${spic(st)}" data-sid="${esc(st.id)}" alt="${esc(st.name)}照片">
+      <div class="d-body">
+        <h2>${esc(st.name)}</h2>${st.en?`<div class="eng">${esc(st.en)}</div>`:""}
+        ${(st.keywords||[]).length?`<div class="kw">${st.keywords.map(k=>`<span>${esc(k)}</span>`).join("")}</div>`:""}
+        <div class="d-sec">水晶說明</div>
+        ${paras||`<p class="d-text">說明撰寫中。</p>`}
+        ${st.care?`<div class="d-sec">保養方式</div><p class="d-text">${esc(st.care)}</p>`:""}
+        ${uses.length?`<div class="d-sec">搭配的手串</div><div class="uses">${uses.map(u=>`<button style="${accStyle(u.series)}" data-goto-b="${esc(u.id)}">${esc(u.code)}・${esc(String(u.theme||"").split("/")[0].trim())}</button>`).join("")}</div>`:""}
+      </div>
+    </div>`);
+}
+$("detail").addEventListener("click",e=>{if(e.target===$("detail"))$("detail").close()});
+$("detail").addEventListener("keydown",e=>{const b=e.target.closest("[data-goto-stone]");if(b&&(e.key==="Enter"||e.key===" ")){e.preventDefault();openStone(b.dataset.gotoStone)}});
+
+/* ---------- 自行設計 designer ---------- */
+const sizesCfg=()=>{const z=(S.cfg?.sizes||[6,8,10,12]).map(Number).filter(n=>n>0);return z.length?z:[6,8,10,12]};
+const priceOf=(name,size)=>{const v=stoneByName(name)?.prices?.[String(size)];return typeof v==="number"&&v>=0?v:null};
+const D={wrist:15,beads:[],active:null,size:8};
+try{const sv=JSON.parse(localStorage.getItem("aira-design")||"null");if(sv&&Array.isArray(sv.beads)){D.wrist=sv.wrist||15;D.beads=sv.beads.slice(0,80);D.size=sv.size||8}}catch(_){}
+const saveD=()=>{try{localStorage.setItem("aira-design",JSON.stringify({wrist:D.wrist,beads:D.beads,size:D.size}))}catch(_){}};
+const targetMM=()=>Math.round((D.wrist+1.5)*10);
+const lenMM=()=>D.beads.reduce((a,b)=>a+b.size,0);
+
+function ringSVG(){
+  const L=lenMM(),T=targetMM(),C=Math.max(L,T),R=C/(2*Math.PI),k=72/R;
+  let g=`<circle cx="100" cy="100" r="${(T/(2*Math.PI)*k).toFixed(1)}" fill="none" stroke="#C9A3AE" stroke-width="1" stroke-dasharray="3 4"/>`;
+  let cum=0;
+  D.beads.forEach(b=>{const a=(cum+b.size/2)/C*2*Math.PI-Math.PI/2;cum+=b.size;
+    const x=100+72*Math.cos(a),y=100+72*Math.sin(a),r=Math.max(2.5,b.size/2*k*.96),c=colorOf(b.name);
+    g+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" fill="${c}" stroke="#fff" stroke-opacity=".7" stroke-width=".8"/><circle cx="${(x-r*.3).toFixed(1)}" cy="${(y-r*.34).toFixed(1)}" r="${(r*.3).toFixed(1)}" fill="#fff" fill-opacity=".55"/>`});
+  const msg=D.beads.length?`${(L/10).toFixed(1)} cm`:"從右邊挑選水晶";
+  return `<svg viewBox="0 0 200 200" role="img" aria-label="手串預覽"><defs><radialGradient id="dg" cx=".7" cy=".25" r=".8"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#F8ECEE"/></radialGradient></defs><rect width="200" height="200" fill="url(#dg)"/>${g}<text x="100" y="98" text-anchor="middle" font-size="${D.beads.length?15:10}" fill="#5A2E44" font-family="Noto Serif TC,serif">${msg}</text>${D.beads.length?`<text x="100" y="116" text-anchor="middle" font-size="8.5" fill="#8C7680" letter-spacing="1">${D.beads.length} 顆</text>`:""}</svg>`;
+}
+function renderDesign(){
+  const L=$("list"),sizes=sizesCfg(),stones=S.stones;
+  if(!stones.length){L.innerHTML=`<div class="empty"><b>水晶準備中</b>可搭配的水晶即將上線。</div>`;return}
+  if(D.active&&!stoneByName(D.active))D.active=null;
+  const act=D.active,len=lenMM(),T=targetMM(),diff=T-len;
+  const pct=Math.min(100,Math.round(len/T*100));
+  const status=!D.beads.length?"還沒有加入水晶":Math.abs(diff)<=4?"長度剛剛好":diff>0?`還差約 ${(diff/10).toFixed(1)} cm，大約 ${Math.max(1,Math.round(diff/D.size))} 顆 ${D.size}mm`:`超過建議長度 ${(-diff/10).toFixed(1)} cm`;
+  // summary
+  const groups={};D.beads.forEach(b=>{const k=b.name+"|"+b.size;groups[k]=(groups[k]||0)+1});
+  let sub=0,unpriced=false;
+  const rows=Object.entries(groups).map(([k,n])=>{const [name,size]=k.split("|"),p=priceOf(name,size);if(p==null)unpriced=true;else sub+=p*n;
+    return `<div class="sum-row" style="--sc:${esc(colorOf(name))}"><span class="dot"></span><b>${esc(name)}</b><span class="mm">${size}mm × ${n}</span><span class="amt">${p==null?"待確認":"NT$ "+fmt(p*n)}</span></div>`}).join("");
+  const labor=Number(S.cfg?.labor)||0,total=sub+(D.beads.length?labor:0);
+  L.innerHTML=`<section class="designer" style="${accStyle("A")}">
+    <div class="dz-head"><div class="sec-bar">自行設計<small>DIY</small></div>
+      <p>依照你的需求與喜好挑選水晶與尺寸，一顆一顆串出屬於你的頻率，下方會即時試算價格。</p></div>
+    <div class="dz-grid">
+      <div class="dz-preview">
+        <div class="ring">${ringSVG()}</div>
+        <div class="meter"><div class="bar"><i style="width:${pct}%"></i></div><span>${esc(status)}</span></div>
+        <div class="wrist"><label for="d-wrist">手圍</label>
+          <select id="d-wrist">${[13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19].map(w=>`<option value="${w}"${w===D.wrist?" selected":""}>${w} cm</option>`).join("")}</select>
+          <span class="hint">建議成品長度 ${(T/10).toFixed(1)} cm</span></div>
+        <div class="dz-actions">
+          <button class="btn" data-d="undo"${D.beads.length?"":" disabled"}><span class="d-only">移除最後一顆</span><span class="m-only">移除一顆</span></button>
+          <button class="btn" data-d="fill"${D.beads.length||act?"":" disabled"}><span class="d-only">依目前排列填滿</span><span class="m-only">自動填滿</span></button>
+          <button class="btn" data-d="clear"${D.beads.length?"":" disabled"}>清空</button>
+        </div>
+      </div>
+      <div class="dz-pick">
+        <div class="step"><span class="no">1</span>挑選水晶<span class="m-only swipe">左右滑動看更多 ›</span></div>
+        <div class="palette">${stones.map(st=>`<button class="swatch${st.name===act?" on":""}" style="--sc:${esc(st.color||colorOf(st.name))};${accStyle(st.chakra)}" data-pick="${esc(st.name)}" aria-pressed="${st.name===act}"><span class="dot"></span><span>${esc(st.name)}</span></button>`).join("")}</div>
+        ${act?`<div class="picked" style="${accStyle(stoneByName(act)?.chakra)}"><b>${esc(act)}</b>${(stoneByName(act)?.keywords||[]).slice(0,3).map(k=>`<span class="chip">${esc(k)}</span>`).join("")}<button class="more" data-goto-s="${esc(stoneByName(act)?.id||"")}">看說明</button></div>`:""}
+        <div class="step"><span class="no">2</span>選擇尺寸</div>
+        <div class="sizes">${sizes.map(z=>{const p=act?priceOf(act,z):null;return `<button class="size${z===D.size?" on":""}" data-size="${z}" aria-pressed="${z===D.size}"><b>${z}mm</b><small>${act?(p==null?"待確認":"NT$ "+fmt(p)+"<span class=\"d-only\"> / 顆</span>"):"每顆價格"}</small></button>`}).join("")}</div>
+        <div class="step"><span class="no">3</span>加入手串</div>
+        <div class="add-row"><button class="btn primary" data-d="add"${act?"":" disabled"}>加入 1 顆</button><button class="btn" data-d="add3"${act?"":" disabled"}>加入 3 顆</button></div>
+      </div>
+    </div>
+    <div class="estimate">
+      <div class="est-head">價格試算</div>
+      ${D.beads.length?`<div class="sum-list">${rows}</div>
+        <div class="est-line"><span>水晶小計</span><span>NT$ ${fmt(sub)}${unpriced?"＋待確認":""}</span></div>
+        ${labor?`<div class="est-line"><span>手工串製</span><span>NT$ ${fmt(labor)}</span></div>`:""}
+        <div class="est-total"><span>試算總價</span><span class="price">${fmt(total)}${unpriced?"<small>起</small>":""}</span></div>
+        <p class="est-note">${unpriced?"部分水晶尚未定價，實際價格由 Aira 確認後提供。":esc(S.cfg?.note||"試算僅供參考，實際價格依水晶批次與尺寸，由 Aira 確認後提供。")}</p>
+        <div class="est-cta"><button class="btn primary" data-d="copy">複製我的設計清單</button><span class="hint" id="copyHint">把清單傳給 Aira，就能幫你確認細節。</span></div>`
+      :`<p class="est-note" style="text-align:center">加入水晶後，這裡會列出每顆水晶的數量與價格。</p>`}
+    </div>
+  </section>`;
+}
+function designText(){
+  const groups={};D.beads.forEach(b=>{const k=b.name+" "+b.size+"mm";groups[k]=(groups[k]||0)+1});
+  const seq=D.beads.map(b=>b.name+b.size).join("、");
+  return `【我的手串設計】\n手圍：${D.wrist} cm，成品約 ${(lenMM()/10).toFixed(1)} cm，共 ${D.beads.length} 顆\n`+
+    Object.entries(groups).map(([k,n])=>`・${k} × ${n}`).join("\n")+`\n排列：${seq}\n試算總價：NT$ ${$("list").querySelector(".est-total .price")?.textContent||""}`;
+}
+function addBeads(n){if(!D.active)return;for(let i=0;i<n&&D.beads.length<80;i++)D.beads.push({name:D.active,size:D.size});saveD();renderDesign()}
+$("list").addEventListener("click",async e=>{
+  if(S.mode!=="design")return;
+  const pk=e.target.closest("[data-pick]");if(pk){D.active=pk.dataset.pick;const z=sizesCfg();if(!z.includes(D.size))D.size=z[0];renderDesign();return}
+  const sz=e.target.closest("[data-size]");if(sz){D.size=Number(sz.dataset.size);saveD();renderDesign();return}
+  const gs=e.target.closest("[data-goto-s]");if(gs&&gs.dataset.gotoS){openStone(gs.dataset.gotoS);return}
+  const b=e.target.closest("[data-d]");if(!b)return;
+  const a=b.dataset.d;
+  if(a==="add")addBeads(1);
+  else if(a==="add3")addBeads(3);
+  else if(a==="undo"){D.beads.pop();saveD();renderDesign()}
+  else if(a==="clear"){D.beads=[];saveD();renderDesign()}
+  else if(a==="fill"){
+    const pat=D.beads.length?D.beads.slice():[{name:D.active,size:D.size}];const T=targetMM();let i=0;
+    while(lenMM()+pat[i%pat.length].size/2<=T&&D.beads.length<80){D.beads.push({...pat[i%pat.length]});i++}
+    saveD();renderDesign();
+  }else if(a==="copy"){
+    const t=designText();
+    try{await navigator.clipboard.writeText(t);toast("已複製設計清單")}
+    catch(_){const h=$("copyHint");if(h){h.textContent="無法自動複製，請長按下方文字複製：";const pre=document.createElement("pre");pre.className="copy-pre";pre.textContent=t;h.after(pre)}}
+  }
+});
+$("list").addEventListener("change",e=>{if(e.target.id==="d-wrist"){D.wrist=Number(e.target.value);saveD();renderDesign()}});
+
+
+let toastT;function toast(t){const el=$("toast");el.textContent=t;el.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>el.hidden=true,2600)}
+
+/* ---------- boot ---------- */
+(function(){
+  let data={};
+  try{data=JSON.parse(document.getElementById("shop-data").textContent||"{}")}catch(_){}
+  const byOrder=(a,b)=>(a.order||0)-(b.order||0);
+  S.items=(data.bracelets||[]).slice().sort(byOrder);
+  S.stones=(data.stones||[]).slice().sort(byOrder);
+  S.cfg=data.settings||{};
+  render();
+})();
+</script>
+
+</body>
+</html>
