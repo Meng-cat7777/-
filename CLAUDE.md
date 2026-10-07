@@ -48,6 +48,7 @@ https://meng-cat7777.github.io/-/
 - 頻率測驗連結：https://script.google.com/macros/s/AKfycbyFHSzOXvf2lEkSgn1k6FW2gGfrAxdp4OIkBAjdzeij4qiEoF3eGuqn_CkdeRHK8r_K9g/exec
 - 文案語氣溫柔療癒，不說教、不太商業化；避免使用破折號（—）。
 - 「自行設計」按鈕由後台設定開關（`settings.enabled`），單顆價格也在後台填。
+- 「單顆水晶」「花草能量商品」按鈕也由後台「顯示與價格」分頁開關（`settings.showStones`、`settings.showHerbals`，沒填視為顯示）。單顆水晶關閉時，手串詳細裡的水晶不會再連到水晶介紹。
 - 「花草能量商品」：6 款配方（`herbals` 集合），每款可提供淨化鹽、能量蠟燭、花草能量噴霧三種形式（`forms`），各自有規格與售價；售價為 0 時前台顯示「價格請洽詢」。三種形式各有配色（`ACC` 物件），沒有照片時顯示對應形式的圖示。
 
 ## 檔案
