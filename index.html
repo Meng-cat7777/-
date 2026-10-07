@@ -436,6 +436,10 @@ form.pw{grid-template-columns:1fr}
 .switch b{display:block;font-weight:500;color:var(--plum);font-size:14px;letter-spacing:.06em}
 .switch small{display:block;font-size:12px;color:var(--soft);letter-spacing:.02em}
 [hidden],.admin-link[hidden],.linkish[hidden]{display:none!important}
+
+/* quiz card spans the same width as the series bars (outer frame edges line up) */
+.quiz{max-width:none;margin-inline:5px}
+@media (max-width:600px){.quiz{margin-inline:4px}}
 </style>
 </head>
 <body>
