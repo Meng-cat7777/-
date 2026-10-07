@@ -29,8 +29,8 @@ https://meng-cat7777.github.io/-/
 當 Meng 說「從後台更新網站內容」或「後台改好了，更新網站」：
 
 1. 向 Meng 要後台網址（或用 Artifact list 找「喵選拾光 後台」）。
-2. 用 ArtifactData 的 `list` 讀後台的三個集合 `bracelets`、`stones`、`settings`（query.limit 1000，out_dir 指到暫存資料夾，例如 `WORK/src`）。
-3. 照片：後台資料裡每個非空的 `image` 是一個照片編號。若 `img/` 資料夾裡還沒有 `img/<編號>.*`，用 Artifact 的 `read`（url 為後台，path 為照片編號，out_dir 為 `img`）下載進來。
+2. 用 ArtifactData 的 `list` 讀後台的四個集合 `bracelets`、`stones`、`herbals`、`settings`（query.limit 1000，out_dir 指到暫存資料夾，例如 `WORK/src`）。
+3. 照片：後台 `bracelets`、`stones`、`herbals` 資料裡每個非空的 `image` 是一個照片編號。若 `img/` 資料夾裡還沒有 `img/<編號>.*`，用 Artifact 的 `read`（url 為後台，path 為照片編號，out_dir 為 `img`）下載進來。
 4. 列出目前的照片檔：`ls img 2>/dev/null | sed 's#^#img/#' > WORK/published.txt`
 5. 產生網站：`python3 tools/build_shop.py WORK/src WORK/published.txt index.html index.html`
    它會更新資料區塊，並列出還缺的照片（`missing_photos`）；有缺就回到第 3 步。
@@ -48,6 +48,7 @@ https://meng-cat7777.github.io/-/
 - 頻率測驗連結：https://script.google.com/macros/s/AKfycbyFHSzOXvf2lEkSgn1k6FW2gGfrAxdp4OIkBAjdzeij4qiEoF3eGuqn_CkdeRHK8r_K9g/exec
 - 文案語氣溫柔療癒，不說教、不太商業化；避免使用破折號（—）。
 - 「自行設計」按鈕由後台設定開關（`settings.enabled`），單顆價格也在後台填。
+- 「花草能量商品」：6 款配方（`herbals` 集合），每款可提供淨化鹽、能量蠟燭、花草能量噴霧三種形式（`forms`），各自有規格與售價；售價為 0 時前台顯示「價格請洽詢」。三種形式各有配色（`ACC` 物件），沒有照片時顯示對應形式的圖示。
 
 ## 檔案
 

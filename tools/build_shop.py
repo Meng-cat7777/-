@@ -1,5 +1,5 @@
 # usage: python3 build_shop.py <src_dir> <published_list.txt> <page_in.html> <page_out.html>
-# src_dir holds <collection>/<doc_id>.json for bracelets, stones, settings (ArtifactData out_dir layout).
+# src_dir holds <collection>/<doc_id>.json for bracelets, stones, herbals, settings (ArtifactData out_dir layout).
 # published_list.txt: one published file path of the product page per line (e.g. img/<id>.jpg).
 # Prints JSON: photo ids that are not yet published as img/<id>.* (download + publish those).
 import json, glob, os, re, sys, datetime
@@ -14,9 +14,9 @@ def load(c):
         out.append(d)
     return out
 
-br, st, se = load('bracelets'), load('stones'), load('settings')
+br, st, hb, se = load('bracelets'), load('stones'), load('herbals'), load('settings')
 missing = []
-for d in br + st:
+for d in br + st + hb:
     i = (d.get('image') or '').strip()
     if not i:
         d['image'] = ''
@@ -29,7 +29,7 @@ for d in br + st:
         d['image'] = ''
 settings = next((x for x in se if x['id'] == 'design'), {})
 settings.pop('id', None)
-data = {'bracelets': br, 'stones': st, 'settings': settings,
+data = {'bracelets': br, 'stones': st, 'herbals': hb, 'settings': settings,
         'updatedAt': datetime.datetime.utcnow().replace(microsecond=0).isoformat() + 'Z'}
 blob = json.dumps(data, ensure_ascii=False).replace('</', '<\\/').replace('<!--', '<\\!--')
 html = open(page_in, encoding='utf8').read()
@@ -38,4 +38,4 @@ new, n = re.subn(r'<!--SHOP-DATA-START-->.*?<!--SHOP-DATA-END-->', lambda m: blo
 if n != 1:
     sys.exit('ERROR: data markers not found in page')
 open(page_out, 'w', encoding='utf8').write(new)
-print(json.dumps({'missing_photos': missing, 'bracelets': len(br), 'stones': len(st)}))
+print(json.dumps({'missing_photos': missing, 'bracelets': len(br), 'stones': len(st), 'herbals': len(hb)}))
