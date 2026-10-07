@@ -454,6 +454,64 @@ form.pw{grid-template-columns:1fr}
 .form-row.on{background:var(--acc-soft);box-shadow:inset 0 0 0 1px var(--acc)}
 .form-row:focus-visible{outline:1.5px solid var(--acc);outline-offset:2px}
 @media (max-width:600px){.foot .ask{font-size:11.5px;padding:0 8px}}
+
+/* detail titles stay on one line */
+.d-body h2{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* cart and checkout */
+.buy-row{display:flex;gap:10px;align-items:center;justify-content:flex-end}
+.buy-row .added{margin-right:auto;color:var(--acc);font-size:13px;letter-spacing:.08em}
+.btn.buy{padding:8px 24px}
+.buy-sizes{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
+.cart-fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:15;display:inline-flex;align-items:center;gap:8px;border:none;background:var(--plum);color:var(--white);border-radius:999px;padding:10px 12px 10px 16px;font-size:14px;letter-spacing:.12em;box-shadow:0 12px 26px -12px rgba(90,46,68,.7)}
+.cart-fab:hover{background:var(--acc)}
+.cart-fab svg{width:18px;height:18px;flex:none}
+.cart-fab b{min-width:22px;height:22px;border-radius:99px;background:var(--white);color:var(--plum);font-size:12px;display:inline-grid;place-items:center;font-weight:600;letter-spacing:0;padding:0 6px}
+.cart-body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:14px}
+.ci-list{border:1px solid var(--line-strong);border-radius:4px;background:var(--white)}
+.ci{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;padding:10px 12px;border-bottom:1px dotted var(--line-strong)}
+.ci:last-child{border-bottom:none}
+.ci-main b{display:block;font-weight:500;color:var(--plum);line-height:1.6}
+.ci-main small{display:block;font-size:12px;color:var(--soft);line-height:1.6}
+.ci-price{text-align:right;color:var(--acc);font-variant-numeric:tabular-nums;font-weight:500;white-space:nowrap}
+.ci-qty{display:inline-flex;align-items:center;justify-self:start;border:1px solid var(--line-strong);border-radius:999px;font-size:14px;color:var(--plum)}
+.ci-qty span{min-width:2.2em;text-align:center;font-variant-numeric:tabular-nums}
+.ci-qty button{all:unset;cursor:pointer;width:30px;height:28px;display:grid;place-items:center;color:var(--acc);font-size:16px}
+.ci-qty>span:only-child{padding:2px 10px;font-size:12px;color:var(--soft)}
+.ci-del{all:unset;cursor:pointer;justify-self:end;align-self:center;font-size:12px;color:var(--soft);text-decoration:underline;text-underline-offset:3px}
+.sums{display:flex;flex-direction:column;gap:8px}
+.cart-actions{display:flex;gap:10px;justify-content:flex-end}
+form.co{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.co>.full,.co>.co-sum,.co>.sums,.co>.hint{grid-column:1/-1}
+.co-sum{font-size:13px;color:#7A6470;border:1px dashed var(--line-strong);border-radius:4px;padding:8px 12px;background:var(--white)}
+.co-sum div{display:flex;justify-content:space-between;gap:12px}
+.co-sum div span:last-child{white-space:nowrap;font-variant-numeric:tabular-nums}
+.co-pay{border:none;margin:0;padding:0;display:flex;flex-direction:row;flex-wrap:wrap;gap:8px}
+.co-pay legend{float:left;width:100%;padding:0;margin-bottom:2px;font-size:12px;letter-spacing:.14em;color:var(--soft)}
+.co-pay label{flex:none;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line-strong);border-radius:999px;padding:5px 14px;background:var(--white);cursor:pointer;font-size:14px;letter-spacing:.06em;color:var(--plum)}
+.co-pay label:has(input:checked){border-color:var(--acc);background:var(--acc-soft);color:var(--acc)}
+.co-pay input{accent-color:var(--acc);margin:0}
+.paybox{background:var(--white);border:1px solid var(--acc);border-radius:4px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.paybox>b{color:var(--acc);font-weight:600;letter-spacing:.14em}
+.paybox p{margin:0;font-size:14px}
+.pay-row{display:flex;gap:12px;align-items:center;font-size:14px}
+.pay-row span:first-child{color:var(--soft);min-width:2.6em}
+.pay-row .acct{font-variant-numeric:tabular-nums;letter-spacing:.06em;color:var(--plum);font-weight:500}
+.btn.mini{padding:1px 12px;font-size:12px;letter-spacing:.08em}
+.done-head{text-align:center;display:flex;flex-direction:column;gap:4px}
+.done-head small{font-size:11px;letter-spacing:.36em;color:var(--gold)}
+.done-head h3{margin:0;font-weight:500;font-size:20px;letter-spacing:.1em;color:var(--plum)}
+.done-head p{margin:0;font-size:14px;color:var(--soft)}
+.done-head p b{color:var(--acc);letter-spacing:.1em}
+.send-row{display:flex;gap:8px;justify-content:center}
+.send-row .btn{text-align:center}
+@media (max-width:600px){
+  .cart-body{padding:16px 16px calc(22px + env(safe-area-inset-bottom,0px))}
+  form.co{grid-template-columns:1fr}
+  .cart-actions .btn,.send-row .btn{flex:1 1 0;min-width:0;padding:7px 4px;letter-spacing:.06em}
+  .buy-row .btn{padding:7px 16px}
+  .cart-fab{right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+  .toast{bottom:calc(80px + env(safe-area-inset-bottom,0px))}
+}
 </style>
 </head>
 <body>
@@ -499,6 +557,8 @@ form.pw{grid-template-columns:1fr}
 
 <div class="toast" id="toast" role="status" hidden></div>
 
+<button class="cart-fab" id="cartFab" type="button" hidden aria-label="打開購物車"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/></svg><span>購物車</span><b id="cartN">0</b></button>
+<dialog id="cartDlg" aria-label="購物車"></dialog>
 <dialog id="detail"></dialog>
 
 <!--SHOP-DATA-START--><script type="application/json" id="shop-data">{"bracelets": [{"beads": "8 X 8 X 4", "chakra": "心輪與頂輪相互連結，在安定內在的同時，也幫助自己打開接收美好與豐盛的空間。", "code": "A1", "image": "", "numerology": "雙 8 強化豐盛、力量與能量流動；4 則帶來穩定與安全感，讓好運不只來到，也能慢慢累積。", "order": 1, "price": 1250, "series": "A", "stones": [{"meaning": "療癒情緒，增添活力", "name": "番石榴石"}, {"meaning": "平安守護，穩定好運", "name": "翡翠"}, {"meaning": "舒緩壓力，溫柔療癒", "name": "紫鋰輝"}], "story": "給最近想好好照顧自己的你，讓情緒慢慢安定，也讓內在重新恢復力量。當自己穩下來，好運與美好的事物，也更容易被你接住。", "theme": "療癒 / 穩定 / 溫柔盛運", "id": "A1"}, {"beads": "8 X 8 X 4", "chakra": "海底輪、心輪與太陽神經叢共同運作，穩住自身能量，也強化自信與行動力。", "code": "A2", "image": "", "numerology": "雙 8 帶來企圖心、成果與豐盛能量；4 則幫助建立穩固基礎，讓行動不是一時衝刺，而是持續往目標靠近。", "order": 2, "price": 1250, "series": "A", "stones": [{"meaning": "增添活力，提升行動力", "name": "番石榴石"}, {"meaning": "穩定好運，平安守護", "name": "翡翠"}, {"meaning": "增加勇氣，推動目標", "name": "阿魯沙"}], "story": "給正在努力往前走的你，不需要一次做到最好，只需要讓自己持續前進。穩住方向、相信能力，你正在一步一步靠近想要的成果。", "theme": "成長 / 行動 / 事業推進", "id": "A2"}, {"beads": "8 X 8 X 4", "chakra": "心輪與眉心輪相互呼應，在穩定情緒的同時，也幫助你更相信自己的感受與直覺。", "code": "A3", "image": "", "numerology": "雙 8 放大個人能量與吸引力；4 則為敏銳的感受建立穩定基礎，讓直覺與現實保持平衡。", "order": 3, "price": 1250, "series": "A", "stones": [{"meaning": "提升活力，增添魅力", "name": "番石榴石"}, {"meaning": "穩定氣場，帶來好運", "name": "翡翠"}, {"meaning": "提升直覺，平衡情緒", "name": "藍月光石"}], "story": "給容易想太多、卻其實早已有答案的你。讓情緒安靜下來，重新聽見內在的聲音，你本來就擁有屬於自己的光與魅力。", "theme": "直覺 / 魅力 / 靈光平衡", "id": "A3"}, {"beads": "8 X 8 X 4", "chakra": "心輪與頂輪共同運作，一邊打開接收豐盛的能力，一邊讓目標與意念更加清晰。", "code": "A4", "image": "", "numerology": "雙 8 強化財富、成果與豐盛循環；4 則代表穩定與累積，幫助將想要的豐盛一步步建立起來。", "order": 4, "price": 850, "series": "A", "stones": [{"meaning": "招引財富，增加機會", "name": "沙佛萊"}, {"meaning": "聚集好運，穩定財氣", "name": "翡翠"}, {"meaning": "淨化能量，放大意念", "name": "白水晶"}], "story": "給正在為自己創造更好生活的你。不是等待財富突然降臨，而是讓自己準備好看見機會、抓住機會，將想要的生活慢慢顯化成真。", "theme": "財富 / 顯化 / 聚財", "id": "A4"}, {"beads": "8 X 8 X 4", "chakra": "心輪與頂輪形成連結，幫助自己打開接收，同時保持清楚的目標與方向。", "code": "A5", "image": "", "numerology": "雙 8 帶來強大的豐盛與顯化力量；4 則讓財富能量穩定落地，把機會轉化成真正可以累積的成果。", "order": 5, "price": 850, "series": "A", "stones": [{"meaning": "招財聚財，增加機會", "name": "沙佛萊"}, {"meaning": "穩定財氣，帶來好運", "name": "翡翠"}, {"meaning": "淨化磁場，放大願望", "name": "白水晶"}], "story": "願你不只是想要豐盛，而是開始相信自己值得擁有。當目標清楚、行動穩定，財富與機會也會慢慢找到進入生活的位置。", "theme": "財富 / 顯化 / 聚財", "id": "A5"}, {"beads": "8 X 8 X 4", "chakra": "心輪、喉輪與眉心輪共同運作，幫助理清思緒、看見方向，也更清楚表達自己的決定。", "code": "A6", "image": "", "numerology": "雙 8 強化事業、成果與資源整合；4 帶來規劃、秩序與穩定，讓每一步都更有方向。", "order": 6, "price": 1150, "series": "A", "stones": [{"meaning": "清晰思考，提升判斷", "name": "青金石"}, {"meaning": "穩定能量，守護好運", "name": "翡翠"}, {"meaning": "事業成長，累積成果", "name": "彩幽靈"}], "story": "給習慣想得很遠的你，真正的成長不是一直往前衝，而是知道下一步該往哪裡走。讓智慧帶領布局，讓時間替你累積成果。", "theme": "智慧 / 布局 / 穩定成長", "id": "A6"}, {"beads": "8 X 8 X 4", "chakra": "心輪、喉輪與眉心輪同步運作，從看清方向、做出決定，到真正開始執行。", "code": "A7", "image": "", "numerology": "雙 8 強化企圖心、執行與成果能量；4 則讓計畫更穩定、更有結構，把想法真正落實。", "order": 7, "price": 1150, "series": "A", "stones": [{"meaning": "提升判斷，清晰思路", "name": "青金石"}, {"meaning": "穩定氣場，守護好運", "name": "翡翠"}, {"meaning": "事業助力，成果累積", "name": "彩幽靈"}], "story": "給有很多想法、也準備開始實現的你。不是每一步都要很快，而是每一步都知道自己為什麼而走，讓計畫慢慢變成看得見的成果。", "theme": "策略 / 執行 / 成果顯化", "id": "A7"}, {"beads": "8 X 8 X 4", "chakra": "心輪、喉輪與眉心輪相互連結，幫助放下舊有模式，也更清楚看見下一個方向。", "code": "A8", "image": "", "numerology": "雙 8 帶來強大的轉化與突破力量；4 則在改變之中建立穩定，讓你有底氣重新開始。", "order": 8, "price": 1150, "series": "A", "stones": [{"meaning": "突破限制，增加行動力", "name": "藍磷輝石"}, {"meaning": "穩定運勢，平安守護", "name": "翡翠"}, {"meaning": "轉化能量，開啟新方向", "name": "極光"}], "story": "給正站在人生轉折點的你。有些結束不是失去，而是在替新的道路騰出位置。願你有勇氣告別不再適合的，重新選擇自己的人生。", "theme": "突破 / 轉運 / 重啟人生", "id": "A8"}, {"beads": "8 X 8 X 4", "chakra": "海底輪、心輪與太陽神經叢同步運作，一邊療癒心裡的傷，一邊重新建立保護自己的力量。", "code": "A9", "image": "", "numerology": "雙 8 強化內在力量與自我價值；4 則建立安全感與界線，讓自己在療癒中重新站穩。", "order": 9, "price": 1350, "series": "A", "stones": [{"meaning": "療癒情緒，提升自我價值", "name": "薔薇輝石"}, {"meaning": "安定身心，平安守護", "name": "翡翠"}, {"meaning": "阻隔負能量，穩定氣場", "name": "黑金超"}], "story": "給曾經把太多力量留給別人的你。療癒不是變回以前的自己，而是在經歷過後，更知道如何愛自己、保護自己，也相信自己的價值。", "theme": "療癒 / 防護 / 自我重建", "id": "A9"}, {"beads": "8 X 8 X 4", "chakra": "喉輪與眉心輪共同運作，整理想法、穩定感受，也讓表達更清晰有力量。", "code": "B1", "image": "", "numerology": "雙 8 帶來自信、力量與行動能量；4 則讓想法更加穩定清楚，幫助把心裡的話真正說出來。", "order": 10, "price": 1050, "series": "B", "stones": [{"meaning": "柔化情緒，提升親和力", "name": "藍兔毛"}, {"meaning": "突破限制，增加行動力", "name": "藍磷輝石"}, {"meaning": "清晰表達，提升溝通力", "name": "海藍寶"}], "story": "給總是在心裡想很多，真正開口時卻又收回去的你。願你不再害怕表達自己的需要，讓真正的想法被聽見。", "theme": "表達 / 溝通 / 清晰行動", "id": "B1"}, {"beads": "5 X 10 X 5", "chakra": "喉輪、眉心輪與頂輪共同運作，幫助感受自己的心，也更自然地與他人交流。", "code": "B2", "image": "img/8e8c4a0388a9c043ec29dada2612df16.jpg", "numerology": "雙 5 帶來改變、自由與流動的力量；10 象徵一個階段完成後重新展開新的循環，讓關係與情緒有重新流動的空間。", "order": 11, "price": 1050, "series": "B", "stones": [{"meaning": "柔化情緒，增加親和力", "name": "藍兔毛"}, {"meaning": "提升直覺，平衡情緒", "name": "藍月光石"}, {"meaning": "促進溝通，舒緩壓力", "name": "海藍寶"}], "story": "給想讓關係舒服一點的你，不需要用力討好，也不用委屈自己。當你開始自在地成為自己，真正適合你的關係自然會靠近。", "theme": "靈感 / 柔和魅力 / 關係流動", "id": "B2"}, {"beads": "4 X 4 X 8 X 4", "chakra": "喉輪、眉心輪與頂輪高度連結，從整理感受、辨認直覺，到清楚表達自己的選擇。", "code": "B3", "image": "", "numerology": "三個 4 強化穩定、秩序與踏實能量；8 則加入成果與力量，讓內在的想法能真正轉化成方向。", "order": 12, "price": 1150, "series": "B", "stones": [{"meaning": "提升表達，增加勇氣", "name": "海藍寶（高）"}, {"meaning": "舒緩情緒，促進溝通", "name": "海藍寶（平）"}, {"meaning": "提升直覺，平衡情緒", "name": "藍月光石"}, {"meaning": "專注思考，看清方向", "name": "堇青石"}], "story": "給正在選擇方向的你，有時候不是沒有答案，而是外面的聲音太多。當心安靜下來，你會重新聽見自己真正想走的路。", "theme": "清晰直覺 / 溝通 / 找回方向", "id": "B3"}, {"beads": "4 X 8 X 4", "chakra": "喉輪、眉心輪與頂輪同步運作，讓思緒、直覺與表達更加一致。", "code": "B4", "image": "img/ffcea95bd0b46fa9b288bb446d643c41.jpg", "numerology": "雙 4 建立穩定與安全感；8 則帶來力量與突破，幫助將直覺轉化成實際決定。", "order": 13, "price": 2250, "series": "B", "stones": [{"meaning": "提升自信，清晰表達", "name": "海藍寶（高）"}, {"meaning": "舒緩壓力，穩定情緒", "name": "海藍寶（平）"}, {"meaning": "提升直覺，開啟靈感", "name": "坦桑石"}], "story": "給腦袋停不下來的你，先不用急著找到所有答案。讓自己慢慢沉澱，當雜訊變少，真正重要的聲音自然會浮現。", "theme": "安定思緒 / 直覺提升 / 清晰表達", "id": "B4"}, {"beads": "8 X 8 X 4", "chakra": "喉輪、眉心輪與頂輪共同作用，幫助你從看清方向，到勇敢說出選擇並開始行動。", "code": "B5", "image": "img/d489cd34c65bc57c25a6de2c1f43359b.jpg", "numerology": "雙 8 強化力量、成果與執行力；4 則讓行動更加穩定踏實，不再只是停留在想法。", "order": 14, "price": 2250, "series": "B", "stones": [{"meaning": "自信表達，增加勇氣", "name": "海藍寶（高）"}, {"meaning": "提升直覺，清晰思考", "name": "坦桑石"}, {"meaning": "突破限制，推動行動", "name": "藍磷輝石"}], "story": "給知道自己該改變，卻一直差最後一步的你。你不需要等到完全不害怕才開始，有時候勇敢，就是害怕著依然往前走。", "theme": "突破限制 / 勇敢決定 / 行動前進", "id": "B5"}, {"beads": "8 X 4 X 8", "chakra": "心輪、喉輪與眉心輪相互連結，先照顧感受，再勇敢表達與行動。", "code": "B6", "image": "", "numerology": "雙 8 帶來力量、成長與突破；4 則穩住內在基礎，讓改變建立在安全感之上。", "order": 15, "price": 850, "series": "B", "stones": [{"meaning": "療癒情緒，柔化關係", "name": "藍摩根石"}, {"meaning": "舒緩壓力，增加信心", "name": "天河石"}, {"meaning": "突破限制，提升行動力", "name": "藍磷輝石"}], "story": "給習慣把情緒收起來的你。溫柔並不代表沒有力量，當你開始接住自己的感受，也會更有勇氣替自己做出選擇。", "theme": "情緒療癒 / 自信表達 / 勇敢改變", "id": "B6"}, {"beads": "7 X 3 X 8 X 6", "chakra": "喉輪、眉心輪與頂輪共同運作，安撫混亂的思緒，也重新找回自己的方向。", "code": "B7", "image": "img/182b41aa4eb4b1c0547c9314420bad34.jpg", "numerology": "7 帶來內在覺察與思考；3 強化表達與創造力；8 推動成果與行動；6 則加入關愛與平衡，讓理性與情緒找到舒服的位置。", "order": 16, "price": 750, "series": "B", "stones": [{"meaning": "提升專注，看清方向", "name": "堇青石"}, {"meaning": "穩定情緒，增加信心", "name": "天河石"}, {"meaning": "突破限制，提升行動力", "name": "藍磷輝石"}, {"meaning": "放鬆壓力，安撫情緒", "name": "藍方解石"}], "story": "給最近腦袋塞滿太多事情的你。先把不屬於你的聲音放下，不需要一次想通所有事情，只需要重新看清下一步。", "theme": "理清思緒 / 放鬆內耗 / 找回方向", "id": "B7"}, {"beads": "8 X 10 X 4", "chakra": "喉輪與眉心輪集中運作，讓內在想法更加清楚，也有勇氣真實表達。", "code": "B8", "image": "img/995bc44fb50a1792d1e7b80de5b694ca.jpg", "numerology": "8 帶來自信、力量與成果；10 象徵完成與重新啟動；4 則穩住基礎，幫助新的想法真正落地。", "order": 17, "price": 750, "series": "B", "stones": [{"meaning": "舒緩情緒，促進溝通", "name": "海藍寶（平）"}, {"meaning": "提升自信，突破限制", "name": "藍磷輝石"}, {"meaning": "清晰思緒，提升直覺", "name": "藍晶石"}], "story": "給總是知道自己有話想說，卻不知道從哪裡開始的你。當思緒被整理清楚，你會發現真正的表達不需要完美，只需要真實。", "theme": "清晰溝通 / 直覺覺察 / 自信表達", "id": "B8"}, {"beads": "4 X 8 X 8", "chakra": "喉輪與眉心輪共同作用，一邊安撫過度思考，一邊重新整理自己的聲音與方向。", "code": "B9", "image": "img/cc0feb05675daeed4c78a05ef1a58709.jpg", "numerology": "4 為內在建立穩定基礎；雙 8 則逐步放大自信、力量與行動能量，讓自己從安定走向突破。", "order": 18, "price": 750, "series": "B", "stones": [{"meaning": "穩定情緒，增加信心", "name": "天河石"}, {"meaning": "舒緩壓力，放鬆心情", "name": "藍方解石"}, {"meaning": "突破限制，提升行動力", "name": "藍磷輝石"}], "story": "給已經累了一段時間的你，先不用逼自己馬上振作。休息不是停滯，而是在替下一次出發，把力量慢慢找回來。", "theme": "舒壓安定 / 溝通療癒 / 重拾信心", "id": "B9"}, {"beads": "4 X 8 X 8", "chakra": "喉輪、眉心輪與頂輪共同運作，幫助降低雜念，也讓內在感受更加清晰。", "code": "C1", "image": "", "numerology": "4 帶來安定與安全感；雙 8 則讓內在能量重新循環，在穩定之中慢慢找回自己的力量。", "order": 19, "price": 750, "series": "C", "stones": [{"meaning": "整理思緒，提升直覺", "name": "藍晶石"}, {"meaning": "安神舒壓，提升靈性", "name": "紫水晶"}, {"meaning": "安撫情緒，自我接納", "name": "紫雲母"}], "story": "給需要一點安靜空間的你。暫時不需要解決所有事情，只要讓自己慢下來，好好聽一聽心裡真正想說的是什麼。", "theme": "靜心 / 覺察 / 情緒安定", "id": "C1"}, {"beads": "6 X 8 X 4", "chakra": "心輪與頂輪同時運作，一邊滋養愛的能量，一邊安撫躁動的心神。", "code": "C2", "image": "img/ce29278695f8fb22470547205a4a019b.jpg", "numerology": "6 帶來圓融與關愛的能量；8 讓療癒的力量循環流動；4 則為情緒的安定打下穩固基礎。", "order": 20, "price": 750, "series": "C", "stones": [{"meaning": "安神助眠，提升靈性", "name": "紫水晶"}, {"meaning": "溫柔療癒，撫平情緒", "name": "薰衣草紫水晶"}, {"meaning": "滋養愛與慈悲", "name": "紫鋰輝"}], "story": "給需要好好休息的你，紫水晶安撫躁動的心神，薰衣草紫水晶像一場溫柔的擁抱，紫鋰輝則滋養內在的愛與慈悲。願你放下緊繃，好好被自己溫柔以待。", "theme": "溫柔療癒 / 安神舒壓", "id": "C2"}, {"beads": "8 X 4 X 4 X 4", "chakra": "心輪、喉輪、眉心輪與頂輪串連運作，從療癒情緒，到理解自己，再到表達真正的需要。", "code": "C3", "image": "img/c77ca065e2b31007e500e689ac91e0f9.jpg", "numerology": "8 帶來力量與能量流動；三個 4 強化穩定、安全感與踏實能量，讓療癒不只是感受，而是慢慢回到穩定狀態。", "order": 21, "price": 950, "series": "C", "stones": [{"meaning": "溫柔療癒，安撫情緒", "name": "薰衣草紫水晶"}, {"meaning": "滋養內在，提升自我接納", "name": "紫鋰輝"}, {"meaning": "整理思緒，清晰表達", "name": "藍晶石"}, {"meaning": "舒緩壓力，增加信心", "name": "天河石"}], "story": "給正在整理自己的你，不需要催促自己趕快變好。真正的療癒，是允許感受存在，慢慢理解自己，再重新找到舒服的位置。", "theme": "療癒內在 / 清晰表達 / 身心平衡", "id": "C3"}, {"beads": "8 X 8 X 4", "chakra": "心輪、眉心輪與頂輪共同運作，溫柔照顧情緒，也重新建立與自己的連結。", "code": "C4", "image": "", "numerology": "雙 8 讓療癒與愛的能量持續循環；4 則帶來穩定與安全感，幫助自己在情緒釋放後重新站穩。", "order": 22, "price": 750, "series": "C", "stones": [{"meaning": "療癒情緒，滋養愛的能量", "name": "藍摩根石"}, {"meaning": "舒緩壓力，溫柔安定", "name": "薰衣草紫水晶"}, {"meaning": "提升自我接納，滋養內在", "name": "紫鋰輝"}], "story": "給總是在照顧別人，卻很少好好抱抱自己的你。你不需要永遠堅強，也值得被理解、被照顧，而第一個可以這樣對待你的人，就是自己。", "theme": "深度療癒 / 自愛 / 情緒釋放", "id": "C4"}], "stones": [{"care": "避免與硬物碰撞，用軟布擦拭即可。", "chakra": "海底輪", "color": "#C6806A", "desc": "番石榴石屬於石榴石家族，色澤溫暖，像剛熟的果實。它被認為能喚醒沉睡的活力，讓情緒穩下來，也為氣場增添自然的魅力。適合覺得自己提不起勁、總在消耗狀態裡的時候配戴。", "en": "Grossular Garnet", "image": "", "keywords": ["活力", "穩定情緒", "魅力"], "name": "番石榴石", "order": 1, "id": "s01"}, {"care": "避免高溫與化學清潔劑，定期用清水擦拭。", "chakra": "心輪", "color": "#7FAE86", "desc": "翡翠自古就是東方人心中的守護石，質地溫潤，象徵平安與福氣。它在手串裡常扮演穩定根基的角色，靜靜守護日常，讓其他水晶的能量更踏實。", "en": "Jadeite", "image": "", "keywords": ["平安", "守護", "招福"], "name": "翡翠", "order": 2, "id": "s02"}, {"care": "顏色怕曬，收在陰涼處，避免長時間日照。", "chakra": "心輪", "color": "#CDA8CF", "desc": "紫鋰輝帶著柔和的粉紫色，被稱為愛的石頭。它滋養內在的愛與慈悲，陪伴總是照顧別人、卻忘了照顧自己的人，慢慢撫平心裡的疲憊。", "en": "Kunzite", "image": "", "keywords": ["愛與慈悲", "撫平疲憊", "溫柔"], "name": "紫鋰輝", "order": 3, "id": "s03"}, {"care": "避免撞擊，用乾布保養光澤。", "chakra": "太陽神經叢", "color": "#D9975C", "desc": "阿魯沙帶著像陽光般的橘金光澤，象徵熱情與行動。它被認為能推進事業、強化決心與執行力，適合正卡在想做卻遲遲沒有開始的階段。", "en": "Arusha Sunstone", "image": "", "keywords": ["行動力", "決心", "事業"], "name": "阿魯沙", "order": 4, "id": "s04"}, {"care": "硬度較低，與其他飾品分開收納，避免刮傷。", "chakra": "眉心輪", "color": "#C9D5E6", "desc": "藍月光石屬於長石家族，轉動時會浮現柔和的藍色光暈。它和月亮與直覺的意象相連，幫助柔化起伏的情緒，讓你更相信內心的聲音。", "en": "Blue Moonstone", "image": "", "keywords": ["直覺", "柔化情緒", "魅力"], "name": "藍月光石", "order": 5, "id": "s05"}, {"care": "避免高溫與撞擊，用軟布擦拭。", "chakra": "心輪", "color": "#3F9160", "desc": "沙佛萊是綠色系的石榴石，色澤鮮亮清透。它常被連結到財富與豐盛，被認為能點燃顯化的火花，陪你相信自己值得富足。", "en": "Tsavorite", "image": "", "keywords": ["財富", "顯化", "豐盛"], "name": "沙佛萊", "order": 6, "id": "s06"}, {"care": "耐受度高，可用清水沖洗後擦乾。", "chakra": "頂輪", "color": "#F4F4F6", "desc": "白水晶是最純淨的石英結晶，被視為萬用的能量放大器。它幫助淨化雜訊，讓你的意念與願望更清晰，也能和其他水晶互相搭配。", "en": "Clear Quartz", "image": "", "keywords": ["淨化", "放大願望", "專注"], "name": "白水晶", "order": 7, "id": "s07"}, {"care": "質地較軟且怕水，避免浸泡與香水接觸。", "chakra": "眉心輪", "color": "#304C8E", "desc": "青金石深藍中帶著金色黃鐵礦點綴，像夜空裡的星。它被稱為智慧之石，幫助看清全局、提升判斷力，適合正在為未來布局的人。", "en": "Lapis Lazuli", "image": "", "keywords": ["智慧", "洞察", "判斷力"], "name": "青金石", "order": 8, "id": "s08"}, {"care": "可用清水沖洗，避免與硬物碰撞。", "chakra": "心輪", "color": "#A3B58F", "desc": "彩幽靈是水晶在生長過程中包覆了多彩礦物，形成層層疊疊的幻影。它象徵一步步累積的成長，陪你把努力慢慢轉化為看得見的成果。", "en": "Phantom Quartz", "image": "", "keywords": ["豐盛", "顯化成長", "累積"], "name": "彩幽靈", "order": 9, "id": "s09"}, {"care": "硬度較低，避免碰撞與長時間浸泡。", "chakra": "喉輪", "color": "#5FAEBB", "desc": "藍磷輝石帶著湖水般的藍綠色，被認為能打開溝通與學習的能量。思緒紛亂的時候，它幫你理清頭緒，讓說出口的話更清楚。", "en": "Blue Apatite", "image": "", "keywords": ["溝通", "學習", "清晰思緒"], "name": "藍磷輝石", "order": 10, "id": "s10"}, {"care": "避免撞擊，用軟布擦拭。", "chakra": "頂輪", "color": "#B9A7DC", "desc": "極光石內含多種礦物，光線下呈現夢幻的層次。它被視為強力轉運的石頭，陪伴想突破現況、重新出發的人，迎接全新的能量流。", "en": "", "image": "", "keywords": ["轉運", "突破", "新視野"], "name": "極光", "order": 11, "id": "s11"}, {"care": "避免撞擊與化學清潔劑，用清水擦拭。", "chakra": "心輪", "color": "#D98C9C", "desc": "薔薇輝石粉色中帶著黑色紋路，像傷口癒合後留下的痕跡。它被認為能溫柔療癒情傷，讓你重新拾回內在的柔軟。", "en": "Rhodonite", "image": "", "keywords": ["療癒情傷", "內在溫柔", "修復"], "name": "薔薇輝石", "order": 12, "id": "s12"}, {"care": "避免撞擊，用乾布擦拭。", "chakra": "海底輪", "color": "#2E262C", "desc": "黑金超深色中閃著金色光點，給人沉穩有力的感覺。它被視為強力的防護石，幫你隔絕外界紛擾，在重建自己的路上築起一道安全的牆。", "en": "", "image": "", "keywords": ["防護", "隔絕負能量", "穩定"], "name": "黑金超", "order": 13, "id": "s13"}, {"care": "避免撞擊，可用清水沖洗後擦乾。", "chakra": "喉輪", "color": "#93BBD9", "desc": "藍兔毛內含細細的藍色絲狀礦物，像兔毛般柔軟。它被認為能打開表達力、招來貴人，也為你帶來新的靈感。", "en": "", "image": "", "keywords": ["表達", "貴人", "靈感"], "name": "藍兔毛", "order": 14, "id": "s14"}, {"care": "避免長時間日曬，用清水沖洗後擦乾。", "chakra": "喉輪", "color": "#AFD8E2", "desc": "海藍寶像海水般清透，被視為勇氣與平靜之石。它幫助安定情緒，讓你在人際互動裡更自在，勇敢說出真心話。", "en": "Aquamarine", "image": "", "keywords": ["平靜", "勇敢發聲", "人際"], "name": "海藍寶", "order": 15, "id": "s15"}, {"care": "避免撞擊，用軟布擦拭。", "chakra": "眉心輪", "color": "#5C61A2", "desc": "堇青石從不同角度看會呈現藍紫與淡黃的變化，古時航海者用它辨別方向。它被認為能打開心靈視野，在迷惘的時候指引前行的路。", "en": "Iolite", "image": "", "keywords": ["方向", "直覺", "心靈視野"], "name": "堇青石", "order": 16, "id": "s16"}, {"care": "硬度較低，避免撞擊與高溫。", "chakra": "頂輪", "color": "#5D51A4", "desc": "坦桑石只產於坦尚尼亞，藍紫色調深邃迷人。它被視為靈性轉化之石，陪伴正在自我覺醒、經歷深度蛻變的人。", "en": "Tanzanite", "image": "", "keywords": ["靈性提升", "深層轉化", "蛻變"], "name": "坦桑石", "order": 17, "id": "s17"}, {"care": "避免長時間日曬，用軟布擦拭。", "chakra": "心輪", "color": "#BCD0E3", "desc": "藍摩根石色澤柔和淡雅，帶著溫柔而堅定的能量。它提醒你，愛與表達可以同時存在，溫柔也能很有力量。", "en": "", "image": "", "keywords": ["溫柔", "堅定", "愛的表達"], "name": "藍摩根石", "order": 18, "id": "s18"}, {"care": "硬度較低，避免碰撞與浸泡。", "chakra": "喉輪", "color": "#82C4B6", "desc": "天河石帶著清新的藍綠色，被稱為勇氣之石。它鼓勵你說出真實的想法，也幫助舒緩累積的壓力。", "en": "Amazonite", "image": "", "keywords": ["真實表達", "舒緩壓力", "勇氣"], "name": "天河石", "order": 19, "id": "s19"}, {"care": "質地很軟，避免碰撞與浸水，單獨收納。", "chakra": "喉輪", "color": "#A2C8E3", "desc": "藍方解石像淡淡的天空，質地柔和。它被認為能溫柔撫平焦慮與不安，讓緊繃的情緒慢慢放鬆下來。", "en": "Blue Calcite", "image": "", "keywords": ["撫平焦慮", "平靜", "放鬆"], "name": "藍方解石", "order": 20, "id": "s20"}, {"care": "沿紋理容易斷裂，避免撞擊與彎折。", "chakra": "喉輪", "color": "#527CAB", "desc": "藍晶石有著刀刃般的纖維紋理與深淺不一的藍。它被認為能平靜心靈、穩定磁場，在紛亂中守住內在的安定。", "en": "Kyanite", "image": "", "keywords": ["平靜心靈", "穩定磁場", "安定"], "name": "藍晶石", "order": 21, "id": "s21"}, {"care": "避免長時間日曬，紫色會慢慢變淡。", "chakra": "頂輪", "color": "#8E6BB8", "desc": "紫水晶的紫色來自微量的鐵離子，被視為幫助思緒沉澱的石頭。它安撫躁動的心神，適合想太多、睡前停不下來的時候放在身邊。", "en": "Amethyst", "image": "", "keywords": ["安神", "靈性", "好眠"], "name": "紫水晶", "order": 22, "id": "s22"}, {"care": "質地很軟，避免碰撞與浸水。", "chakra": "眉心輪", "color": "#AB8DBB", "desc": "紫雲母帶著細緻的珠光，含有天然的鋰元素。它被認為能舒緩焦慮、平衡情緒，像一個讓心安靜下來的深呼吸。", "en": "Lepidolite", "image": "", "keywords": ["舒緩焦慮", "平衡情緒", "放鬆"], "name": "紫雲母", "order": 23, "id": "s23"}, {"care": "顏色怕曬，收在陰涼處。", "chakra": "頂輪", "color": "#C6B3DC", "desc": "薰衣草紫水晶是顏色較淺的紫水晶，帶著柔和的粉紫調。它的能量像一場溫柔的擁抱，陪你撫平情緒的起伏。", "en": "Lavender Amethyst", "image": "", "keywords": ["溫柔療癒", "撫平情緒", "擁抱"], "name": "薰衣草紫水晶", "order": 24, "id": "s24"}], "herbals": [{"audience": ["長期疲勞族（上班族、媽媽）", "低能量狀態的人", "容易拖延 / 無動力者"], "core": "耗盡＋需要啟動", "forms": {"淨化鹽": {"on": true, "price": 0, "spec": ""}, "能量蠟燭": {"on": true, "price": 0, "spec": ""}, "花草能量噴霧": {"on": true, "price": 0, "spec": ""}}, "herbEnergy": [{"meaning": "促進能量流動，恢復身心節奏", "name": "檸檬草"}, {"meaning": "淨化疲憊感，提升輕盈狀態", "name": "檸檬馬鞭草"}, {"meaning": "釋放累積的能量阻塞，重啟循環", "name": "鼠尾草"}], "herbs": "檸檬草、檸檬馬鞭草、鼠尾草", "image": "", "name": "能量加油站", "oilEnergy": [{"meaning": "提振精神，帶來清爽與活力", "name": "萊姆"}, {"meaning": "提升情緒與動力，增加行動的愉悅感", "name": "甜橙"}, {"meaning": "喚醒內在動能，突破停滯", "name": "小豆蔻"}], "oils": "萊姆、小豆蔻、甜橙", "order": 4, "quote": "", "states": ["起床困難、沒精神", "做事沒力、容易放棄", "需要「快速回神」"], "story": "當你感到耗盡，不是停下，而是補回自己。\n萊姆與甜橙，點亮內在的活力；\n小豆蔻喚醒停滯的能量；\n檸檬草與馬鞭草，讓整個氣場再次流動\n這是一道為你而設的補給之光，溫柔，但有力量\n當內在再次流動，你會發現，原來自己，一直在路上", "id": "h-boost"}, {"audience": ["能量敏感者", "容易被情緒影響的人", "有宗教 / 身心靈習慣者"], "core": "想切斷干擾", "forms": {"淨化鹽": {"on": true, "price": 0, "spec": ""}, "能量蠟燭": {"on": true, "price": 0, "spec": ""}, "花草能量噴霧": {"on": true, "price": 0, "spec": ""}}, "herbEnergy": [{"meaning": "淨化空間與情緒殘留", "name": "檸檬馬鞭草"}, {"meaning": "提升頻率，讓氣場更清亮", "name": "檸檬草"}, {"meaning": "持續保護，維持能量純淨", "name": "雪松"}], "herbs": "檸檬馬鞭草、檸檬草、雪松", "image": "", "name": "淨化GOGO", "oilEnergy": [{"meaning": "強力淨化與防護，阻隔負面干擾", "name": "茶樹"}, {"meaning": "啟動深層療癒，修復能量場", "name": "白千層"}, {"meaning": "建立穩定界線，提升內在力量", "name": "雪松"}, {"meaning": "穩固氣場，避免能量流失", "name": "廣藿香"}], "oils": "茶樹、白千層、雪松、廣藿香", "order": 5, "quote": "", "states": ["覺得空間雜亂或不舒服", "剛去過人多或負能量場域", "想清理氣場、重新開始"], "story": "把不屬於你的，輕輕放下\n茶樹與雪松建立穩定的保護感，\n白千層啟動深層的療癒；\n檸檬馬鞭草與檸檬草，像光一樣穿透混濁與停滯。\n當空間乾淨了，你也會變得更清晰，\n當氣場變得純淨，你會重新感受到自己的穩定與清晰", "id": "h-cleanse"}, {"audience": ["創業者 / 自由工作者", "業務 / 接案 / 需要機會的人", "對「財運」「吸引力法則」有感的人"], "core": "焦慮＋期待突破", "forms": {"淨化鹽": {"on": true, "price": 0, "spec": ""}, "能量蠟燭": {"on": true, "price": 0, "spec": ""}, "花草能量噴霧": {"on": true, "price": 0, "spec": ""}}, "herbEnergy": [{"meaning": "打開喜悅頻率，吸引人際與機會靠近", "name": "橙花"}, {"meaning": "讓思緒輕盈，促進順暢的溝通與流動", "name": "檸檬香蜂草"}, {"meaning": "清除限制性信念，強化內在力量", "name": "奧勒岡葉"}], "herbs": "橙花、檸檬香蜂草、奧勒岡葉", "image": "", "name": "金錢快快來", "oilEnergy": [{"meaning": "穩定財富能量，幫助落地與實質收入的累積", "name": "廣藿香"}, {"meaning": "建立內在穩定與信任感，讓你有承接豐盛的底氣", "name": "雪松"}, {"meaning": "深層扎根，帶來長期的安全感與資源穩定", "name": "岩蘭草"}, {"meaning": "提升行動力與決斷力，加速機會的掌握", "name": "薑"}], "oils": "廣藿香、雪松、岩蘭草、薑", "order": 1, "quote": "", "states": ["覺得「明明很努力但沒結果」", "財務停滯、收入不穩", "想提升機會、人脈、合作"], "story": "當能量開始流動，豐盛就不再遙遠\n廣藿香穩穩落地，承接現實中的財富與機會\n橙花與檸檬香蜂草帶來輕盈的喜悅頻率，讓吸引不再費力\n不是追逐機會，而是讓自己成為能承接的人，\n當頻率對了，機會會像星辰一樣自然靠近", "id": "h-money"}, {"audience": ["穩定交往 / 已婚族群", "有摩擦但不想分開的情侶", "重視關係經營的人"], "core": "不想失去，但很累", "forms": {"淨化鹽": {"on": true, "price": 0, "spec": ""}, "能量蠟燭": {"on": true, "price": 0, "spec": ""}, "花草能量噴霧": {"on": true, "price": 0, "spec": ""}}, "herbEnergy": [{"meaning": "喚起彼此的尊重與理解，減少情緒對立", "name": "紫羅蘭"}, {"meaning": "建立健康的互動界線，讓關係更平衡", "name": "金盞花"}, {"meaning": "保護內在感受，讓愛能在安全中被表達", "name": "玫瑰"}, {"meaning": "清除負能量與過往累積，讓關係重新開始", "name": "鼠尾草"}], "herbs": "薰衣草、紫羅蘭、金盞花、玫瑰、鼠尾草", "image": "", "name": "和平相處", "oilEnergy": [{"meaning": "安撫情緒波動，降低衝突中的緊張與防衛", "name": "薰衣草"}, {"meaning": "清新關係氛圍，幫助化解僵局、重新開始對話", "name": "檸檬"}, {"meaning": "建立穩定的關係界線，帶來安全感與信任基礎", "name": "雪松"}, {"meaning": "促進溫暖連結，支持親密與幸福感的流動", "name": "馬鬱蘭"}], "oils": "薰衣草、檸檬、雪松、馬鬱蘭", "order": 6, "quote": "不是讓愛更熱，而是讓關係走得更久", "states": ["常誤解、冷戰、溝通卡住", "想修復但不知道怎麼開始"], "story": "關係不是沒有情緒，而是在情緒之中，依然選擇靠近彼此\n有時候距離不是不愛了，只是彼此太累、太滿、太多沒有被理解的感受\n這道氣息，溫柔地為你們清理那些看不見的累積，誤解、壓抑、情緒的殘留\n讓心慢慢放鬆，讓話開始被聽見，讓彼此，重新回到同一個位置\n不是改變對方，而是讓關係回到可以理解與包容的狀態\n當能量穩定了，愛，會自然留下來", "id": "h-peace"}, {"audience": ["高壓上班族（尤其女性）", "情緒敏感者 / 容易內耗的人", "有睡眠、焦慮困擾者"], "core": "需要被接住", "forms": {"淨化鹽": {"on": true, "price": 0, "spec": ""}, "能量蠟燭": {"on": true, "price": 0, "spec": ""}, "花草能量噴霧": {"on": true, "price": 0, "spec": ""}}, "herbEnergy": [{"meaning": "深層安撫，緩解情緒起伏與不安", "name": "羅馬洋甘菊"}, {"meaning": "溫柔陪伴內在脆弱，帶來細膩療癒", "name": "紫羅蘭"}, {"meaning": "修復情緒傷口，建立內在安全感", "name": "金盞花"}], "herbs": "羅馬洋甘菊、紫羅蘭、金盞花", "image": "", "name": "情緒呼呼", "oilEnergy": [{"meaning": "釋放壓抑情緒，帶來清新與呼吸感", "name": "檸檬"}, {"meaning": "安撫焦慮與緊繃，讓身心回到平衡", "name": "薰衣草"}, {"meaning": "釋放累積的情緒與內在壓力", "name": "鼠尾草"}], "oils": "檸檬、薰衣草、鼠尾草", "order": 2, "quote": "", "states": ["下班很累、腦停不下來", "情緒波動大、容易焦慮", "想要「被安撫」但沒有出口"], "story": "有些情緒不需要被解決，只需要被溫柔地抱住\n當心變得太滿，連星光都照不進來\n檸檬的清新，輕輕帶走悶重；\n薰衣草與羅馬洋甘菊，安撫內在的起伏；\n紫羅蘭與金盞花，像一層柔軟的光，覆蓋那些說不出口的疲憊\n當你被好好接住，一切都會慢慢變得溫柔", "id": "h-soothe"}, {"audience": ["身心靈族群（顯化、吸引力法則）", "正在轉職 / 找方向的人", "自我成長族群"], "core": "迷惘＋想對齊人生", "forms": {"淨化鹽": {"on": true, "price": 0, "spec": ""}, "能量蠟燭": {"on": true, "price": 0, "spec": ""}, "花草能量噴霧": {"on": true, "price": 0, "spec": ""}}, "herbEnergy": [{"meaning": "促進事業與計畫的順利推進", "name": "檸檬香蜂草"}, {"meaning": "強化意圖，幫助願望具體化", "name": "鼠尾草"}, {"meaning": "平衡心念，吸引正向機會與支持", "name": "橙花"}], "herbs": "檸檬香蜂草、鼠尾草、橙花", "image": "", "name": "心想事成", "oilEnergy": [{"meaning": "清理思緒、提升專注與判斷力", "name": "迷迭香"}, {"meaning": "穩定心神，讓想法更具持續性", "name": "安息香"}, {"meaning": "將願望落地，轉化為實際行動與成果", "name": "廣藿香"}], "oils": "迷迭香、安息香、廣藿香", "order": 3, "quote": "", "states": ["人生卡關、不確定方向", "想要突破但不知道怎麼做", "做很多但沒結果"], "story": "當內在清晰，世界也會開始回應\n迷迭香與安息香，梳理混亂的思緒；\n廣藿香將想法落地，轉為行動的力量；\n橙花與檸檬香蜂草，為願望注入流動的可能\n不是強求實現，而是讓你的心，走在對的頻率上，\n讓願望不再漂浮，而是開始，被看見、被回應", "id": "h-wish"}], "settings": {"enabled": false, "labor": 0, "note": "", "showHerbals": false, "showStones": false, "sizes": [6, 8, 10, 12]}, "updatedAt": "2026-10-07T13:38:16Z"}</script><!--SHOP-DATA-END-->
@@ -637,6 +697,7 @@ function show(html){
   d.querySelectorAll("[data-goto-stone]").forEach(b=>b.onclick=()=>openStone(b.dataset.gotoStone));
   d.querySelectorAll("[data-goto-b]").forEach(b=>b.onclick=()=>openDetail(b.dataset.gotoB));
   if(!d.open)d.showModal();d.scrollTop=0;
+  fitTitle(d.querySelector(".d-body h2"));
 }
 function openDetail(id){
   const it=S.items.find(i=>i.id===id);if(!it)return;
@@ -657,6 +718,7 @@ function openDetail(id){
         ${it.chakra?`<div class="d-sec">對應脈輪</div><p class="d-text d-box">${hl(it.chakra,termsFor(it))}</p>`:""}
         ${it.story?`<p class="story">${hl(it.story,termsFor(it))}</p>`:""}
         <div class="d-price"><span class="beads">售價</span><span class="price">${fmt(it.price)}</span></div>
+        ${buyRow("b",it.id)}
       </div>
     </div>`);
 }
@@ -675,6 +737,7 @@ function openStone(sid){
         ${paras||`<p class="d-text">說明撰寫中。</p>`}
         ${st.care?`<div class="d-sec">保養方式</div><p class="d-text">${esc(st.care)}</p>`:""}
         ${uses.length?`<div class="d-sec">搭配的手串</div><div class="uses">${uses.map(u=>`<button style="${accStyle(u.series)}" data-goto-b="${esc(u.id)}">${esc(u.code)}・${esc(String(u.theme||"").split("/")[0].trim())}</button>`).join("")}</div>`:""}
+        ${stoneBuy(st)}
       </div>
     </div>`);
 }
@@ -743,6 +806,7 @@ function openHerb(hid,f){
         ${(h.states||[]).length?`<div class="d-sec">使用狀態</div><div class="d-text d-box"><ul class="ticks">${h.states.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>${h.quote?`<p class="quote">「${esc(h.quote)}」</p>`:""}</div>`:(h.quote?`<p class="quote">「${esc(h.quote)}」</p>`:"")}
         <div class="d-sec">形式與售價</div>
         <div class="forms">${formsOf(h).map(x=>`<button class="form-row${x===f?" on":""}" style="${accStyle(x)}" data-goto-form="${esc(x)}" aria-pressed="${x===f}"><b>${esc(x)}</b><span>${esc(formSpec(h,x))}</span>${priceHTML(h,x)}</button>`).join("")}</div>
+        ${buyRow("h",h.id,f)}
       </div>
     </div>`);
   $("detail").querySelectorAll("[data-goto-form]").forEach(b=>b.onclick=()=>openHerb(hid,b.dataset.gotoForm));
@@ -813,7 +877,7 @@ function renderDesign(){
         ${labor?`<div class="est-line"><span>手工串製</span><span>NT$ ${fmt(labor)}</span></div>`:""}
         <div class="est-total"><span>試算總價</span><span class="price">${fmt(total)}${unpriced?"<small>起</small>":""}</span></div>
         <p class="est-note">${unpriced?"部分水晶尚未定價，實際價格由 Aira 確認後提供。":esc(S.cfg?.note||"試算僅供參考，實際價格依水晶批次與尺寸，由 Aira 確認後提供。")}</p>
-        <div class="est-cta"><button class="btn primary" data-d="copy">複製我的設計清單</button><span class="hint" id="copyHint">把清單傳給 Aira，就能幫你確認細節。</span></div>`
+        <div class="est-cta">${shopOn()?`<button class="btn primary" data-d="cart">加入購物車</button><button class="btn" data-d="copy">複製設計清單</button>`:`<button class="btn primary" data-d="copy">複製我的設計清單</button>`}<span class="hint" id="copyHint">把清單傳給 Aira，就能幫你確認細節。</span></div>`
       :`<p class="est-note" style="text-align:center">加入水晶後，這裡會列出每顆水晶的數量與價格。</p>`}
     </div>
   </section>`;
@@ -834,6 +898,7 @@ $("list").addEventListener("click",async e=>{
   const a=b.dataset.d;
   if(a==="add")addBeads(1);
   else if(a==="add3")addBeads(3);
+  else if(a==="cart")addDesign();
   else if(a==="undo"){D.beads.pop();saveD();renderDesign()}
   else if(a==="clear"){D.beads=[];saveD();renderDesign()}
   else if(a==="fill"){
@@ -851,6 +916,213 @@ $("list").addEventListener("change",e=>{if(e.target.id==="d-wrist"){D.wrist=Numb
 
 let toastT;function toast(t){const el=$("toast");el.textContent=t;el.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>el.hidden=true,2600)}
 
+
+/* ---------- 購物車與下單 ---------- */
+const SHOP=()=>S.cfg?.shop||{};
+const shopOn=()=>SHOP().enabled!==false;
+const feeSet=()=>typeof SHOP().fee==="number"&&SHOP().fee>=0;
+const CART_KEY="aira-cart";
+let CART=[],cartView="cart",lastOrder=null;
+const money=n=>"NT$ "+fmt(n);
+const loadCart=()=>{try{const v=JSON.parse(localStorage.getItem(CART_KEY)||"[]");return Array.isArray(v)?v:[]}catch(_){return []}};
+const saveCart=()=>{try{localStorage.setItem(CART_KEY,JSON.stringify(CART))}catch(_){}};
+function resolveItem(c){
+  if(c.kind==="b"){const it=S.items.find(i=>i.id===c.id);if(!it)return null;return {...c,name:it.code+"｜"+it.theme,sub:it.beads||"",price:Number(it.price)||null}}
+  if(c.kind==="s"){const st=S.stones.find(i=>i.id===c.id);if(!st)return null;return {...c,name:st.name+" "+c.size+"mm 單顆",sub:"",price:priceOf(st.name,c.size)}}
+  if(c.kind==="h"){const h=S.herbs.find(i=>i.id===c.id);if(!h||!formOn(h,c.form))return null;return {...c,name:h.name+"｜"+c.form,sub:formSpec(h,c.form),price:formPrice(h,c.form)||null}}
+  return c.kind==="d"?c:null;
+}
+const cartCount=()=>CART.reduce((a,c)=>a+c.qty,0);
+const needWrist=()=>CART.some(c=>c.kind==="b");
+function addToCart(entry){
+  const ex=entry.kind!=="d"&&CART.find(c=>c.key===entry.key);
+  if(ex)ex.qty=Math.min(99,ex.qty+1);
+  else{const r=resolveItem({...entry,qty:1});if(!r)return false;CART.push(r)}
+  saveCart();renderFab();return true;
+}
+function renderFab(){const f=$("cartFab");if(!f)return;const n=cartCount();f.hidden=!shopOn()||!n;$("cartN").textContent=n}
+function cartTotals(){
+  const sub=CART.reduce((a,c)=>a+(c.price||0)*c.qty,0),pending=CART.some(c=>c.price==null);
+  const free=Number(SHOP().freeOver)||0,fee=feeSet()?SHOP().fee:0;
+  const shipping=!CART.length?0:(free&&sub>=free?0:fee);
+  return {sub,shipping,total:sub+shipping,pending,free};
+}
+const feeText=t=>!feeSet()?"確認後告知":t.shipping?money(t.shipping):"免運";
+function buyRow(kind,id,extra){
+  if(!shopOn())return "";
+  return `<div class="buy-row"><button class="btn primary buy" type="button" data-add="${kind}|${esc(id)}|${esc(extra||"")}">加入購物車</button></div>`;
+}
+function stoneBuy(st){
+  if(!shopOn())return "";
+  return `<div class="d-sec">單顆購買</div><div class="buy-sizes">${sizesCfg().map(z=>{const p=priceOf(st.name,z);
+    return `<button class="size" type="button" data-add="s|${esc(st.id)}|${z}"><b>${z}mm</b><small>${p==null?"價格待確認":"NT$ "+fmt(p)}</small></button>`}).join("")}</div><div class="buy-row buy-done" hidden></div>`;
+}
+function addDesign(){
+  if(!D.beads.length)return;
+  const groups={};D.beads.forEach(b=>{const k=b.name+" "+b.size+"mm";groups[k]=(groups[k]||0)+1});
+  let sub=0,unp=false;D.beads.forEach(b=>{const p=priceOf(b.name,b.size);if(p==null)unp=true;else sub+=p});
+  const labor=Number(S.cfg?.labor)||0;
+  CART.push({kind:"d",key:"d:"+Date.now(),qty:1,name:"自行設計手串",price:unp?null:sub+labor,
+    sub:`手圍 ${D.wrist} cm，共 ${D.beads.length} 顆：`+Object.entries(groups).map(([k,n])=>k+" × "+n).join("、"),
+    seq:D.beads.map(b=>b.name+b.size).join("、")});
+  saveCart();renderFab();toast("已加入購物車");
+}
+function openCart(view){
+  cartView=view||"cart";if($("detail").open)$("detail").close();
+  const d=$("cartDlg");renderCart();if(!d.open)d.showModal();d.scrollTop=0;
+}
+function cartTop(title,right){return `<div class="d-top"><span>${title}</span><span style="display:flex;gap:14px;align-items:center">${right}<button class="x" type="button" data-c="close" aria-label="關閉">×</button></span></div>`}
+function sumsHTML(t){
+  const sfx=t.pending||!feeSet()?"<small>起</small>":"";
+  return `<div class="sums"><div class="est-line"><span>商品小計</span><span>${money(t.sub)}${t.pending?"＋待確認":""}</span></div>
+    <div class="est-line"><span>運費・超商取貨</span><span>${feeText(t)}</span></div>
+    ${t.free&&t.sub<t.free&&feeSet()&&t.shipping?`<p class="est-note">再買 ${money(t.free-t.sub)} 就免運。</p>`:""}
+    <div class="est-total"><span>合計</span><span class="price">${fmt(t.total)}${sfx}</span></div>
+    ${t.pending?`<p class="est-note">有商品的價格還沒確定，Aira 確認後會告訴你最後的金額。</p>`:""}</div>`;
+}
+function renderCart(){
+  const d=$("cartDlg");d.style.cssText=accStyle("A");
+  if(cartView==="done"&&lastOrder){d.innerHTML=doneHTML();return}
+  const t=cartTotals(),n=cartCount();
+  if(!CART.length){d.innerHTML=cartTop("購物車","")+`<div class="cart-body"><div class="empty" style="margin:0"><b>購物車是空的</b>挑一件與你同頻的小物，再回來這裡結帳。</div><div class="cart-actions"><button class="btn primary" type="button" data-c="close">去逛逛</button></div></div>`;return}
+  if(cartView!=="checkout"){
+    d.innerHTML=cartTop("購物車",n+" 件")+`<div class="cart-body"><div class="ci-list">${CART.map((c,i)=>`<div class="ci">
+      <div class="ci-main"><b>${esc(c.name)}</b>${c.sub?`<small>${esc(c.sub)}</small>`:""}</div>
+      <div class="ci-price">${c.price==null?`<span class="ask">價格待確認</span>`:money(c.price*c.qty)}</div>
+      <div class="ci-qty">${c.kind==="d"?`<span>1 串</span>`:`<button type="button" data-c="dec" data-i="${i}" aria-label="減少">−</button><span>${c.qty}</span><button type="button" data-c="inc" data-i="${i}" aria-label="增加">＋</button>`}</div>
+      <button type="button" class="ci-del" data-c="del" data-i="${i}">移除</button></div>`).join("")}</div>
+      ${sumsHTML(t)}
+      <div class="cart-actions"><button class="btn" type="button" data-c="close">繼續逛逛</button><button class="btn primary" type="button" data-c="checkout">前往結帳</button></div></div>`;
+    return;
+  }
+  const wr=[13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19];
+  d.innerHTML=cartTop("填寫訂購資料",n+" 件")+`<form class="cart-body co" id="coForm" novalidate>
+    <div class="co-sum">${CART.map(c=>`<div><span>${esc(c.name)} × ${c.qty}</span><span>${c.price==null?"待確認":money(c.price*c.qty)}</span></div>`).join("")}</div>
+    ${sumsHTML(t)}
+    <div class="field"><label for="co-name">收件人姓名</label><input id="co-name" autocomplete="name"></div>
+    <div class="field"><label for="co-phone">手機號碼</label><input id="co-phone" inputmode="tel" autocomplete="tel" placeholder="0912345678"></div>
+    <div class="field"><label for="co-contact">LINE ID 或 IG 帳號</label><input id="co-contact" placeholder="方便 Aira 聯繫你"></div>
+    <div class="field"><label for="co-email">Email，可不填</label><input id="co-email" type="email" autocomplete="email"></div>
+    <fieldset class="field full co-pay"><legend>付款方式</legend>
+      <label><input type="radio" name="pay" value="銀行轉帳" checked> 銀行轉帳</label>
+      <label><input type="radio" name="pay" value="7-11 賣貨便"> 7-11 賣貨便</label></fieldset>
+    <div class="field co-st"><label for="co-brand">取貨超商</label><select id="co-brand"><option>7-11</option><option>全家</option><option>萊爾富</option><option>OK</option></select></div>
+    <div class="field co-st"><label for="co-shop">門市名稱或店號</label><input id="co-shop" placeholder="例如 7-11 鑫台北門市"></div>
+    <p class="hint full" id="coMyship" hidden>送出後，Aira 會傳賣貨便的下單連結給你，在連結裡選 7-11 門市並完成付款。</p>
+    ${needWrist()?`<div class="field"><label for="co-wrist">手圍</label><select id="co-wrist"><option value="">不確定，請幫我確認</option>${wr.map(w=>`<option value="${w}">${w} cm</option>`).join("")}</select></div>`:""}
+    <div class="field full"><label for="co-note">備註，可不填</label><textarea id="co-note" rows="3" placeholder="送禮包裝、想問的問題，都可以寫在這裡"></textarea></div>
+    <div class="actions full"><span class="status" id="coStatus"></span><span style="display:flex;gap:10px"><button class="btn" type="button" data-c="back">回購物車</button><button class="btn primary" type="submit" id="coSend">送出訂單</button></span></div>
+  </form>`;
+}
+function makeId(){const d=new Date();return "A"+String(d.getMonth()+1).padStart(2,"0")+String(d.getDate()).padStart(2,"0")+"-"+Math.random().toString(36).slice(2,6).toUpperCase()}
+function orderText(o){
+  const L=[`【喵選拾光 訂單】${o.orderId}`,`收件人：${o.name}　${o.phone}`];
+  if(o.contact)L.push(`聯絡方式：${o.contact}`);if(o.email)L.push(`Email：${o.email}`);
+  L.push(`付款方式：${o.pay}`,`取貨：${o.store}`);if(o.wrist)L.push(`手圍：${o.wrist}`);
+  L.push("","商品：",...o.items.map(i=>`・${i.name}${i.sub?"（"+i.sub+"）":""} × ${i.qty}　${i.price==null?"價格待確認":money(i.price*i.qty)}`));
+  L.push("",`商品小計：${money(o.subtotal)}${o.items.some(i=>i.price==null)?"＋待確認":""}`,`運費：${o.shipping==null?"確認後告知":o.shipping?money(o.shipping):"免運"}`,`合計：${money(o.total)}${o.pending?" 起，最後金額由 Aira 確認":""}`);
+  if(o.note)L.push("",`備註：${o.note}`);
+  return L.join("\n");
+}
+function coErr(msg,id){setCo(msg,true);if(id)$(id)?.focus()}
+function setCo(msg,err){const s=$("coStatus");if(s){s.textContent=msg;s.classList.toggle("err",!!err)}}
+async function submitOrder(){
+  const v=id=>($(id)?.value||"").trim();
+  const name=v("co-name"),phone=v("co-phone").replace(/[\s-]/g,""),email=v("co-email");
+  const pay=(document.querySelector('#coForm input[name="pay"]:checked')||{}).value||"銀行轉帳";
+  if(!name)return coErr("請填寫收件人姓名。","co-name");
+  if(!/^09\d{8}$/.test(phone))return coErr("請填寫 09 開頭的 10 碼手機號碼。","co-phone");
+  if(email&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))return coErr("Email 格式好像不太對。","co-email");
+  if(pay==="銀行轉帳"&&!v("co-shop"))return coErr("請填寫取貨門市。","co-shop");
+  const t=cartTotals();
+  const o={orderId:makeId(),time:new Date().toISOString(),name,phone,email,contact:v("co-contact"),pay,
+    store:pay==="銀行轉帳"?v("co-brand")+" "+v("co-shop"):"7-11 賣貨便，下單時選門市",
+    wrist:needWrist()?(v("co-wrist")?v("co-wrist")+" cm":"請幫我確認"):"",note:v("co-note"),
+    items:CART.map(c=>({name:c.name,sub:c.sub||"",qty:c.qty,price:c.price,seq:c.seq||""})),
+    subtotal:t.sub,shipping:feeSet()?t.shipping:null,total:t.total,pending:t.pending||!feeSet(),page:location.href.split("#")[0]};
+  o.text=orderText(o);
+  const btn=$("coSend");if(btn)btn.disabled=true;setCo("送出中…");
+  let sent=false;const url=String(SHOP().orderUrl||"").trim();
+  if(/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(url)){
+    try{const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),15000);
+      await fetch(url,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(o),signal:ctl.signal});
+      clearTimeout(tm);sent=true}catch(_){sent=false}
+  }
+  lastOrder={...o,sent};
+  if(sent){CART=[];saveCart();renderFab()}
+  cartView="done";renderCart();$("cartDlg").scrollTop=0;
+}
+function doneHTML(){
+  const o=lastOrder,P=SHOP(),ig=String(P.ig||"meng.cat_47777").replace(/^@/,"").trim(),line=String(P.line||"").trim();
+  const payBlock=o.pay==="銀行轉帳"
+    ?(P.bankAccount?`<div class="paybox"><b>匯款資訊</b>
+        ${P.bankName?`<div class="pay-row"><span>銀行</span><span>${esc(P.bankName)}</span></div>`:""}
+        <div class="pay-row"><span>帳號</span><span class="acct">${esc(P.bankAccount)}</span><button type="button" class="btn mini" data-c="copyacct">複製</button></div>
+        ${P.bankHolder?`<div class="pay-row"><span>戶名</span><span>${esc(P.bankHolder)}</span></div>`:""}
+        <p>${o.pending?"Aira 會先跟你確認最後金額，確認後再匯款就可以。":`匯款 ${money(o.total)} 後，把帳號末五碼傳給 Aira，就完成了。`}</p></div>`
+      :`<div class="paybox"><b>銀行轉帳</b><p>Aira 確認訂單後，會把匯款帳號和金額傳給你。</p></div>`)
+    :`<div class="paybox"><b>7-11 賣貨便</b><p>Aira 確認訂單後，會傳賣貨便的下單連結給你，在連結裡選門市並付款就可以。</p></div>`;
+  return cartTop(o.sent?"訂單已送出":"還差一步","")+`<div class="cart-body done">
+    <div class="done-head"><small>${o.sent?"ORDER RECEIVED":"ONE MORE STEP"}</small><h3>${o.sent?"謝謝你，訂單已經收到了":"把訂單傳給 Aira，就完成了"}</h3><p>訂單編號　<b>${esc(o.orderId)}</b></p></div>
+    ${o.sent?"":`<p class="hint" style="text-align:center;margin:0">請按下面的按鈕，把訂單內容傳給 Aira，才算完成訂購喔。</p>`}
+    ${payBlock}
+    ${o.sent?`<p class="hint" style="margin:0">想更快聯繫，也可以把訂單傳到 LINE 或 IG：</p>`:""}
+    <div class="send-row">${line?`<button class="btn primary" type="button" data-c="line">傳到 LINE</button>`:""}<button class="btn${line?"":" primary"}" type="button" data-c="ig" data-ig="${esc(ig)}">傳到 IG</button><button class="btn" type="button" data-c="copy">複製訂單</button></div>
+    <pre class="copy-pre" id="orderPre">${esc(o.text)}</pre>
+    ${P.doneNote?`<p class="est-note">${esc(P.doneNote)}</p>`:""}
+    <div class="cart-actions"><button class="btn" type="button" data-c="close">完成</button></div></div>`;
+}
+async function copyText(t){
+  try{await navigator.clipboard.writeText(t);return true}catch(_){}
+  try{const ta=document.createElement("textarea");ta.value=t;ta.style.cssText="position:fixed;opacity:0";document.body.appendChild(ta);ta.select();const ok=document.execCommand("copy");ta.remove();return ok}catch(_){return false}
+}
+function markSentByHand(){if(lastOrder&&!lastOrder.sent){CART=[];saveCart();renderFab()}}
+function cartMsg(t){const h=$("cartDlg").querySelector(".done-head p");if(h){h.dataset.orig=h.dataset.orig||h.innerHTML;h.innerHTML=esc(t);setTimeout(()=>{if(h.dataset.orig)h.innerHTML=h.dataset.orig},2200)}}
+function cartInit(){
+  CART=loadCart().map(resolveItem).filter(Boolean);saveCart();renderFab();
+  $("cartFab").onclick=()=>openCart();
+  const d=$("cartDlg");
+  d.addEventListener("click",async e=>{
+    if(e.target===d){d.close();return}
+    const b=e.target.closest("[data-c]");if(!b)return;
+    const c=b.dataset.c,i=Number(b.dataset.i);
+    if(c==="close"){d.close();if(cartView==="done"){cartView="cart";lastOrder=null}return}
+    if(c==="inc"&&CART[i]){CART[i].qty=Math.min(99,CART[i].qty+1)}
+    else if(c==="dec"&&CART[i]){CART[i].qty--;if(CART[i].qty<1)CART.splice(i,1)}
+    else if(c==="del"&&CART[i]){CART.splice(i,1)}
+    else if(c==="checkout"){cartView="checkout";renderCart();d.scrollTop=0;return}
+    else if(c==="back"){cartView="cart";renderCart();return}
+    else if(c==="copyacct"){await copyText(SHOP().bankAccount||"");cartMsg("帳號已複製");return}
+    else if(c==="copy"){const ok=await copyText(lastOrder.text);markSentByHand();cartMsg(ok?"已複製訂單內容":"請長按下方文字複製");return}
+    else if(c==="line"||c==="ig"){await copyText(lastOrder.text);markSentByHand();
+      const url=c==="line"?String(SHOP().line||"").trim():"https://ig.me/m/"+encodeURIComponent(b.dataset.ig);
+      cartMsg("訂單已複製，貼上傳送就可以");if(/^https?:\/\//.test(url))window.open(url,"_blank","noopener");return}
+    else return;
+    saveCart();renderFab();renderCart();
+  });
+  d.addEventListener("change",e=>{if(e.target.name==="pay"){const my=e.target.value!=="銀行轉帳";d.querySelectorAll(".co-st").forEach(x=>x.hidden=my);$("coMyship").hidden=!my}});
+  d.addEventListener("input",()=>{const s=$("coStatus");if(s&&s.classList.contains("err"))setCo("")});
+  d.addEventListener("submit",e=>{if(e.target.id==="coForm"){e.preventDefault();submitOrder()}});
+  $("detail").addEventListener("click",e=>{
+    const a=e.target.closest("[data-add]");
+    if(a){const [k,id,x]=a.dataset.add.split("|");let ok=false,label="";
+      if(k==="b")ok=addToCart({kind:"b",key:"b:"+id,id});
+      else if(k==="s"){ok=addToCart({kind:"s",key:"s:"+id+":"+x,id,size:Number(x)});label=x+"mm "}
+      else if(k==="h"){ok=addToCart({kind:"h",key:"h:"+id+":"+x,id,form:x});label=x+" "}
+      if(!ok)return;
+      const row=k==="s"?$("detail").querySelector(".buy-done"):a.closest(".buy-row");
+      if(row){row.hidden=false;row.innerHTML=`<span class="added">${label?"已加入 "+esc(label.trim()):"已加入購物車"}</span><button class="btn primary" type="button" data-open-cart>查看購物車</button>`}
+      return}
+    if(e.target.closest("[data-open-cart]"))openCart();
+  });
+}
+function fitTitle(h){
+  if(!h)return;h.style.fontSize="";h.style.letterSpacing="";
+  const W=h.clientWidth;if(!W)return;let fs=parseFloat(getComputedStyle(h).fontSize),ls=.14,g=0;
+  while(h.scrollWidth>W+1&&g++<40){if(ls>.03){ls=Math.max(.02,ls-.03);h.style.letterSpacing=ls+"em"}else if(fs>14){fs-=1;h.style.fontSize=fs+"px"}else break}
+}
+window.addEventListener("resize",()=>{if($("detail").open)fitTitle($("detail").querySelector(".d-body h2"))});
+
 /* ---------- boot ---------- */
 (function(){
   let data={};
@@ -861,6 +1133,7 @@ let toastT;function toast(t){const el=$("toast");el.textContent=t;el.hidden=fals
   S.herbs=(data.herbals||[]).slice().sort(byOrder);
   S.cfg=data.settings||{};
   render();
+  cartInit();
 })();
 </script>
 

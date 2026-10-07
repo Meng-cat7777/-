@@ -51,10 +51,20 @@ https://meng-cat7777.github.io/-/
 - 「單顆水晶」「花草能量商品」按鈕也由後台「顯示與價格」分頁開關（`settings.showStones`、`settings.showHerbals`，沒填視為顯示）。單顆水晶關閉時，手串詳細裡的水晶不會再連到水晶介紹。
 - 「花草能量商品」：6 款配方（`herbals` 集合），每款可提供淨化鹽、能量蠟燭、花草能量噴霧三種形式（`forms`），各自有規格與售價；售價為 0 時前台顯示「價格請洽詢」。三種形式各有配色（`ACC` 物件），沒有照片時顯示對應形式的圖示。
 
+## 購物車與下單
+
+- 前台每個商品的詳細說明裡有「加入購物車」（手串、單顆水晶依尺寸、花草商品依形式），自行設計的試算也能整串加入。右下角的「購物車」按鈕在有商品時才出現；購物車存在顧客自己的瀏覽器（localStorage）。
+- 結帳只提供超商取貨；付款方式為銀行轉帳或 7-11 賣貨便。價格為 0 或沒填的商品顯示「價格待確認」，合計會標「起」。
+- 設定都在後台「顯示與價格」分頁的「購物車與下單設定」，存在 `settings/design` 文件的 `shop` 欄位：`enabled`、`fee`（運費，null 表示確認後告知）、`freeOver`、`bankName`、`bankAccount`、`bankHolder`、`ig`、`line`、`orderUrl`、`doneNote`。後台儲存其他設定時要保留 `shop`（用 `{...S.cfg, ...}`）。
+- 訂單去向：有 `orderUrl`（Google Apps Script 網頁應用程式）時，訂單以 text/plain POST（no-cors）送出，記到 Meng 的 Google 試算表「訂單」工作表並寄信通知；同時顧客可以一鍵複製訂單並開啟 LINE／IG 傳給 Meng。沒有 `orderUrl` 或送出失敗時，畫面會請顧客把訂單傳到 LINE／IG。
+- Apps Script 程式在 `tools/order-script.gs`。部署方式：試算表 > 擴充功能 > Apps Script，貼上後部署成網頁應用程式（執行身分：我，存取：所有人），網址貼回後台。
+- 詳細說明視窗的標題（`.d-body h2`）固定一行，`fitTitle()` 會自動縮小字距與字級。
+
 ## 檔案
 
 - `index.html`：網站本體（手串與水晶商品頁）。
 - `services/`：服務項目頁（牌卡占卜、靈數命盤、脈輪檢測價目與預約須知），網址 https://meng-cat7777.github.io/-/services/ 。這一頁的內容直接寫在 `services/index.html` 裡，不經過後台，可以直接修改；圖片放在同一個資料夾。
 - `tools/build_shop.py`：把後台資料寫進 `index.html` 的工具。
+- `tools/order-script.gs`：接收訂單的 Google Apps Script 程式（貼到 Meng 的 Google 試算表用）。
 - `img/`：商品照片（還沒有照片時這個資料夾不存在）。
 - `.nojekyll`：讓 GitHub Pages 直接提供檔案。
