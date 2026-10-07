@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aira 艾拉 服務項目</title>
+<meta name="description" content="Aira 艾拉｜牌卡占卜、後天五行靈數命盤、脈輪檢測服務項目與預約須知。">
+<meta property="og:title" content="Aira 艾拉 服務項目">
+<meta property="og:description" content="牌卡占卜、後天五行靈數命盤、脈輪檢測服務項目與預約須知。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://meng-cat7777.github.io/-/services/cover-aira-wide2.jpg">
+<meta name="theme-color" content="#f6e9ec">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600&family=Noto+Sans+TC:wght@400;500&family=Cormorant+Garamond:wght@400;500&display=swap">
+<style>
+/* Layout: a single narrow "card stock" column, like the IG menu cards, with rose band headers and dotted price leaders */
+:root{
+  --bg:#f6e9ec; --paper:#fbf3f5; --band:#efd5dc; --ink:#3d2a30; --muted:#8a6b74; --rose:#a2475f; --line:#e2c6ce;
+  --serif:"Noto Serif TC","Songti TC",serif; --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif; --latin:"Cormorant Garamond",Georgia,serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1518;--paper:#261c20;--band:#3a262d;--ink:#f2e4e8;--muted:#b796a0;--rose:#e595ab;--line:#45313a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1d1518;--paper:#261c20;--band:#3a262d;--ink:#f2e4e8;--muted:#b796a0;--rose:#e595ab;--line:#45313a;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.75;padding:0 16px}
+.wrap{max-width:640px;margin:0 auto;padding-block:40px 56px}
+.wrap{padding-block:24px 56px}
+.brand{font-family:var(--latin);letter-spacing:.4em;color:var(--muted);font-size:15px}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(28px,7vw,38px);letter-spacing:.18em;margin:0;text-wrap:balance}
+.eyebrow{font-family:var(--latin);letter-spacing:.5em;color:var(--muted);font-size:13px}
+nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:22px 0 8px}
+nav a{font-size:13px;color:var(--rose);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 14px;background:var(--paper)}
+nav a:hover,nav a:focus-visible{background:var(--band);outline:none}
+section{margin-top:40px}
+h2{font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:.15em;text-align:center;margin:0 0 18px}
+h2 small{display:block;font-family:var(--latin);font-size:12px;letter-spacing:.45em;color:var(--muted);font-weight:400}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:22px 20px;display:grid;gap:18px}
+h3{font-family:var(--serif);font-weight:500;color:var(--rose);letter-spacing:.3em;text-align:center;background:var(--band);border-radius:6px;padding:8px;margin:0;font-size:17px}
+.price{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.price li{display:flex;align-items:baseline;gap:8px}
+.price .name{white-space:nowrap}
+.price .note{font-size:12px;color:var(--muted);white-space:nowrap}
+.price .dots{flex:1;border-bottom:1px dotted var(--line);min-width:12px;transform:translateY(-4px)}
+.price .amt{font-family:var(--latin);font-size:21px;color:var(--rose);font-variant-numeric:tabular-nums}
+.price .amt::before{content:"NT$ ";font-size:12px;color:var(--muted)}
+.soon{font-family:var(--serif);color:var(--rose);letter-spacing:.3em;font-size:15px;border:1px dashed var(--rose);border-radius:999px;padding:2px 14px;white-space:nowrap}
+.pending{text-align:center;display:grid;gap:8px;justify-items:center;color:var(--muted);font-size:14px}
+ol{margin:0;padding-left:1.4em;display:grid;gap:4px}
+.remark{font-size:13px;color:var(--muted);margin:0}
+.pay{text-align:center;font-family:var(--latin);font-size:18px;letter-spacing:.08em;margin:0}
+.center{text-align:center;margin:0}
+.tip{text-align:center;color:var(--muted);font-size:14px;margin:0}
+
+/* ---------- Cover image as the page background ---------- */
+.backdrop{position:fixed;inset:0;z-index:0;overflow:hidden;background:#f3d6df}
+.frame{position:absolute;left:50%;top:calc((100vh - max(100vh,43.05vw)) * .3);width:max(100vw,232.3vh);aspect-ratio:2753/1185;transform:translateX(-50%)}
+.stage{position:absolute;inset:0;transform-origin:45.6% 38.8%}
+.ov-m{display:none}
+/* Phones / portrait screens: use the portrait artwork */
+@media (max-aspect-ratio:4/5){
+  .frame{top:calc((100vh - max(100vh,167.4vw)) * .3);width:max(100vw,59.72vh);aspect-ratio:562/941}
+  .stage{transform-origin:38.4% 50.7%}
+  .ov-w{display:none}
+  .ov-m{display:block}
+}
+.stage picture{display:block;width:100%;height:100%}
+.stage img{display:block;width:100%;height:100%;object-fit:cover}
+.stage svg{position:absolute;inset:0;width:100%;height:100%}
+.veil{position:absolute;inset:0;background:var(--bg);opacity:0;transition:opacity .6s ease;pointer-events:none}
+.inside .veil{opacity:.86}
+.glow{opacity:0;mix-blend-mode:screen}
+.spark{opacity:0;transform-box:fill-box;transform-origin:center}
+.cover-ui{position:fixed;z-index:2;left:0;right:0;bottom:0;padding:0 16px calc(8vh + env(safe-area-inset-bottom,0px));display:grid;justify-items:center;gap:10px}
+.cta{font-family:var(--serif);font-size:17px;letter-spacing:.25em;color:#fff;background:linear-gradient(135deg,#d77c97,#a2475f);border:1px solid rgba(255,255,255,.7);border-radius:999px;padding:12px 30px 12px 36px;cursor:pointer;box-shadow:0 0 0 6px rgba(255,255,255,.25),0 10px 28px -6px rgba(162,71,95,.7);opacity:0;transform:scale(.4) translateY(20px);pointer-events:none}
+.cta:hover{filter:brightness(1.08)}
+.cta:focus-visible{outline:3px solid #fff;outline-offset:4px}
+
+.play .stage{animation:hug 1.6s cubic-bezier(.45,0,.25,1) .6s forwards}
+.play .glow{animation:fade .9s ease .7s forwards,pulse 2.4s ease-in-out 1.6s infinite}
+.play .spark{animation:spark 1.6s ease-out forwards}
+.play .cta{animation:pop .7s cubic-bezier(.3,1.6,.5,1) 1.8s forwards}
+@keyframes fade{to{opacity:1}}
+@keyframes hug{0%{transform:none}60%{transform:scale(1.045) rotate(-1.2deg)}100%{transform:scale(1.035) rotate(-.8deg)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.65}}
+@keyframes spark{0%{opacity:0;transform:scale(.2)}40%{opacity:1;transform:scale(1.2)}100%{opacity:0;transform:scale(.6) translateY(-30px)}}
+@keyframes pop{to{opacity:1;transform:none;pointer-events:auto}}
+.ready .cta{pointer-events:auto}
+.wrap{position:relative;z-index:1}
+.card{background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(6px)}
+
+@media (prefers-reduced-motion:reduce){
+  .play .stage,.play .glow,.play .spark{animation:none}
+  .play .glow{opacity:1}
+  .play .cta{animation:none;opacity:1;transform:none;pointer-events:auto}
+}
+.page-bar{position:relative;z-index:5;display:grid;gap:10px;padding:6px 0 4px}
+.back,.views button,.link{font:inherit;cursor:pointer}
+.back{font-size:14px;color:var(--rose);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:4px 16px}
+.back:hover,.views button:hover{background:var(--band)}
+.back:focus-visible,.views button:focus-visible,.link:focus-visible{outline:2px solid var(--rose);outline-offset:2px}
+.bar-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.contact{display:inline-flex;align-items:center;gap:6px;font-size:14px;letter-spacing:.1em;color:#fff;background:#06c755;border-radius:999px;padding:5px 16px;text-decoration:none;box-shadow:0 4px 12px -6px rgba(6,120,60,.6)}
+.contact::before{content:"LINE";font-family:Arial,sans-serif;font-weight:700;font-size:10px;letter-spacing:0;background:#fff;color:#06c755;border-radius:5px;padding:1px 4px}
+.contact:hover{filter:brightness(1.06)}
+.contact:focus-visible{outline:3px solid var(--rose);outline-offset:2px}
+.back,.contact,.bar-brand{white-space:nowrap}
+@media (max-width:460px){.bar-brand{display:none}}
+.views{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (max-width:520px){.views{grid-template-columns:1fr 1fr}}
+.views button{font-family:var(--serif);font-size:14px;letter-spacing:.08em;color:var(--rose);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:9px 6px}
+.views button[aria-current="page"]{background:var(--rose);color:var(--paper);border-color:var(--rose)}
+.link{background:none;border:0;padding:0;color:var(--rose);text-decoration:underline;text-underline-offset:3px;font-size:inherit}
+.view{animation:rise .45s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}}
+section.view{margin-top:28px}
+footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-family:var(--latin);letter-spacing:.25em;color:var(--muted)}
+@media (max-width:420px){.price .note{display:block;white-space:normal}.price li{flex-wrap:wrap}}
+html{-webkit-text-size-adjust:100%}
+body{margin:0}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+</style>
+</head>
+<body>
+
+<div class="backdrop play" id="cover">
+  <div class="frame">
+    <div class="stage">
+      <picture>
+        <source media="(max-aspect-ratio: 4/5)" srcset="cover-aira-mobile.jpg" width="1124" height="1882">
+        <img src="cover-aira-wide2.jpg" width="2753" height="1185" decoding="async" alt="長髮女孩披著粉色毛毯，抱住發光的水晶球">
+      </picture>
+      <svg class="ov-w" viewBox="0 0 1089 469" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <radialGradient id="orb">
+            <stop offset="0" stop-color="#fff8e8" stop-opacity=".95"/>
+            <stop offset=".45" stop-color="#ffd9ec" stop-opacity=".55"/>
+            <stop offset="1" stop-color="#ffc4e0" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <!-- crystal-ball glow -->
+        <circle class="glow" cx="497" cy="182" r="68" fill="url(#orb)"/>
+
+        <!-- sparkles around the ball -->
+        <g fill="#fffaf0">
+          <path class="spark" style="animation-delay:2s" d="M450 141 L453.0 147.0 L459 150 L453.0 153.0 L450 159 L447.0 153.0 L441 150 L447.0 147.0Z"/>
+          <path class="spark" style="animation-delay:2.25s" d="M545 158 L547.3333333333334 162.66666666666666 L552 165 L547.3333333333334 167.33333333333334 L545 172 L542.6666666666666 167.33333333333334 L538 165 L542.6666666666666 162.66666666666666Z"/>
+          <path class="spark" style="animation-delay:2.45s" d="M465 222 L467.0 226.0 L471 228 L467.0 230.0 L465 234 L463.0 230.0 L459 228 L463.0 226.0Z"/>
+          <path class="spark" style="animation-delay:2.6s" d="M528 214 L530.6666666666666 219.33333333333334 L536 222 L530.6666666666666 224.66666666666666 L528 230 L525.3333333333334 224.66666666666666 L520 222 L525.3333333333334 219.33333333333334Z"/>
+          <path class="spark" style="animation-delay:2.15s" d="M500 122.5 L501.8333333333333 126.16666666666667 L505.5 128 L501.8333333333333 129.83333333333334 L500 133.5 L498.1666666666667 129.83333333333334 L494.5 128 L498.1666666666667 126.16666666666667Z"/>
+        </g>
+      </svg>
+      <svg class="ov-m" viewBox="0 0 562 941" preserveAspectRatio="none" aria-hidden="true">
+        <circle class="glow" cx="216" cy="477" r="90" fill="url(#orb)"/>
+        <g fill="#fffaf0">
+          <path class="spark" style="animation-delay:2s" d="M158 428 L161.66666666666666 435.3333333333333 L169 439 L161.66666666666666 442.6666666666667 L158 450 L154.33333333333334 442.6666666666667 L147 439 L154.33333333333334 435.3333333333333Z"/>
+          <path class="spark" style="animation-delay:2.25s" d="M278 448 L281.0 454.0 L287 457 L281.0 460.0 L278 466 L275.0 460.0 L269 457 L275.0 454.0Z"/>
+          <path class="spark" style="animation-delay:2.45s" d="M176 533 L178.66666666666666 538.3333333333334 L184 541 L178.66666666666666 543.6666666666666 L176 549 L173.33333333333334 543.6666666666666 L168 541 L173.33333333333334 538.3333333333334Z"/>
+          <path class="spark" style="animation-delay:2.6s" d="M262 525 L265.3333333333333 531.6666666666666 L272 535 L265.3333333333333 538.3333333333334 L262 545 L258.6666666666667 538.3333333333334 L252 535 L258.6666666666667 531.6666666666666Z"/>
+          <path class="spark" style="animation-delay:2.15s" d="M222 396 L224.33333333333334 400.6666666666667 L229 403 L224.33333333333334 405.3333333333333 L222 410 L219.66666666666666 405.3333333333333 L215 403 L219.66666666666666 400.6666666666667Z"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="veil"></div>
+
+    <div class="cover-ui" id="ui">
+      <button class="cta" id="enter" type="button">查看服務 ✦</button>
+    </div>
+  </div>
+
+<div class="wrap">
+  <div class="page-bar" id="bar" hidden>
+    <div class="bar-top">
+      <button type="button" class="back" id="back">← 首頁</button>
+      <span class="brand bar-brand">A i r a 艾拉</span>
+      <a class="contact" href="https://line.me/R/ti/p/@556gtcjg" target="_blank" rel="noopener">聯絡我們</a>
+    </div>
+    <nav class="views" id="views" aria-label="服務頁面">
+      <button type="button" data-go="price">價目表</button><button type="button" data-go="numerology">靈數解盤內容</button><button type="button" data-go="tarot-rules">占卜預約須知</button><button type="button" data-go="num-rules">靈數解盤須知</button>
+    </nav>
+  </div>
+
+  <section id="price" class="view" hidden>
+    <h2>服務價目表<small>LIST</small></h2>
+    <div class="card">
+      <h3>牌卡占卜</h3>
+      <ul class="price">
+        <li><span class="name">任一領域問題 01 題</span><span class="dots"></span><span class="amt">100</span></li>
+        <li><span class="name">同一領域問題 05 題</span><span class="dots"></span><span class="amt">400</span></li>
+        <li><span class="name">不限領域問題 10 題</span><span class="dots"></span><span class="amt">800</span></li>
+      </ul>
+
+      <h3>後天五行靈數命盤</h3>
+      <ul class="price">
+        <li><span class="name">個人解盤</span><span class="dots"></span><span class="amt">1200</span></li>
+        <li><span class="name">雙人合盤</span><span class="note">需解過個人盤</span><span class="dots"></span><span class="amt">1800</span></li>
+        <li><span class="name">家庭合盤</span><span class="note">需解過個人盤</span><span class="dots"></span><span class="amt">1600</span></li>
+        <li><span class="name">企業／業務合盤</span><span class="note">需解過個人盤</span><span class="dots"></span><span class="amt">1000</span></li>
+      </ul>
+
+      <h3>脈輪檢測</h3>
+      <ul class="price">
+        <li><span class="name">狀態檢測</span><span class="dots"></span><span class="amt">888</span></li>
+        <li><span class="name">緣分檢測</span><span class="dots"></span><span class="amt">888</span></li>
+      </ul>
+
+      <h3>靈擺調頻</h3>
+      <div class="pending">
+        <span class="soon">籌備中</span>
+        <span>服務內容與價格即將公布，敬請期待</span>
+      </div>
+
+      <p class="tip">靈數詳細服務內容請見 <button type="button" class="link" data-go="numerology">靈數解盤內容</button></p>
+    </div>
+  </section>
+
+  <section id="numerology" class="view" hidden>
+    <h2>後天五行靈數解盤內容<small>LIST</small></h2>
+    <div class="card">
+      <h3>個人解盤</h3>
+      <ol>
+        <li>專屬後天五行靈數命盤圖表</li>
+        <li>靈數能量分布解說</li>
+        <li>先天性格、天賦、人生功課、事業發展</li>
+        <li>後天五行、補數／補色</li>
+        <li>簡易能量交互影響關係圖解</li>
+      </ol>
+      <h3>雙人合盤</h3>
+      <ol>
+        <li>雙方個人命盤、對方命盤解說</li>
+        <li>合盤分析、相處／溝通方式、五行相生相剋</li>
+      </ol>
+      <p class="remark">備註：對方命盤解說含能量分布、先天性格、天賦及五行</p>
+      <h3>家庭合盤</h3>
+      <ol>
+        <li>家庭個人命盤簡易解說</li>
+        <li>合盤分析、相處／溝通方式、五行相生相剋</li>
+        <li>家庭靈數能量交互影響關係圖解</li>
+      </ol>
+      <h3>企業／業務合盤</h3>
+      <ol>
+        <li>團隊成員／客戶人格特質簡易解說</li>
+        <li>合盤分析、相處／溝通方式、五行相生相剋</li>
+        <li>團隊靈數能量交互影響關係圖解</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="tarot-rules" class="view" hidden>
+    <h2>占卜預約必讀法則<small>LIST</small></h2>
+    <div class="card">
+      <h3>預約流程</h3>
+      <ol>
+        <li>加入官方 LINE 帳號</li>
+        <li>私訊官方 LINE 領取表單</li>
+        <li>表單填寫完畢通知</li>
+        <li>三天內回覆並協助調整問題</li>
+        <li>七天內回覆『牌卡＋文字』結果</li>
+      </ol>
+      <h3>付款方式</h3>
+      <p class="pay">Line Pay ／ ATM 轉帳 ／ 匯款</p>
+      <h3>注意事項</h3>
+      <ol>
+        <li>生死、疾病、賭博及樂透問題不受理</li>
+        <li>占卜精準時限 3–6 個月，最長一年</li>
+        <li>二元對立問題不受理（例：適不適合）</li>
+        <li>同樣的問題至少相隔 2 週再詢問</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="num-rules" class="view" hidden>
+    <h2>靈數解盤預約必讀法則<small>LIST</small></h2>
+    <div class="card">
+      <h3>預約流程</h3>
+      <ol>
+        <li>加入官方 LINE 帳號</li>
+        <li>私訊官方 LINE 領取表單</li>
+        <li>表單填寫完畢通知</li>
+        <li>三天內提供【專屬命盤圖表】</li>
+        <li>七天內回覆【文字詳細分析】</li>
+      </ol>
+      <h3>付款方式</h3>
+      <p class="pay">Line Pay ／ ATM 轉帳 ／ 匯款</p>
+      <h3>注意事項</h3>
+      <p class="center">西元出生年月日務必正確<span class="remark">（影響準確度）</span><br>性別以生理性別為主</p>
+    </div>
+  </section>
+  <footer><span>Aira 艾拉</span><span>LINE @556gtcjg</span><span>IG @meng.cat_47777</span></footer>
+</div>
+<script>
+(function(){
+  var ui=document.getElementById('ui'), cover=document.getElementById('cover'), cta=document.getElementById('enter');
+  var bar=document.getElementById('bar'), views=document.getElementById('views'), footer=document.querySelector('footer');
+  var sections=[].slice.call(document.querySelectorAll('section.view'));
+  footer.hidden=true;
+  cta.addEventListener('animationend',function(){cover.classList.add('ready')});
+  cta.addEventListener('click',function(){go('price')});
+  function go(id){
+    cover.classList.add('inside'); ui.hidden=true; bar.hidden=false; footer.hidden=false;
+    sections.forEach(function(sec){sec.hidden=sec.id!==id;});
+    [].forEach.call(views.querySelectorAll('button'),function(b){
+      if(b.dataset.go===id)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');
+    });
+    window.scrollTo(0,0);
+  }
+  function home(){
+    sections.forEach(function(sec){sec.hidden=true;});
+    bar.hidden=true; footer.hidden=true; cover.classList.remove('inside'); ui.hidden=false;
+    window.scrollTo(0,0);
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-go]'); if(b)go(b.dataset.go);
+  });
+  document.getElementById('back').addEventListener('click',home);
+})();
+</script>
+
+</body>
+</html>
