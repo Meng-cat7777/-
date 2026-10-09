@@ -149,8 +149,8 @@ function groupDetail(g) {
     return `<button class="row" data-a="editEntry" data-id="${e.id}">${tile(c)}<span class="grow"><div class="t">${esc(e.note || c.label)}</div>
       <div class="muted small">${esc(nameOf(g, e.payerId))} 先付 · ${Object.keys(e.splits).length} 人分攤 · ${mdLabel(e.date)}</div></span><span class="amt">${num(e.amount)}</span></button>`;
   }).join('');
-  return `<div class="btnrow" style="align-items:center;margin-bottom:8px"><button class="iconbtn" data-a="closeGroup" aria-label="回到群組列表">${I.back}</button>
-    <h2 style="flex:1;font-size:22px">${esc(g.name)}</h2><button class="btn ghost sm" data-a="groupInfo" data-id="${g.id}">成員與邀請</button></div>
+  return `<div class="btnrow" style="align-items:center;margin-bottom:8px"><button class="iconbtn ondark" data-a="closeGroup" aria-label="回到群組列表">${I.back}</button>
+    <h2 class="ondark" style="flex:1;font-size:22px">${esc(g.name)}</h2><button class="btn ghost sm" data-a="groupInfo" data-id="${g.id}">成員與邀請</button></div>
     <section class="card"><h3>誰該收、誰該付</h3>${ids.map(i => {
       const v = bal[i] || 0;
       return `<div class="balance">${avatarOf(memberOf(g, i), 34)}<span class="grow" style="flex:1">${esc(nameOf(g, i))}</span>
@@ -229,7 +229,7 @@ function pageStats() {
   return `<div class="${isFam ? 'fam' : ''}"><div class="seg" style="margin-bottom:14px">
     <button class="${!isFam ? 'on' : ''}" data-a="statsScope" data-s="personal">個人</button>
     <button class="${isFam ? 'on' : ''}" data-a="statsScope" data-s="family" ${fam ? '' : 'disabled style="opacity:.5"'}>家庭</button></div>
-    <div class="tip">${catFace(isFam ? 'calico' : 'white', 54)}<p>${tip}</p></div>
+    <div class="tip">${catFace(isFam ? 'white' : 'black', 54)}<p>${tip}</p></div>
     <section class="card"><div class="card-head"><h3>近半年每月支出</h3><span class="muted small">點長條切換月份</span></div>${barChart(series, ym)}</section>
     <section class="card"><div class="card-head"><h3>${Number(ym.slice(5))}月各分類</h3><b>${money(cur.expense)}</b></div>
     ${cats.length ? cats.map(c => catAnalysisRow(c, kind)).join('') : empty('這個月沒有支出')}</section></div>`;
@@ -274,7 +274,7 @@ function pageCal() {
       <div class="grow"><div class="t">${esc(ev.title)}</div><div class="muted small">${lab} · ${who} · <span class="${ev.type === 'income' ? 'inc' : ''}">${ev.type === 'income' ? '+' : '-'}${num(ev.amount)}</span></div></div>
       ${action}${ev.schId ? `<button class="iconbtn" data-a="editSched" data-id="${ev.schId}" aria-label="編輯排程">${I.edit}</button>` : ''}</div>`;
   }).join('');
-  return `<div class="calhead"><button class="iconbtn" data-a="calNav" data-n="-1" aria-label="上個月">${I.left}</button><h2>${y} 年 ${m} 月</h2><button class="iconbtn" data-a="calNav" data-n="1" aria-label="下個月">${I.right}</button></div>
+  return `<div class="calhead ondark"><button class="iconbtn ondark" data-a="calNav" data-n="-1" aria-label="上個月">${I.left}</button><h2>${y} 年 ${m} 月</h2><button class="iconbtn" data-a="calNav" data-n="1" aria-label="下個月" style="color:var(--light)">${I.right}</button></div>
     <div class="pills" style="padding-bottom:8px">${[['all', '全部'], ['personal', '個人'], ['family', '家庭']].map(([k, l]) => `<button class="pill" aria-pressed="${f === k}" data-a="calFilter" data-f="${k}">${l}</button>`).join('')}</div>
     <section class="card"><div class="cal">${cells}</div>
     <div class="muted small" style="margin-top:8px;display:flex;gap:14px"><span><span style="color:var(--brand)">●</span> 個人</span><span><span style="color:var(--teal)">●</span> 家庭</span></div></section>
@@ -304,7 +304,7 @@ function shell(page, tabs) {
     .map(([id, label, icon]) => id === 'add'
       ? `<div class="fab-wrap"><button class="fab" data-a="add" aria-label="記一筆">${paw(34)}</button><span class="fab-label">記一筆</span></div>`
       : `<button class="${ui.tab === id ? 'on' : ''}" data-a="tab" data-t="${id}" aria-current="${ui.tab === id}">${icon}${label}</button>`).join('');
-  return `<div class="wrap"><header class="top"><div class="brand">${catFace('white', 38)}喵帳本</div>
+  return `<div class="wrap"><header class="top"><div class="brand">${catFace('black', 38)}喵帳本</div>
     <button class="avatar-btn" data-a="tab" data-t="me" aria-label="我的">${catFace(profile().avatar, 36)}</button></header>
     ${tabs || ''}<main>${page}</main></div><nav class="nav" aria-label="主要導覽"><div class="nav-in">${nav}</div></nav>`;
 }
@@ -665,7 +665,7 @@ const A = {
   async undoEv(el) { const e = S.entries.find(x => x.scheduleKey === el.dataset.k); if (e) { await store.remove('entries', e.id); toast('已取消記帳'); } },
   goCat() { ui.tab = 'home'; ui.home = 'cat'; },
   pickCat(el) { ui.catId = el.dataset.id; },
-  newCat() { openSheet('cat', { id: null, name: '', fur: 'orange', scopeId: me().uid }); },
+  newCat() { openSheet('cat', { id: null, name: '', fur: 'black', scopeId: me().uid }); },
   editCat(el) { const c = S.cats.find(x => x.id === el.dataset.id); openSheet('cat', { id: c.id, name: c.name, fur: c.fur, scopeId: c.scopeId }); },
   async saveCat() {
     const f = ui.form; if (!f.name.trim()) return toast('請輸入貓咪名字');

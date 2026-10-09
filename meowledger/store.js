@@ -2,13 +2,13 @@
 //   Firebase（Google 登入 + Firestore）與 試玩模式（localStorage）
 import { firebaseConfig } from './firebase-config.js';
 
-const FUR_IDS = ['white', 'calico', 'orange', 'gray', 'black', 'cream'];
+const FUR_IDS = ['black', 'white', 'calico', 'gray', 'orange', 'cream'];
 const CODE_CHARS = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
 const rid = () => Math.random().toString(36).slice(2, 10);
 const genCode = () => Array.from({ length: 6 }, () => CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)]).join('');
 const clean = o => JSON.parse(JSON.stringify(o));
 const emptyState = () => ({ profile: null, groups: [], entries: [], schedules: [], cats: [], supplies: [] });
-const newProfile = name => ({ name: name || '喵友', avatar: 'white', budget: 0, customCats: [] });
+const newProfile = name => ({ name: name || '喵友', avatar: 'black', budget: 0, customCats: [] });
 const newGroup = (uid, profile, type, name) => ({
   type, name, ownerId: uid, memberIds: [uid], inviteCode: genCode(), budget: 0, createdAt: Date.now(),
   members: { [uid]: { name: profile.name, avatar: profile.avatar } },

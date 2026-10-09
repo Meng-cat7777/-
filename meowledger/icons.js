@@ -1,11 +1,11 @@
 // 喵帳本：貓咪頭像與圖示（全部是 SVG，不使用 emoji）
 export const FURS = [
-  { id: 'white', name: '布偶貓', c: '#FBF9FF', mask: '#58578A', ear: '#5F5E8E', eye: '#1F1B45' },
+  { id: 'black', name: '黑貓', c: '#222B35', ear: '#1A2028', eye: '#F1DFA8', rim: '#4B5766', dark: true },
+  { id: 'white', name: '雪白貓', c: '#F7F9FB', mask: '#5B6674', ear: '#5F6A78', eye: '#1C2430' },
   { id: 'calico', name: '三花貓', c: '#FFFFFF', patch: '#F3B27C', ear: '#F3B27C', eye: '#2E2850' },
+  { id: 'gray', name: '灰貓', c: '#B8C0CA', ear: '#9EA8B4', eye: '#1C2430' },
   { id: 'orange', name: '橘貓', c: '#F5BE88', ear: '#EFA574', eye: '#2E2850' },
-  { id: 'black', name: '黑貓', c: '#4B4766', ear: '#3A3652', eye: '#FFE3A3' },
-  { id: 'gray', name: '灰貓', c: '#C3BED6', ear: '#A9A3C2', eye: '#2E2850' },
-  { id: 'cream', name: '奶茶貓', c: '#F3E0BD', ear: '#E8C99A', eye: '#2E2850' },
+  { id: 'cream', name: '奶茶貓', c: '#F1E1C4', ear: '#E5CDA2', eye: '#2E2850' },
 ];
 
 // 共用的柔邊濾鏡，放在頁面最上方一次（見 index.html）
@@ -18,22 +18,22 @@ export const DEFS = `<svg width="0" height="0" style="position:absolute" aria-hi
 // 貓臉本體（64x64 座標），沒有外框，用柔和色塊堆出毛茸茸的水彩感
 function faceParts(fur, sleep) {
   const f = FURS.find(x => x.id === fur) || FURS[0];
-  const dark = f.id === 'black';
-  const lid = f.mask || dark ? '#EDE9FF' : '#4A3F66';
+  const dark = !!f.dark;
+  const lid = f.mask || dark ? '#D9DEE5' : '#4A3F66';
   const eyes = sleep
     ? `<path d="M18.5 38 q5 4.2 10 0 M35.5 38 q5 4.2 10 0" stroke="${lid}" stroke-width="2.2" fill="none" stroke-linecap="round"/>`
     : `<ellipse cx="24" cy="37.5" rx="3.6" ry="4.2" fill="${f.eye}"/><ellipse cx="40" cy="37.5" rx="3.6" ry="4.2" fill="${f.eye}"/>
-       <circle cx="25.3" cy="35.8" r="1.3" fill="#fff"/><circle cx="41.3" cy="35.8" r="1.3" fill="#fff"/>`;
+       ${dark ? `<ellipse cx="24" cy="37.5" rx="1.3" ry="3.2" fill="#10151B"/><ellipse cx="40" cy="37.5" rx="1.3" ry="3.2" fill="#10151B"/>` : ''}<circle cx="25.3" cy="35.8" r="1.3" fill="#fff"/><circle cx="41.3" cy="35.8" r="1.3" fill="#fff"/>`;
   const mask = f.mask ? `<ellipse cx="32" cy="38.5" rx="16" ry="12.5" fill="${f.mask}" opacity=".92" filter="url(#blur2)"/>` : '';
   const patch = f.patch ? `<ellipse cx="45" cy="28" rx="10" ry="8" fill="${f.patch}" filter="url(#blur2)"/><ellipse cx="17" cy="44" rx="6" ry="5" fill="${f.patch}" opacity=".8" filter="url(#blur2)"/>` : '';
   return `<g class="fur">
     <path d="M9 34 L11 10 Q12 8.5 14 9.5 L30 21 Z" fill="${f.ear}" stroke="${f.ear}" stroke-width="3" stroke-linejoin="round"/>
     <path d="M55 34 L53 10 Q52 8.5 50 9.5 L34 21 Z" fill="${f.ear}" stroke="${f.ear}" stroke-width="3" stroke-linejoin="round"/>
-    <ellipse cx="32" cy="39" rx="24" ry="20" fill="${f.c}"/>
+    <ellipse cx="32" cy="39" rx="24" ry="20" fill="${f.c}" ${f.rim ? `stroke="${f.rim}" stroke-width="1.2"` : ''}/>
     <ellipse cx="11.5" cy="44" rx="8" ry="7" fill="${f.c}"/><ellipse cx="52.5" cy="44" rx="8" ry="7" fill="${f.c}"/>
     ${patch}${mask}${eyes}
     <ellipse cx="32" cy="44.5" rx="1.9" ry="1.4" fill="#E9A1AA"/>
-    <path d="M7 42 l11 1.2 M7 47 l11 -1.2 M57 42 l-11 1.2 M57 47 l-11 -1.2" stroke="${f.mask || dark ? '#CFC9EE' : '#8F89B5'}" stroke-width=".9" stroke-linecap="round" opacity=".75"/>
+    <path d="M7 42 l11 1.2 M7 47 l11 -1.2 M57 42 l-11 1.2 M57 47 l-11 -1.2" stroke="${f.mask || dark ? '#B9C3CE' : '#7E8896'}" stroke-width=".9" stroke-linecap="round" opacity=".75"/>
   </g>`;
 }
 
@@ -41,23 +41,34 @@ export function catFace(fur = 'white', size = 40, sleep = false) {
   return `<svg class="catface" width="${size}" height="${size}" viewBox="0 0 64 64" aria-hidden="true">${faceParts(fur, sleep)}</svg>`;
 }
 
-// 登入與空白頁用的插畫：薰衣草花田、月亮、蝴蝶，布偶貓和舉手的三花貓
+// 金色雪花：三條交叉的線加一圈柔光
+const flake = (x, y, r, o = 1) => `<g transform="translate(${x} ${y})" opacity="${o}">
+  <circle r="${r * 0.9}" fill="#F3D27A" opacity=".45" filter="url(#blur2)"/>
+  <g stroke="#FBE9B4" stroke-width="${Math.max(1, r / 7)}" stroke-linecap="round">
+    <path d="M0 ${-r}V${r}"/><path d="M${-r * .87} ${-r / 2}L${r * .87} ${r / 2}"/><path d="M${-r * .87} ${r / 2}L${r * .87} ${-r / 2}"/>
+    <path d="M${-r * .3} ${-r * .75}L0 ${-r * .5}L${r * .3} ${-r * .75}M${-r * .3} ${r * .75}L0 ${r * .5}L${r * .3} ${r * .75}" stroke-width="${Math.max(.8, r / 10)}"/>
+  </g><circle r="${Math.max(1.2, r / 6)}" fill="#fff"/></g>`;
+
+// 登入與空白頁用的插畫：冬夜的冰面，黑貓伸手去接金色的雪花
 export function scene(extra = '') {
-  const dots = [[40, 120, 2.2, '#F8C98C'], [70, 190, 1.8, '#fff'], [300, 150, 2.4, '#F8C98C'], [330, 210, 1.8, '#fff'], [210, 140, 1.8, '#F8C98C'], [25, 240, 1.8, '#fff'], [250, 250, 2.2, '#F8C98C'], [180, 95, 1.6, '#fff']]
-    .map(([x, y, r, c]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${c}"/>`).join('');
-  return `<svg class="scene ${extra}" viewBox="0 0 360 300" role="img" aria-label="花田裡的兩隻貓咪">
-    <rect width="360" height="300" rx="28" fill="#CDBFE8"/>
-    <g filter="url(#blur6)"><ellipse cx="110" cy="70" rx="95" ry="36" fill="#F4EEFB" opacity=".85"/><ellipse cx="230" cy="88" rx="110" ry="34" fill="#F4EEFB" opacity=".75"/><ellipse cx="60" cy="100" rx="70" ry="28" fill="#EDE4F8" opacity=".8"/></g>
-    <circle cx="305" cy="42" r="17" fill="#F8C98C"/>
-    <g transform="translate(225 38)"><ellipse cx="-6" cy="0" rx="8" ry="5.5" fill="#fff" transform="rotate(-25 -6 0)"/><ellipse cx="6" cy="0" rx="8" ry="5.5" fill="#fff" transform="rotate(25 6 0)"/></g>
-    <g filter="url(#fuzz)"><ellipse cx="60" cy="235" rx="90" ry="55" fill="#AE9BD8"/><ellipse cx="300" cy="240" rx="95" ry="55" fill="#B3A1DB"/><ellipse cx="180" cy="215" rx="120" ry="40" fill="#BFAFE2"/></g>
-    ${dots}
-    <g filter="url(#fuzz)"><ellipse cx="120" cy="222" rx="46" ry="52" fill="#FBF9FF"/><ellipse cx="120" cy="238" rx="38" ry="30" fill="#fff"/></g>
-    <g transform="translate(76 128) scale(1.4)">${faceParts('white', false)}</g>
-    <g filter="url(#fuzz)"><ellipse cx="238" cy="244" rx="30" ry="30" fill="#fff"/><ellipse cx="248" cy="252" rx="18" ry="12" fill="#F3B27C" opacity=".9"/></g>
-    <g transform="translate(206 176) scale(.82)">${faceParts('calico', true)}</g>
-    <ellipse cx="203" cy="206" rx="4.5" ry="6" fill="#fff" transform="rotate(-20 203 206)"/><circle cx="202" cy="201" r="2" fill="#F2A7A7"/>
-    <g filter="url(#fuzz)"><ellipse cx="180" cy="285" rx="200" ry="26" fill="#A58FD2"/></g>
+  const flakes = [[255, 40, 15, 1], [222, 70, 11, .95], [248, 108, 13, 1], [205, 128, 9, .9], [232, 160, 11, 1], [190, 176, 8, .9], [176, 204, 7, .85], [152, 218, 10, 1]]
+    .map(([x, y, r, o]) => flake(x, y, r, o)).join('');
+  const dots = [[40, 60, 1.8], [90, 30, 1.4], [320, 90, 2], [330, 170, 1.6], [300, 40, 1.4], [60, 130, 1.5], [280, 230, 1.6], [20, 200, 1.4], [150, 70, 1.4], [120, 110, 1.2], [200, 20, 1.6], [340, 250, 1.4]]
+    .map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="#fff" opacity=".85"/>`).join('');
+  return `<svg class="scene ${extra}" viewBox="0 0 360 300" role="img" aria-label="冬夜裡，黑貓伸手接住金色的雪花">
+    <defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7F8D99"/><stop offset="1" stop-color="#56626E"/></linearGradient></defs>
+    <rect width="360" height="300" rx="28" fill="url(#sk)"/>
+    ${dots}${flakes}
+    <g filter="url(#fuzz)"><ellipse cx="90" cy="282" rx="120" ry="20" fill="#CBD3DA"/><ellipse cx="300" cy="288" rx="90" ry="16" fill="#C2CBD3"/></g>
+    <ellipse cx="108" cy="288" rx="60" ry="5" fill="#2B3541" opacity=".5" filter="url(#blur2)"/>
+    <g filter="url(#fuzz)" fill="#1E2630">
+      <path d="M78 262 C30 262 22 200 58 182" stroke="#1E2630" stroke-width="15" fill="none" stroke-linecap="round"/>
+      <ellipse cx="112" cy="240" rx="30" ry="44" transform="rotate(8 112 240)"/>
+      <ellipse cx="96" cy="276" rx="12" ry="9"/><ellipse cx="126" cy="276" rx="12" ry="9"/>
+      <ellipse cx="152" cy="204" rx="8" ry="17" transform="rotate(38 152 204)"/>
+    </g>
+    <g transform="translate(86 150) scale(.78) rotate(8 32 40)">${faceParts('black', false)}</g>
+    <circle cx="160" cy="190" r="2.4" fill="#F8E3A8"/>
   </svg>`;
 }
 
