@@ -1,0 +1,50 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function groupDoc(gid) { return get(/databases/$(database)/documents/groups/$(gid)).data; }
+    function isMember(gid) { return request.auth.uid in groupDoc(gid).memberIds; }
+    // scopeId 是 使用者 uid（個人）或 groups 文件 id（家庭、朋友分帳）
+    function canAccess(scopeId) { return signedIn() && (scopeId == request.auth.uid || isMember(scopeId)); }
+
+    // 使用者：只能讀寫自己的資料
+    match /users/{uid} {
+      allow read, write: if signedIn() && request.auth.uid == uid;
+    }
+
+    // 家庭與朋友分帳群組
+    match /groups/{gid} {
+      allow read: if signedIn() && request.auth.uid in resource.data.memberIds;
+      allow create: if signedIn()
+        && request.resource.data.ownerId == request.auth.uid
+        && request.resource.data.memberIds == [request.auth.uid];
+      // 成員可以修改群組；非成員只能把「自己」加進去（用邀請碼加入）
+      allow update: if signedIn() && (
+        request.auth.uid in resource.data.memberIds
+        || (
+          request.auth.uid in request.resource.data.memberIds
+          && request.resource.data.memberIds.hasAll(resource.data.memberIds)
+          && request.resource.data.memberIds.size() == resource.data.memberIds.size() + 1
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['memberIds', 'members'])
+          && get(/databases/$(database)/documents/invites/$(resource.data.inviteCode)).data.groupId == gid
+        )
+      );
+      allow delete: if signedIn() && resource.data.ownerId == request.auth.uid;
+    }
+
+    // 邀請碼：只能用邀請碼本身去讀（get），不能列出全部
+    match /invites/{code} {
+      allow get: if signedIn();
+      allow create: if signedIn() && isMember(request.resource.data.groupId);
+    }
+
+    // 帳目、排程、貓咪、貓用品：個人或所屬群組的成員才能存取
+    match /{col}/{id} {
+      allow read, delete: if col in ['entries', 'schedules', 'cats', 'supplies'] && canAccess(resource.data.scopeId);
+      allow create: if col in ['entries', 'schedules', 'cats', 'supplies'] && canAccess(request.resource.data.scopeId)
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update: if col in ['entries', 'schedules', 'cats', 'supplies'] && canAccess(resource.data.scopeId)
+        && request.resource.data.scopeId == resource.data.scopeId;
+    }
+  }
+}
