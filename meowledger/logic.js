@@ -47,7 +47,7 @@ export function catList(kind, type, custom = []) {
 export function catInfo(id, kind, type, custom = []) {
   return catList(kind, type, custom).find(c => c.id === id) || { id, label: '其他', g: '他' };
 }
-export const TILES = ['#FBE3D3', '#FCEFC7', '#DCEBEF', '#E2EEDC', '#F3E6DA'];
+export const TILES = ['#E4DAF4', '#FBEBC8', '#DCE7F4', '#E3EEDF', '#F8E0D2'];
 export const tileColor = id => TILES[[...String(id)].reduce((a, c) => a + c.charCodeAt(0), 0) % TILES.length];
 
 /* ---------- 個人帳與統計 ---------- */

@@ -1,16 +1,28 @@
 :root {
-  --bg: #FFF8F0; --ink: #4A3428; --ink2: #7A6252;
-  --brand: #A9522B; --brand-dark: #8C4220; --teal: #2F6472;
-  --peach: #FBE3D3; --yellow: #FCEFC7; --blue: #DCEBEF; --green: #E2EEDC; --beige: #F3E6DA;
+  --bg: #F3EEFA; --ink: #3E3354; --ink2: #675B80;
+  --brand: #6A4FA3; --brand-dark: #573E8C; --teal: #3F6C8F;
+  --peach: #E4DAF4; --yellow: #FBEBC8; --blue: #DCE7F4; --green: #E3EEDF; --beige: #EAE3F4;
   --income: #3B6B34; --danger: #9B3B2B;
-  --accent: var(--brand); --accent-soft: #E8C3AE;
-  --card: #FFFFFF; --line: #EBD9C9;
-  --shadow: 0 6px 18px rgba(74, 52, 40, .09);
+  --accent: var(--brand); --accent-soft: #C9B9E8;
+  --card: rgba(255, 255, 255, .86); --line: #DDD3EC;
+  --shadow: 0 8px 22px rgba(106, 79, 163, .13);
   --head: 'Zen Maru Gothic', 'Noto Sans TC', sans-serif;
 }
-.fam { --accent: var(--teal); --accent-soft: #A9C7CF; }
+.fam { --accent: var(--teal); --accent-soft: #A9C3DC; }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Noto Sans TC', system-ui, sans-serif; font-size: 16px; line-height: 1.5; }
+body { background:
+  radial-gradient(70% 38% at 50% -6%, rgba(255, 255, 255, .95), rgba(255, 255, 255, 0) 70%),
+  radial-gradient(50% 30% at 8% 18%, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 70%),
+  radial-gradient(50% 30% at 95% 30%, rgba(255, 255, 255, .45), rgba(255, 255, 255, 0) 70%),
+  var(--bg); background-attachment: fixed; }
+body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: .9;
+  background-image:
+    radial-gradient(circle, #F6C98F 0 2px, transparent 2.5px), radial-gradient(circle, #fff 0 1.6px, transparent 2px), radial-gradient(circle, #F6C98F 0 1.4px, transparent 1.8px);
+  background-size: 170px 190px, 130px 150px, 210px 240px; background-position: 20px 40px, 80px 100px, 130px 20px; }
+#app, #sheet { position: relative; z-index: 1; }
+.catface { filter: drop-shadow(0 1px 2px rgba(80, 60, 130, .35)); }
+.scene { width: 100%; height: auto; display: block; border-radius: 28px; box-shadow: var(--shadow); }
 button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
 input, select { font: inherit; color: inherit; }
 h1, h2, h3 { font-family: var(--head); margin: 0; font-weight: 700; }
@@ -46,8 +58,8 @@ h1, h2, h3 { font-family: var(--head); margin: 0; font-weight: 700; }
 .progress { height: 12px; border-radius: 6px; background: var(--beige); overflow: hidden; }
 .progress > i { display: block; height: 100%; border-radius: 6px; background: var(--accent); }
 .progress.over > i { background: var(--danger); }
-.progress.supply > i { background: #C98A5E; }
-.progress.supply.low > i { background: #5E2610; }
+.progress.supply > i { background: #7F63BF; }
+.progress.supply.low > i { background: #33225E; }
 .bud { margin-top: 14px; }
 .bud .line { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px; }
 
@@ -76,32 +88,32 @@ h1, h2, h3 { font-family: var(--head); margin: 0; font-weight: 700; }
 .field { margin-bottom: 14px; }
 .field > label, .lbl { display: block; font-size: 14px; color: var(--ink2); margin-bottom: 6px; font-weight: 500; }
 .in { width: 100%; min-height: 48px; border-radius: 16px; border: 1.5px solid var(--line); background: #fff; padding: 0 14px; }
-.in:focus { border-color: var(--accent); outline: 0; box-shadow: 0 0 0 3px rgba(169, 82, 43, .15); }
+.in:focus { border-color: var(--accent); outline: 0; box-shadow: 0 0 0 3px rgba(106, 79, 163, .2); }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip { min-height: 44px; padding: 0 16px; border-radius: 22px; background: var(--beige); color: var(--ink); display: inline-flex; align-items: center; gap: 6px; }
 .chip.on { background: var(--accent); color: #fff; font-weight: 700; }
 .seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; background: var(--beige); border-radius: 24px; padding: 4px; }
 .seg button { min-height: 44px; border-radius: 20px; color: var(--ink2); font-weight: 500; }
-.seg button.on { background: #fff; color: var(--accent); font-weight: 700; box-shadow: 0 2px 8px rgba(74, 52, 40, .12); }
+.seg button.on { background: #fff; color: var(--accent); font-weight: 700; box-shadow: 0 2px 8px rgba(62, 51, 84, .12); }
 .switch { display: flex; align-items: center; justify-content: space-between; min-height: 48px; width: 100%; }
-.switch .knob { width: 52px; height: 30px; border-radius: 15px; background: #D8C6B6; position: relative; transition: background .15s; flex: none; }
+.switch .knob { width: 52px; height: 30px; border-radius: 15px; background: #C9C0DA; position: relative; transition: background .15s; flex: none; }
 .switch .knob::after { content: ''; position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: #fff; transition: transform .15s; }
 .switch.on .knob { background: var(--accent); }
 .switch.on .knob::after { transform: translateX(22px); }
 .note { background: var(--yellow); border-radius: 18px; padding: 12px 14px; font-size: 14px; }
 
 /* 底部導覽 */
-.nav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: rgba(255, 255, 255, .96); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); }
+.nav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: rgba(255, 255, 255, .93); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); }
 .nav-in { max-width: 640px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); align-items: end; height: 64px; }
 .nav button { min-height: 56px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 12px; color: var(--ink2); }
 .nav button.on { color: var(--brand); font-weight: 700; }
 .fab-wrap { position: relative; align-self: stretch; }
-.fab { position: absolute; left: 50%; top: -30px; transform: translateX(-50%); width: 68px; height: 68px; border-radius: 50%; background: var(--brand); display: grid; place-items: center; box-shadow: 0 8px 18px rgba(169, 82, 43, .38); border: 4px solid var(--bg); }
+.fab { position: absolute; left: 50%; top: -30px; transform: translateX(-50%); width: 68px; height: 68px; border-radius: 50%; background: var(--brand); display: grid; place-items: center; box-shadow: 0 8px 18px rgba(106, 79, 163, .4); border: 4px solid #F3EEFA; }
 .fab:hover { background: var(--brand-dark); }
 .fab-label { position: absolute; bottom: 4px; left: 0; right: 0; text-align: center; font-size: 12px; color: var(--brand); font-weight: 700; }
 
 /* 彈出視窗 */
-.overlay { position: fixed; inset: 0; z-index: 40; background: rgba(74, 52, 40, .45); display: flex; align-items: flex-end; justify-content: center; }
+.overlay { position: fixed; inset: 0; z-index: 40; background: rgba(62, 51, 84, .45); display: flex; align-items: flex-end; justify-content: center; }
 .sheet { background: var(--bg); width: 100%; max-width: 640px; max-height: 92vh; overflow-y: auto; border-radius: 28px 28px 0 0; padding: 18px 18px calc(24px + env(safe-area-inset-bottom)); }
 .sheet.full { height: 100%; max-height: 100%; border-radius: 0; padding-bottom: 0; }
 .sheet-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
@@ -119,7 +131,7 @@ h1, h2, h3 { font-family: var(--head); margin: 0; font-weight: 700; }
 .catbtn { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 2px; border-radius: 18px; font-size: 12px; min-height: 76px; border: 2px solid transparent; text-align: center; line-height: 1.25; }
 .catbtn.on { border-color: var(--accent); background: #fff; }
 .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
-.keypad button { min-height: 52px; border-radius: 18px; background: #fff; font-family: var(--head); font-size: 22px; font-weight: 700; box-shadow: 0 2px 6px rgba(74, 52, 40, .08); }
+.keypad button { min-height: 52px; border-radius: 18px; background: #fff; font-family: var(--head); font-size: 22px; font-weight: 700; box-shadow: 0 2px 6px rgba(62, 51, 84, .08); }
 .keypad button:active { background: var(--peach); }
 .savebar { position: sticky; bottom: 0; background: var(--bg); padding: 10px 0 calc(14px + env(safe-area-inset-bottom)); margin-top: 6px; display: flex; gap: 10px; }
 .savebar .btn:first-child { flex: 1; }

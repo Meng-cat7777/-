@@ -1,5 +1,5 @@
 import { createStore } from './store.js';
-import { catFace, paw, I, FURS } from './icons.js';
+import { catFace, scene, paw, I, FURS, DEFS } from './icons.js';
 import {
   todayStr, thisYm, shiftYm, parseD, addDays, dim, pad, num, money, WEEK,
   catList, catInfo, tileColor, ACCOUNTS, accountLabel,
@@ -10,6 +10,7 @@ import {
 /* ---------- 小工具 ---------- */
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+$('#defs').innerHTML = DEFS;
 const store = await createStore();
 const S = store.state;
 const me = () => store.user;
@@ -39,7 +40,7 @@ const ui = {
 /* ---------- 共用片段 ---------- */
 const tile = (c, size) => `<span class="tile" style="background:${tileColor(c.id)}${size ? `;width:${size}px;height:${size}px` : ''}">${esc(c.g)}</span>`;
 const progress = (pct, cls = '') => `<div class="progress ${cls}" role="progressbar" aria-valuenow="${Math.round(pct)}" aria-valuemin="0" aria-valuemax="100"><i style="width:${Math.min(100, Math.max(0, pct))}%"></i></div>`;
-const empty = (msg, sleep = true) => `<div class="empty">${catFace('orange', 64, sleep)}<div>${msg}</div></div>`;
+const empty = (msg, sleep = true) => `<div class="empty">${catFace('calico', 64, sleep)}<div>${msg}</div></div>`;
 const avatarOf = (m, size = 28) => catFace(m.avatar, size);
 
 function entryRow(e) {
@@ -62,7 +63,7 @@ function budgetBlock(spent, budget, target) {
 /* ---------- 登入 ---------- */
 function loginView() {
   const demo = store.mode === 'demo';
-  return `<main class="login">${catFace('orange', 110)}
+  return `<main class="login">${scene()}
     <h1>喵帳本</h1>
     <p class="muted" style="margin:0 0 22px">和貓咪一起，輕鬆記好每一筆</p>
     ${demo
@@ -97,7 +98,7 @@ function recentList(list, title) {
 function pageFamily() {
   const fam = family();
   if (!fam) {
-    return `<section class="card hero" style="text-align:center">${catFace('gray', 72)}
+    return `<section class="card hero" style="text-align:center">${scene()}
       <h3 style="margin-top:8px">還沒有家庭帳</h3><p class="muted" style="margin:6px 0 14px">家庭帳會和個人帳分開記錄、分開分析。</p>
       <div class="btnrow" style="justify-content:center"><button class="btn" data-a="newGroup" data-t="family">建立家庭</button>
       <button class="btn ghost" data-a="joinGroup">輸入邀請碼</button></div></section>`;
@@ -166,7 +167,7 @@ function groupDetail(g) {
 function pageCat() {
   const cats = S.cats;
   if (!cats.length) {
-    return `<section class="card hero" style="text-align:center">${catFace('orange', 80)}<h3 style="margin-top:8px">新增你的第一隻貓</h3>
+    return `<section class="card hero" style="text-align:center">${scene()}<h3 style="margin-top:12px">新增你的第一隻貓</h3>
       <p class="muted" style="margin:6px 0 14px">記錄貓砂、飼料的使用天數，快用完時會提醒你。</p><button class="btn" data-a="newCat">新增貓咪</button></section>`;
   }
   const cat = cats.find(c => c.id === ui.catId) || cats[0];
@@ -228,7 +229,7 @@ function pageStats() {
   return `<div class="${isFam ? 'fam' : ''}"><div class="seg" style="margin-bottom:14px">
     <button class="${!isFam ? 'on' : ''}" data-a="statsScope" data-s="personal">個人</button>
     <button class="${isFam ? 'on' : ''}" data-a="statsScope" data-s="family" ${fam ? '' : 'disabled style="opacity:.5"'}>家庭</button></div>
-    <div class="tip">${catFace(isFam ? 'gray' : 'orange', 54)}<p>${tip}</p></div>
+    <div class="tip">${catFace(isFam ? 'calico' : 'white', 54)}<p>${tip}</p></div>
     <section class="card"><div class="card-head"><h3>近半年每月支出</h3><span class="muted small">點長條切換月份</span></div>${barChart(series, ym)}</section>
     <section class="card"><div class="card-head"><h3>${Number(ym.slice(5))}月各分類</h3><b>${money(cur.expense)}</b></div>
     ${cats.length ? cats.map(c => catAnalysisRow(c, kind)).join('') : empty('這個月沒有支出')}</section></div>`;
@@ -303,14 +304,14 @@ function shell(page, tabs) {
     .map(([id, label, icon]) => id === 'add'
       ? `<div class="fab-wrap"><button class="fab" data-a="add" aria-label="記一筆">${paw(34)}</button><span class="fab-label">記一筆</span></div>`
       : `<button class="${ui.tab === id ? 'on' : ''}" data-a="tab" data-t="${id}" aria-current="${ui.tab === id}">${icon}${label}</button>`).join('');
-  return `<div class="wrap"><header class="top"><div class="brand">${catFace('orange', 38)}喵帳本</div>
+  return `<div class="wrap"><header class="top"><div class="brand">${catFace('white', 38)}喵帳本</div>
     <button class="avatar-btn" data-a="tab" data-t="me" aria-label="我的">${catFace(profile().avatar, 36)}</button></header>
     ${tabs || ''}<main>${page}</main></div><nav class="nav" aria-label="主要導覽"><div class="nav-in">${nav}</div></nav>`;
 }
 function render() {
   const app = $('#app');
   if (!me()) { app.innerHTML = loginView(); return; }
-  if (!profile()) { app.innerHTML = `<div class="login">${catFace('orange', 80, true)}<p class="muted">貓咪正在準備帳本…</p></div>`; return; }
+  if (!profile()) { app.innerHTML = `<div class="login">${catFace('calico', 80, true)}<p class="muted">貓咪正在準備帳本…</p></div>`; return; }
   let page, tabs = '';
   if (ui.tab === 'home') {
     const hs = [['personal', '個人'], ['family', '家庭'], ['split', '朋友分帳'], ['cat', '貓咪']];

@@ -2,13 +2,13 @@
 //   Firebase（Google 登入 + Firestore）與 試玩模式（localStorage）
 import { firebaseConfig } from './firebase-config.js';
 
-const FUR_IDS = ['orange', 'black', 'white', 'gray', 'cream'];
+const FUR_IDS = ['white', 'calico', 'orange', 'gray', 'black', 'cream'];
 const CODE_CHARS = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
 const rid = () => Math.random().toString(36).slice(2, 10);
 const genCode = () => Array.from({ length: 6 }, () => CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)]).join('');
 const clean = o => JSON.parse(JSON.stringify(o));
 const emptyState = () => ({ profile: null, groups: [], entries: [], schedules: [], cats: [], supplies: [] });
-const newProfile = name => ({ name: name || '喵友', avatar: 'orange', budget: 0, customCats: [] });
+const newProfile = name => ({ name: name || '喵友', avatar: 'white', budget: 0, customCats: [] });
 const newGroup = (uid, profile, type, name) => ({
   type, name, ownerId: uid, memberIds: [uid], inviteCode: genCode(), budget: 0, createdAt: Date.now(),
   members: { [uid]: { name: profile.name, avatar: profile.avatar } },
@@ -101,7 +101,7 @@ function makeDemo() {
 function sampleData(uid, profile) {
   const d = (n) => { const x = new Date(); x.setDate(x.getDate() - n); return `${x.getFullYear()}-${String(x.getMonth() + 1).padStart(2, '0')}-${String(x.getDate()).padStart(2, '0')}`; };
   const fam = { id: 'fam1', ...newGroup(uid, profile, 'family', '喵窩小家'), budget: 40000 };
-  fam.members.g_mom = { name: '小明', avatar: 'gray', guest: true };
+  fam.members.g_mom = { name: '小明', avatar: 'calico', guest: true };
   const trip = { id: 'trip1', ...newGroup(uid, profile, 'trip', '花蓮兩天一夜'), budget: 0 };
   trip.members.g_a = { name: '阿花', avatar: 'white', guest: true };
   trip.members.g_b = { name: '小黑', avatar: 'black', guest: true };
