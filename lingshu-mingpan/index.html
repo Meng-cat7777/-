@@ -1,0 +1,1619 @@
+<title>後天五行靈數命盤</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.3/lunar.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+/* Layout: one narrow "poster" column in a dusty-rose world (from the reference reel): thin frame lines, small letter-spaced labels, frosted cards with hairline borders. Single light theme by choice. */
+:root{
+  color-scheme:light;
+  /* 低彩度玫瑰灰底＋近白卡片：降低粉色面積與亮度落差，所有文字對比 ≥ 4.5:1 */
+  --bg:#f4ecec; --bg2:#efe4e5; --glass:rgba(255,251,251,.78); --glass-strong:#fffbfb;
+  --hair:#e4d3d7; --frame:#dcc6cb;
+  --ink:#3a2b30; --soft:#5f4a50; --faint:#7a6268;
+  --rose:#8a3b54; --rose-deep:#6b2a42; --rose-wash:#f6ebee;
+  --ok:#3b6449; --ok-wash:#e8f0ea; --bad:#94383a; --bad-wash:#f8e9e8;
+  --wood:#3b6449; --fire:#9e3c4e; --earth:#85602f; --metal:#64626b; --water:#36507a;
+  --line-c:#8a3b54; --lv1:#faf3f4; --lv2:#f1e0e4; --lv3:#ddb4c0;
+  --f:"Noto Serif TC","Songti TC","PMingLiU","MingLiU",serif;
+  --col:720px;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{background:linear-gradient(180deg,var(--bg),var(--bg2));background-attachment:fixed;color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.85;letter-spacing:.02em;padding-inline:16px;padding-block:0 40px;min-height:100%}
+.frame{max-width:calc(var(--col) + 96px);margin:0 auto;border-inline:1px solid var(--frame);min-height:100vh;display:flex;flex-direction:column}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px clamp(16px,4vw,40px);border-bottom:1px solid var(--frame);font-size:13px;letter-spacing:.18em;color:var(--soft)}
+.bar b{font-weight:500;color:var(--rose)}
+main{width:100%;max-width:calc(var(--col) + 80px);margin:0 auto;padding:clamp(24px,5vw,48px) clamp(12px,4vw,40px);display:flex;flex-direction:column;gap:28px}
+h1{font-weight:500;font-size:clamp(28px,6vw,40px);line-height:1.35;margin:0;letter-spacing:.08em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--rose)}
+.lede{color:var(--soft);margin:6px 0 0;font-size:15px}
+h2{font-weight:600;font-size:21px;margin:0;color:var(--rose);letter-spacing:.1em;display:flex;align-items:center;gap:12px}
+h2::before{content:"";width:9px;height:9px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff 0 18%,var(--rose) 60%);box-shadow:0 0 0 3px var(--rose-wash);flex:none}
+.eyebrow{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.2em;color:var(--faint);margin-bottom:8px}
+h3{font-size:15px;font-weight:600;margin:0 0 6px;color:var(--rose-deep);letter-spacing:.08em}
+.card{background:var(--glass);border:1px solid var(--hair);border-radius:14px;padding:clamp(18px,4vw,28px);min-width:0}
+.rule{width:44px;height:1px;background:var(--frame);margin:4px 0}
+.muted{color:var(--soft)}.small{font-size:13.5px}.tiny{font-size:13px;color:var(--faint)}
+
+/* tabs */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--frame)}
+.tab{font:inherit;background:none;border:0;padding:8px 14px;color:var(--soft);letter-spacing:.14em;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--rose);border-bottom-color:var(--rose);font-weight:600}
+
+/* form */
+form{display:flex;flex-direction:column;gap:18px;margin-top:16px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.label{font-size:13.5px;letter-spacing:.12em;color:var(--soft)}
+input,select,textarea{font:inherit;font-size:16px;color:var(--ink);background:var(--glass-strong);border:1px solid var(--hair);border-radius:8px;padding:9px 12px;width:100%;min-width:0}
+input::placeholder{color:var(--faint)}
+:focus-visible{outline:2px solid var(--rose);outline-offset:2px}
+.row3{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:8px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+@media (max-width:560px){.two{grid-template-columns:minmax(0,1fr)}}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.seg label{display:flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--hair);border-radius:8px;padding:8px;cursor:pointer;background:var(--glass-strong)}
+.seg input{position:absolute;opacity:0;width:1px;height:1px}
+.seg label:has(input:checked){border-color:var(--rose);background:var(--rose-wash);color:var(--rose);font-weight:600}
+.seg label:has(input:focus-visible){outline:2px solid var(--rose);outline-offset:2px}
+.check{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--soft)}
+.check input{width:auto;accent-color:var(--rose)}
+.headline{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.link{background:none;border:0;color:var(--rose);font:inherit;font-size:13px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:0}
+.btn{font:inherit;letter-spacing:.2em;border:0;border-radius:10px;padding:12px 18px;background:var(--rose);color:#fff8f9;cursor:pointer;font-weight:600}
+.btn:hover{background:var(--rose-deep)}
+.btn.line{background:transparent;color:var(--rose);border:1px solid var(--rose);font-weight:500;letter-spacing:.08em;padding:8px 14px}
+.btn.line:hover{background:var(--rose-wash)}
+.btn.sm{font-size:13.5px;padding:6px 12px;letter-spacing:.06em}
+.btn.danger{color:var(--bad);border-color:var(--bad)}
+.notice{border-top:1px solid var(--frame);padding-top:14px;color:var(--rose-deep);font-size:14.5px;font-weight:600;letter-spacing:.06em}
+.err{color:var(--bad);font-size:14px}
+.err:empty{display:none}
+.tag{font-size:12px;letter-spacing:.1em;padding:1px 10px;border-radius:99px;border:1px solid var(--hair);color:var(--soft);font-weight:400}
+
+/* chart */
+.who{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px}
+.who .nm{font-size:26px;font-weight:600;letter-spacing:.12em}
+.meta{display:flex;flex-wrap:wrap;gap:2px 18px;font-size:14px;color:var(--soft);margin-top:4px}
+.meta b{color:var(--ink);font-weight:500}
+.board{display:flex;flex-direction:column;gap:22px;margin-top:22px}
+.blk{border-top:1px solid var(--hair);padding-top:18px}
+.blk-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:14px}
+.blk-h h3{margin:0}
+.gridwrap{display:flex;flex-direction:column;gap:12px;align-items:center}
+.nine{position:relative;width:min(296px,100%);aspect-ratio:296/220}
+.cell{position:absolute;width:22.97%;height:30.91%;border-radius:12px;background:var(--glass-strong);border:1px solid var(--hair);display:flex;align-items:center;justify-content:center}
+.cell .n{font-size:26px;font-weight:500;position:relative;z-index:2;line-height:1}
+.cell .sc{position:absolute;top:4px;right:7px;font-size:12px;line-height:1;color:var(--rose);font-weight:600;z-index:2;font-variant-numeric:tabular-nums}
+.cell .mk{position:absolute;bottom:4px;left:0;right:0;text-align:center;font-size:12px;line-height:1;color:var(--rose);letter-spacing:0;z-index:2}
+.cell.lv0{background:transparent;border-style:dashed}
+.cell.lv0 .n,.cell.lv0 .sc{color:var(--faint)}
+.cell.lv1{background:var(--lv1)}
+.cell.lv2{background:var(--lv2)}
+.cell.lv3{background:var(--lv3);border-color:var(--rose)}
+.lines{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:visible}
+.marklegend{display:flex;flex-wrap:wrap;justify-content:center;gap:2px 16px;font-size:12.5px;color:var(--faint);letter-spacing:.06em}
+/* birth digits */
+.birth{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 18px}
+.dg{display:flex;flex-direction:column;align-items:center;gap:6px}
+.dg .cap{font-size:12px;letter-spacing:.2em;color:var(--faint)}
+.dg .box{display:flex;gap:4px}
+.dg .box span{width:32px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid var(--hair);border-radius:8px;background:var(--glass-strong);font-size:20px;font-variant-numeric:tabular-nums}
+.sums{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+.sum{border:1px solid var(--hair);border-radius:12px;background:var(--glass-strong);padding:12px 16px;text-align:center}
+.sum .cap{font-size:12.5px;letter-spacing:.2em;color:var(--soft)}
+.sum .v{font-size:28px;font-weight:600;line-height:1.4;font-variant-numeric:tabular-nums}
+.sum.key{border-color:var(--rose);background:var(--rose-wash)}
+.sum.key .v{color:var(--rose)}
+/* label / value list */
+.kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px;margin:0}
+@media (max-width:560px){.kv{grid-template-columns:minmax(0,1fr)}}
+.kv div{display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:12px;align-items:baseline;padding:11px 0;border-bottom:1px dashed var(--hair)}
+.kv dt{font-size:14px;color:var(--soft);letter-spacing:.1em}
+.kv dd{margin:0;font-size:17px;font-weight:600;min-width:0}
+.kv dd .sub{display:block;font-size:13.5px;font-weight:400;color:var(--soft);line-height:1.6}
+.el{display:inline-flex;align-items:center;gap:5px;font-weight:600}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.e-木{color:var(--wood)}.e-火{color:var(--fire)}.e-土{color:var(--earth)}.e-金{color:var(--metal)}.e-水{color:var(--water)}
+.d-木{background:var(--wood)}.d-火{background:var(--fire)}.d-土{background:var(--earth)}.d-金{background:var(--metal)}.d-水{background:var(--water)}
+
+.stack{display:flex;flex-direction:column;gap:14px;margin-top:14px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px;margin-top:14px}
+.tile{border:1px solid var(--hair);border-radius:12px;padding:14px 16px;background:var(--glass-strong);min-width:0}
+.tile .big{font-size:22px;font-weight:600;line-height:1.4}
+.tile p{margin:4px 0 0;font-size:14.5px;color:var(--soft)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{display:inline-flex;align-items:baseline;gap:8px;border:1px solid var(--hair);background:var(--glass-strong);border-radius:99px;padding:4px 14px;font-size:14px}
+.chip b{color:var(--rose);font-variant-numeric:tabular-nums;font-weight:600}
+.chip.half{border-style:dashed}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:0 9px;border-radius:99px;margin-left:6px;vertical-align:2px;letter-spacing:.06em}
+.pill.add{background:var(--ok-wash);color:var(--ok)}
+.pill.flat{background:var(--rose-wash);color:var(--rose)}
+.pill.sub{background:var(--bad-wash);color:var(--bad)}
+
+/* flow */
+.flowctl{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-top:12px}
+.flowctl .field{width:auto;min-width:120px}
+.year{border:1px solid var(--hair);border-radius:12px;background:var(--glass-strong);padding:16px 18px}
+.year .yh{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--hair);padding-bottom:8px;margin-bottom:10px}
+.year .yh b{font-size:19px;letter-spacing:.08em}
+.year .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:560px){.year .grid2{grid-template-columns:minmax(0,1fr)}}
+.year .k{font-size:12.5px;color:var(--faint);letter-spacing:.14em}
+.year .v{font-size:18px;font-weight:600}
+.year p{margin:2px 0 0;font-size:14.5px;color:var(--soft)}
+.year .rel{display:flex;align-items:baseline;gap:10px;margin-top:6px;font-size:15px}
+.year .rk{font-size:12.5px;color:var(--faint);letter-spacing:.1em;min-width:4.5em}
+.year .v{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px;margin-top:2px}
+.year .k{margin-bottom:2px}
+.year .pill{margin-left:4px}
+
+.keys{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:6px 18px;font-size:14.5px;margin-top:12px}
+.keys div{display:flex;gap:10px}
+.keys .k{color:var(--rose);font-weight:600;min-width:3.5em}
+.numlist{list-style:none;padding:0;margin:12px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:4px 18px;font-size:14.5px}
+.numlist li{display:flex;gap:10px}
+.numlist .k{color:var(--rose);font-weight:600;min-width:1em}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.status{font-size:13.5px;color:var(--ok)}
+.status.bad{color:var(--bad)}
+
+/* admin */
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.toolbar input{flex:1 1 200px;width:auto}
+.rec{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:start;border-top:1px solid var(--hair);padding:14px 0}
+.rec:first-child{border-top:0}
+.rec .nm{font-size:17px;font-weight:600;letter-spacing:.08em}
+.rec .facts{display:flex;flex-wrap:wrap;gap:2px 14px;font-size:13.5px;color:var(--soft)}
+.rec .ops{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.rec textarea{margin-top:8px;font-size:14px;min-height:60px;resize:vertical}
+@media (max-width:520px){.rec{grid-template-columns:minmax(0,1fr)}.rec .ops{justify-content:flex-start}}
+.confirm{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13.5px;color:var(--bad)}
+.empty{padding:28px 8px;text-align:center;color:var(--soft)}
+footer{margin-top:auto;border-top:1px solid var(--frame);padding:16px clamp(16px,4vw,40px);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12.5px;letter-spacing:.14em;color:var(--faint)}
+#clip{position:absolute;left:-9999px}
+@media (prefers-reduced-motion:no-preference){.reveal{animation:rv .4s ease}@keyframes rv{from{opacity:.5;transform:translateY(6px)}to{opacity:1;transform:none}}}
+mark{background:linear-gradient(transparent 58%,var(--lv3) 58%);color:inherit;padding:0 1px}
+.wide{border:1px solid var(--hair);border-radius:12px;background:var(--glass-strong);margin-top:16px;overflow:hidden}
+.wide-h{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 12px;padding:10px 16px;border-bottom:1px solid var(--hair);background:var(--rose-wash);font-size:14px;letter-spacing:.12em;color:var(--rose-deep);font-weight:600}
+.wide-h .tiny{letter-spacing:.04em;font-weight:400}
+.pers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:520px){.pers{grid-template-columns:minmax(0,1fr)}}
+.per{display:flex;flex-direction:column;gap:6px;padding:14px 16px;min-width:0}
+.per+.per{border-left:1px solid var(--hair)}
+@media (max-width:520px){.per+.per{border-left:0;border-top:1px solid var(--hair)}}
+.per.on{background:linear-gradient(var(--lv1),var(--lv1))}
+.pk{font-size:13px;color:var(--soft);letter-spacing:.14em;display:flex;align-items:center;gap:8px}
+.now{font-size:12px;letter-spacing:.08em;color:#fff;background:var(--rose);border-radius:99px;padding:0 8px;line-height:1.7}
+.pv{font-size:20px;font-weight:600;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.gua{font-size:14px;font-weight:400;color:var(--soft);border:1px solid var(--hair);border-radius:6px;padding:0 7px;margin-left:6px}
+.per .sub{font-size:13px;color:var(--soft)}
+.sw{font-size:15px;font-weight:500;gap:6px 14px}
+.swc{display:inline-flex;align-items:center;gap:6px}
+.swc i{width:16px;height:16px;border-radius:50%;border:1px solid var(--hair);display:inline-block}
+.els{display:flex;flex-direction:column;gap:14px;margin-top:14px}
+.elbox{border:1px solid var(--hair);border-radius:12px;background:var(--glass-strong);overflow:hidden}
+.elbox-h{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 18px;border-bottom:1px solid var(--hair)}
+.elbox-h .big{font-size:21px;font-weight:600;display:flex;align-items:baseline}
+.traits{list-style:none;margin:0;padding:6px 18px}
+.traits li{padding:9px 0 9px 18px;border-bottom:1px dashed var(--hair);position:relative;font-size:15.5px}
+.traits li:last-child{border-bottom:0}
+.traits li::before{content:"";position:absolute;left:2px;top:1.15em;width:6px;height:6px;border-radius:50%;background:var(--lv3)}
+.elfoot{display:flex;flex-direction:column;gap:4px;padding:10px 18px;background:var(--lv1);border-top:1px solid var(--hair);font-size:14px}
+.elfoot div{display:grid;grid-template-columns:4.5em minmax(0,1fr);gap:8px}
+.fk{color:var(--soft);letter-spacing:.12em}
+.explain{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+@media (max-width:560px){.explain{grid-template-columns:minmax(0,1fr)}}
+.explain div{border:1px solid var(--hair);border-radius:10px;padding:10px 14px;background:var(--glass-strong);display:flex;flex-direction:column;gap:2px;font-size:14px;color:var(--soft)}
+.explain b{color:var(--rose-deep);letter-spacing:.1em;font-size:14.5px}
+.year{border:1px solid var(--hair);border-radius:14px;background:var(--glass-strong);overflow:hidden;padding:0}
+.year .yh{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px 12px;padding:12px 18px;margin:0;border-bottom:1px solid var(--hair);background:var(--rose-wash)}
+.year .yh b{font-size:22px;letter-spacing:.06em;margin-right:10px}
+.roc{font-size:13.5px;color:var(--soft);letter-spacing:.08em}
+.verdict{font-size:13.5px;font-weight:600;letter-spacing:.1em;padding:2px 12px;border-radius:99px;border:1px solid currentColor}
+.verdict.add{color:var(--ok)}.verdict.flat{color:var(--rose)}.verdict.sub{color:var(--bad)}
+.ybody{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:600px){.ybody{grid-template-columns:minmax(0,1fr)}}
+.ybox{padding:14px 18px;min-width:0}
+.ybox+.ybox{border-left:1px solid var(--hair)}
+@media (max-width:600px){.ybox+.ybox{border-left:0;border-top:1px solid var(--hair)}}
+.yk{font-size:13.5px;color:var(--rose-deep);font-weight:600;letter-spacing:.14em;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.yk span{font-weight:400;color:var(--faint);letter-spacing:.04em;font-size:12.5px}
+.yv{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;font-size:18px;font-weight:600;margin:8px 0 4px}
+.yn{width:34px;height:34px;border-radius:50%;border:1px solid var(--rose);color:var(--rose);display:inline-flex;align-items:center;justify-content:center;font-size:18px}
+.vs{font-size:13px;font-weight:400;color:var(--soft)}
+.yrel{font-size:14px;color:var(--ink);margin-bottom:2px}
+.ylist{list-style:none;margin:6px 0 0;padding:0}
+.ylist li{font-size:14.5px;color:var(--soft);padding:5px 0 5px 14px;border-top:1px dashed var(--hair);position:relative;line-height:1.7}
+.ylist li::before{content:"";position:absolute;left:0;top:1.05em;width:5px;height:5px;border-radius:50%;background:var(--lv3)}
+.ysum{margin:0;padding:10px 18px;border-top:1px solid var(--hair);font-size:14.5px;background:var(--lv1)}
+.scale{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--hair);border-radius:12px;overflow:hidden;margin-top:12px}
+@media (max-width:600px){.scale{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.scale div{display:flex;flex-direction:column;gap:2px;padding:10px 12px;font-size:13px;color:var(--soft)}
+.scale b{font-size:15px;color:var(--ink)}
+.lv0{background:transparent}.scale .lv0{background:var(--glass-strong)}
+.lv1{background:var(--lv1)}.lv2{background:var(--lv2)}.lv3{background:var(--lv3)}
+.scale .lv3 b,.numlist .lv3 .k{color:var(--rose-deep)}
+.numlist{gap:6px 10px}
+.numlist li{display:grid;grid-template-columns:1.6em minmax(0,1fr) auto;align-items:center;gap:10px;padding:7px 12px;border-radius:8px;border:1px solid var(--hair)}
+.numlist li.lv0{border-style:dashed;color:var(--faint)}
+.numlist li.lv0 .k{color:var(--faint)}
+.numlist .pts{font-size:12.5px;color:var(--soft);font-variant-numeric:tabular-nums}
+.ans{display:flex;flex-direction:column;gap:14px;margin-top:16px}
+.an{border:1px solid var(--hair);border-radius:12px;background:var(--glass-strong);overflow:hidden}
+.an-h{margin:0;padding:10px 18px;background:var(--rose-wash);border-bottom:1px solid var(--hair);font-size:15.5px;letter-spacing:.14em;color:var(--rose-deep)}
+.an-b{padding:14px 18px;font-size:15.5px;line-height:1.9}
+.an-b p{margin:0 0 .95em}
+.an-b>p:last-child,.an-list li>p:last-child,.an-steps li>p:last-child{margin-bottom:0}
+.an-b b{color:var(--rose-deep);font-weight:600}
+.an-b .ex{background:var(--lv1);border:1px dashed var(--lv3);border-radius:8px;padding:8px 12px;font-size:14.5px;color:var(--soft)}
+.an-b .tip{font-size:14.5px;color:var(--soft);padding-left:12px;border-left:2px solid var(--lv3)}
+.an-list{list-style:none;margin:0 0 .95em;padding:0}
+.an-list:last-child{margin-bottom:0}
+.an-list li{display:flex;flex-direction:column;padding:12px 0;border-top:1px dashed var(--hair)}
+.an-list li:first-child{border-top:0;padding-top:2px}
+.an-list li>b{margin-bottom:.45em}
+.an-steps{margin:0;padding:0;list-style:none;counter-reset:st}
+.an-steps li{counter-increment:st;position:relative;padding:12px 0 12px 38px;border-top:1px dashed var(--hair)}
+.an-steps li:first-child{border-top:0;padding-top:2px}
+.an-steps li>b{display:block;margin-bottom:.45em}
+.an-steps li::before{content:counter(st);position:absolute;left:0;top:14px;width:26px;height:26px;border-radius:50%;border:1px solid var(--rose);color:var(--rose);font-size:13px;display:flex;align-items:center;justify-content:center}
+.an-steps li:first-child::before{top:4px}
+.overlay{position:fixed;inset:0;background:rgba(74,51,56,.55);z-index:50;display:flex;align-items:flex-start;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 16px) 16px 16px;overflow:auto}
+.ov-box{background:var(--bg);border-radius:14px;padding:12px;max-width:560px;width:100%}
+.ov-h{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px;font-size:14px;color:var(--soft)}
+.ov-box img{width:100%;border-radius:8px;border:1px solid var(--hair)}
+.btn:disabled{opacity:.6;cursor:wait}
+.an-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.edit-hint{margin:10px 0 0;font-size:13.5px;color:var(--rose-deep);background:var(--lv1);border:1px dashed var(--lv3);border-radius:8px;padding:8px 12px}
+.rpt-head{text-align:center;padding:18px 0 6px;display:flex;flex-direction:column;gap:6px}
+.rh-brand{font-size:12px;letter-spacing:.3em;color:var(--faint)}
+.rh-title{font-size:28px;font-weight:600;letter-spacing:.14em;color:var(--rose-deep)}
+.rh-meta{font-size:14px;color:var(--soft);letter-spacing:.1em}
+.an-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.an-sub{font-size:12.5px;font-weight:400;letter-spacing:.08em;color:var(--soft)}
+.note{border:1px solid var(--hair);border-left:3px solid var(--rose);border-radius:8px;background:var(--glass);padding:10px 14px;margin:0 0 .95em}
+.note-t,.ex-t,.todo-t{display:inline-block;font-size:12px;letter-spacing:.14em;font-weight:600;margin-bottom:4px}
+.note-t{color:var(--rose)}
+.note p{margin:0!important;font-size:14.5px;color:var(--soft)}
+.an-b .ex{background:var(--lv1);border:1px dashed var(--lv3);border-radius:8px;padding:10px 14px;margin:0 0 .95em;font-size:14.5px;color:var(--ink)}
+.ex-t{color:var(--rose-deep)}
+.an-b .ex p{margin:0 0 .5em;display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:baseline}
+.an-b .ex p:last-child{margin-bottom:0}
+.an-b .ex p:not(:has(.ex-k)){display:block}
+.ex-k{font-size:12.5px;color:var(--rose);border:1px solid var(--lv3);border-radius:99px;padding:0 8px;white-space:nowrap;background:var(--glass-strong)}
+.todo{border:1px solid var(--hair);border-radius:8px;background:var(--glass-strong);padding:10px 14px;margin:0 0 .95em}
+.todo-t{color:var(--ok)}
+.todo ul{list-style:none;margin:0;padding:0}
+.todo li{position:relative;padding:3px 0 3px 18px;font-size:14.5px}
+.todo li::before{content:"";position:absolute;left:2px;top:.85em;width:8px;height:8px;border:1.5px solid var(--ok);border-radius:2px}
+.an-list li>.ex:last-child,.an-list li>.todo:last-child{margin-bottom:0}
+.months{margin-top:22px;border-top:1px solid var(--hair);padding-top:18px}
+.months-h{display:flex;justify-content:space-between;align-items:end;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.months-h h3{margin:0;font-size:18px;color:var(--rose);letter-spacing:.1em}
+.months-h .field{width:auto;min-width:150px}
+.mgrid{display:flex;flex-direction:column;gap:10px}
+.mcard{display:grid;grid-template-columns:96px minmax(0,1fr);border:1px solid var(--hair);border-left:4px solid var(--lv2);border-radius:12px;background:var(--glass-strong);min-width:0;overflow:hidden}
+.mcard.v-add{border-left-color:var(--ok)}
+.mcard.v-sub{border-left-color:var(--bad)}
+.mside{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:12px 6px;background:var(--lv1);border-right:1px solid var(--hair);text-align:center}
+.mm{font-size:24px;font-weight:600;line-height:1.1}
+.mm small{font-size:12px;font-weight:400;color:var(--soft);margin-left:1px}
+.mr{font-size:12px;color:var(--soft);font-variant-numeric:tabular-nums}
+.mv{font-size:12px;font-weight:600;padding:0 10px;border-radius:99px;background:var(--rose-wash);color:var(--rose)}
+.v-add .mv{background:var(--ok-wash);color:var(--ok)}
+.v-sub .mv{background:var(--bad-wash);color:var(--bad)}
+.mbody{padding:12px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.mn{width:26px;height:26px;border-radius:50%;border:1px solid var(--rose);color:var(--rose);display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-variant-numeric:tabular-nums;letter-spacing:0}
+.mk{font-size:16px;font-weight:600;color:var(--rose-deep);letter-spacing:.1em;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.bd{font-size:12px;font-weight:400;letter-spacing:.04em;color:var(--rose);border:1px dashed var(--lv3);border-radius:99px;padding:0 7px}
+.mbody p{margin:0;font-size:14.5px;line-height:1.75}
+.mbody .mt{color:var(--soft);padding-left:10px;border-left:2px solid var(--lv3)}
+.mbody .mf{font-size:12.5px;color:var(--faint);border-top:1px dashed var(--hair);padding-top:6px}
+@media (max-width:440px){.mcard{grid-template-columns:72px minmax(0,1fr)}.mm{font-size:20px}.mbody{padding:10px 12px}}
+#out.editing [contenteditable]{outline:1px dashed var(--rose);outline-offset:2px;cursor:text;border-radius:4px}
+#out.editing [contenteditable]:focus{outline:2px solid var(--rose);background:#fffdfd}
+.mlegend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:12.5px;color:var(--soft)}
+.mlegend i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.lv-add{background:var(--ok)}.lv-flat{background:var(--lv2)}.lv-sub{background:var(--bad)}
+.mr{font-size:12px;color:var(--faint);font-variant-numeric:tabular-nums}
+.dbox{border:1px solid var(--hair);border-radius:12px;background:var(--glass-strong);padding:14px 16px;border-top:3px solid var(--lv2);margin-bottom:12px}
+.dbox.v-add{border-top-color:var(--ok)}.dbox.v-sub{border-top-color:var(--bad)}
+.dbox p{margin:6px 0 0;font-size:14.5px}
+.dbox .mt{color:var(--soft);padding-left:8px;border-left:2px solid var(--lv3)}
+.dchain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding-bottom:10px;border-bottom:1px dashed var(--hair);margin-bottom:6px}
+.dchain>div{display:flex;flex-direction:column;align-items:center;min-width:54px;padding:4px 6px;border:1px solid var(--hair);border-radius:8px;background:var(--glass)}
+.dchain>div.hl{border-color:var(--rose);background:var(--rose-wash)}
+.dchain .dk{font-size:12px;color:var(--soft);letter-spacing:.1em}
+.dchain b{font-size:20px;line-height:1.3;font-variant-numeric:tabular-nums}
+.dchain small{font-size:12px;color:var(--faint)}
+.dchain i{font-style:normal;color:var(--faint)}
+.dgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+@media (max-width:520px){.dgrid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.dg-h{grid-column:1/-1;font-size:13px;color:var(--soft);letter-spacing:.08em}
+.dcell{font:inherit;border:1px solid var(--hair);border-radius:8px;background:var(--glass-strong);padding:4px 2px;display:flex;flex-direction:column;align-items:center;gap:0;cursor:pointer;color:var(--ink);min-width:0}
+.dcell span{font-size:12px;color:var(--faint);font-variant-numeric:tabular-nums}
+.dcell b{font-size:16px;font-weight:600;line-height:1.3}
+.dcell small{font-size:12px;color:var(--soft)}
+.dcell.n1,.dcell.n2,.dcell.n3,.dcell.n8,.dcell.n9{background:var(--lv1)}
+.dcell.n5,.dcell.n6{background:var(--glass)}
+.dcell.on{border-color:var(--rose);box-shadow:0 0 0 2px var(--rose-wash);background:var(--rose-wash)}
+.fex{margin:0;padding:10px 18px;border-top:1px solid var(--hair);background:var(--lv1);display:flex;flex-direction:column;gap:5px}
+.fex.sm{margin:2px 0 0;padding:8px 12px;border:1px dashed var(--lv3);border-radius:8px}
+.fex-t{font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--rose-deep)}
+.fex p{margin:0;font-size:14px;line-height:1.7;display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:baseline;color:var(--ink)}
+.calc{border:1px solid var(--hair);border-left:3px solid var(--rose);border-radius:10px;background:var(--glass-strong);padding:12px 16px;margin-top:12px;display:flex;flex-direction:column;gap:6px}
+.calc-t{font-size:12.5px;font-weight:600;letter-spacing:.12em;color:var(--rose)}
+.calc-row{display:grid;grid-template-columns:3em minmax(0,1fr);gap:10px;align-items:baseline;font-size:14.5px;font-variant-numeric:tabular-nums}
+.calc-row b{color:var(--rose-deep);letter-spacing:.1em}
+.calc-n{margin:2px 0 0;font-size:13px;color:var(--soft)}
+.calc-s{font-size:13px;color:var(--soft)}
+
+/* ===== v2 visual pass: clear hierarchy with restrained colour blocks ===== */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(244,236,236,.94);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);letter-spacing:.12em;padding-block:12px}
+.brand{color:var(--soft)}.brand b{color:var(--rose-deep)}
+.topnav{display:flex;gap:4px;flex:none}
+.topnav a{white-space:nowrap}
+.brand{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:520px){.brand .bt{display:none}.bar{letter-spacing:.06em}}
+.topnav a{color:var(--soft);text-decoration:none;padding:5px 12px;border-radius:99px;font-size:13.5px;letter-spacing:.1em}
+.topnav a.on{background:var(--rose-deep);color:#fff8f9}
+.topnav a:hover:not(.on){background:var(--rose-wash);color:var(--rose-deep)}
+h1 em{color:var(--rose-deep)}
+.card{background:#fffcfc;box-shadow:0 1px 2px rgba(58,43,48,.04),0 8px 24px -16px rgba(107,42,66,.18);border-color:#ead9dd}
+.eyebrow{margin:calc(-1*clamp(18px,4vw,28px)) calc(-1*clamp(18px,4vw,28px)) 16px;padding:9px clamp(18px,4vw,28px);background:var(--rose-wash);border-bottom:1px solid #ead9dd;border-radius:14px 14px 0 0;color:var(--rose);font-weight:600;letter-spacing:.24em}
+h2{color:var(--rose-deep)}
+.who .nm{color:var(--ink)}
+.blk-h h3{font-size:16px;color:var(--rose-deep)}
+.kv dd{color:var(--rose-deep);font-size:18px}
+.kv dt{color:var(--soft)}
+.sum.key{background:var(--rose-deep);border-color:var(--rose-deep)}
+.sum.key .cap{color:#f3dbe2}.sum.key .v{color:#fff}
+.wide-h{background:var(--rose-deep);color:#fff8f9;border-bottom:0}
+.wide-h .tiny{color:#f0d6dd}
+.an-h{background:var(--rose-deep);color:#fff8f9;border-bottom:0;padding:11px 18px}
+.an-sub{color:#f0d6dd}
+.an{border-color:#ead9dd}
+.year .yh{background:var(--rose-wash)}
+.year .yh b{color:var(--rose-deep)}
+.mside{background:var(--rose-wash)}
+.mm{color:var(--rose-deep)}
+.mk{color:var(--rose-deep)}
+.months-h h3{color:var(--rose-deep)}
+.note{background:#fff;border-left-color:var(--rose-deep)}
+.note-t{color:var(--rose-deep)}
+.todo{border-left:3px solid var(--ok)}
+.btn{background:var(--rose-deep)}
+.btn:hover{background:#561f35}
+.btn.line{background:#fff;color:var(--rose-deep);border-color:var(--rose-deep)}
+.btn.line:hover{background:var(--rose-wash)}
+/* jump nav */
+.jump{position:sticky;top:calc(env(safe-area-inset-top,0px) + 50px);z-index:15;background:rgba(255,252,252,.97);border:1px solid #ead9dd;border-radius:12px;padding:8px 10px;display:flex;flex-direction:column;gap:6px;box-shadow:0 6px 18px -14px rgba(107,42,66,.35)}
+.jump-t{font-size:12px;letter-spacing:.2em;color:var(--rose);font-weight:600}
+.jump-g{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.jump-g::-webkit-scrollbar{display:none}
+.jump-g button{font:inherit;font-size:13.5px;white-space:nowrap;border:1px solid #e2cdd3;background:#fff;color:var(--ink);border-radius:99px;padding:3px 12px;cursor:pointer;letter-spacing:.06em}
+.jump-g button:hover{border-color:var(--rose);color:var(--rose-deep)}
+.jump-g button.on{background:var(--rose-deep);border-color:var(--rose-deep);color:#fff8f9}
+.jump-g.sub button{font-size:12.5px;background:var(--rose-wash);border-color:transparent}
+.jump-g.sub button.on{background:var(--rose);color:#fff}
+.jump-s{font-size:12px;color:var(--soft);align-self:center;white-space:nowrap;padding-right:2px}
+#out section[id],#out .months[id],#out .an[id]{scroll-margin-top:170px}
+@media (min-width:1240px){
+  .jump{position:fixed;top:120px;left:max(16px,calc(50% - 408px - 190px));width:168px;max-height:calc(100vh - 150px);overflow:auto}
+  .jump-g{flex-direction:column;overflow:visible}
+  .jump-g button{text-align:left}
+  .jump-s{padding:6px 0 0}
+  #out section[id],#out .months[id],#out .an[id]{scroll-margin-top:80px}
+}
+/* admin page */
+.admin-hero{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.admin-hero .btn{text-decoration:none}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:600px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stats div{background:#fffcfc;border:1px solid #ead9dd;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.stats span{font-size:12.5px;color:var(--soft);letter-spacing:.12em}
+.stats b{font-size:26px;color:var(--rose-deep);font-variant-numeric:tabular-nums}
+.rec .nm{color:var(--rose-deep)}
+</style>
+
+<div class="frame">
+  <div class="bar"><span class="brand"><b>Meng.喵</b><span class="bt">　調頻 × 靈數解盤</span></span>
+    <nav class="topnav" aria-label="頁面"><a href="#" id="navCalc" class="on">排盤</a><a href="#admin" id="navAdmin" hidden>個案後台</a></nav></div>
+  <main>
+    <div id="viewCalc" style="display:flex;flex-direction:column;gap:28px">
+    <div>
+      <h1>後天五行<em>靈數命盤</em></h1>
+      <p class="lede">先看見自己的數字，再決定往哪裡走。</p>
+    </div>
+      <section class="card" aria-labelledby="fTitle">
+        <div class="eyebrow"><span>命主資料</span><span id="sampleTag">範例：王小花</span></div>
+        <h2 id="fTitle">填寫出生資料</h2>
+        <form id="f" novalidate>
+          <div class="two">
+            <div class="field"><label class="label" for="name">姓名</label><input id="name" autocomplete="off" placeholder="請輸入姓名"></div>
+            <div class="field"><span class="label">生理性別</span>
+              <div class="seg" role="radiogroup" aria-label="生理性別">
+                <label><input type="radio" name="sex" id="sexM" value="M">男</label>
+                <label><input type="radio" name="sex" id="sexF" value="F">女</label>
+              </div></div>
+          </div>
+          <div class="two">
+            <div class="field"><span class="label">西元出生年月日</span>
+              <div class="row3">
+                <input id="sy" inputmode="numeric" placeholder="1995" aria-label="西元年">
+                <select id="sm" aria-label="月"></select>
+                <select id="sd" aria-label="日"></select>
+              </div></div>
+            <div class="field"><label class="label" for="hour">出生時辰</label>
+              <select id="hour"></select>
+              <input id="jiTime" type="time" aria-label="吉時精確時間" hidden>
+              <span class="tiny" id="hourHint"></span></div>
+          </div>
+          <div class="field">
+            <div class="headline"><span class="label">農曆出生年月日</span><button type="button" class="link" id="autoLunar">依西元重新換算</button></div>
+            <div class="row3">
+              <input id="ly" inputmode="numeric" placeholder="民國年" aria-label="農曆年（民國）">
+              <select id="lm" aria-label="農曆月"></select>
+              <select id="ld" aria-label="農曆日"></select>
+            </div>
+            <div class="headline"><label class="check"><input type="checkbox" id="leap">閏月</label><span class="tiny" id="lunarHint">年份填民國年，以農曆春節換年</span></div>
+          </div>
+          <div class="err" id="err" role="alert"></div>
+          <button class="btn" type="submit">排出命盤</button>
+          <div class="notice">所有資料務必填寫正確，資料的正確性會攸關解盤的準確。</div>
+        </form>
+      </section>
+
+      <div id="out" style="display:flex;flex-direction:column;gap:28px"></div>
+    </div>
+
+    <div id="viewAdmin" hidden style="flex-direction:column;gap:24px">
+      <div class="admin-hero">
+        <div><h1>個案<em>後台</em></h1><p class="lede">只有你看得到。整理每一位個案的命盤與解盤筆記。</p></div>
+        <a href="#" class="btn line">回到排盤</a>
+      </div>
+      <div class="stats" id="stats"></div>
+      <section class="card">
+        <div class="eyebrow"><span>個案列表</span><span id="recCount"></span></div>
+        <h2>所有個案</h2>
+        <p class="small muted" style="margin:8px 0 0">在排盤頁按「存入個案後台」就會出現在這裡。點「開啟命盤」會回到排盤頁並重新排盤，備註會自動保存。</p>
+        <div class="toolbar">
+          <input id="q" placeholder="搜尋姓名、生日或備註" aria-label="搜尋個案">
+          <button class="btn line sm" id="exportBtn" type="button" hidden>匯出 CSV</button>
+        </div>
+        <div class="status" id="adminStatus"></div>
+        <div id="recs" style="margin-top:8px"></div>
+      </section>
+    </div>
+  </main>
+  <footer><span>Meng.喵　靈數解盤</span><span>計算依據：靈數命盤師課程筆記</span></footer>
+</div>
+<textarea id="clip" aria-hidden="true" tabindex="-1"></textarea>
+
+<script>
+(function(){
+const $ = id => document.getElementById(id);
+const HOURS = [["子","23:00–00:59"],["丑","01:00–02:59"],["寅","03:00–04:59"],["卯","05:00–06:59"],["辰","07:00–08:59"],["巳","09:00–10:59"],["午","11:00–12:59"],["未","13:00–14:59"],["申","15:00–16:59"],["酉","17:00–18:59"],["戌","19:00–20:59"],["亥","21:00–22:59"]];
+const CN = ["","一","二","三","四","五","六","七","八","九"];
+const LMON = ["正","二","三","四","五","六","七","八","九","十","冬","臘"];
+const STAR = {1:["水","水"],2:["土","地"],3:["木","雷"],4:["木","風"],6:["金","天"],7:["金","澤"],8:["土","山"],9:["火","火"]};
+const COLORS = {木:"綠、藍",火:"紅、粉紅、紫",土:"黃、棕、膚色、黃橘",金:"白、銀、淺灰",水:"黑、靛（極深藍）、深灰"};
+const TRAIT = {
+  木:["生長向上的==柔和感==","==仁慈善良==，以善為本","重視==心理相通==","容易因壓抑或他人想法而==煩躁==","不小心犯錯可以體諒，==故意的不行=="],
+  火:["有==耐力==，能面對考驗","==熱情溫暖==","重視==禮節==，對外表現要得體","愛面子，在意==被尊重、被重視==","在意==靈魂是否契合==，巧合越多越有感"],
+  土:["能==包容==，容納所有生命","擅長==孕育與栽培==","給人==可以依靠==的感覺","非常重視==信用==","信任一旦破裂，==很難再建立=="],
+  金:["==柔能克剛==","能==延展改變==，有彈性","認定了就==義氣相挺==，挺到底","注重==外貌與行為=="],
+  水:["向下、==鑽研==、掩藏的特性","重視==專業==，懂得很多","專業度高就==加分==","討厭==不專業的表現==","重視==身體感受=="]};
+const BODY = {木:"",火:"血液循環系統",土:"免疫系統、消化系統",金:"肺、大腸、呼吸系統",水:"腎、膀胱、骨、耳"};
+const SW = {綠:"#6f9a72",藍:"#5d7fa6",紅:"#c0474f",粉紅:"#e7a3b1",紫:"#8a6aa8",黃:"#e2c35a",棕:"#8a6545",膚色:"#e8c4a6",黃橘:"#e8a457",白:"#ffffff",銀:"#c9cbd1",淺灰:"#d9d9dd",黑:"#2b2b2b",靛:"#2e3a66",深灰:"#5a5a60"};
+const COLOR_LIST = {木:["綠","藍"],火:["紅","粉紅","紫"],土:["黃","棕","膚色","黃橘"],金:["白","銀","淺灰"],水:["黑","靛","深灰"]};
+const NUM = {
+  1:{t:"開創創新數",core:"天生的開路者",
+     tal:"你很會想新點子，也很會說服別人。只要你開口，大家常常會跟著你走。你不怕當第一個，別人還在猶豫時，你已經開始行動了。",
+     talEx:{工作上:"開會沒人想發言時，你先丟出一個方向，大家就順著討論下去。",感情上:"約會行程常常是你決定，對方也樂得跟著你走。",生活中:"朋友聚餐不知道去哪，你一句「去試新開的那家」，大家就決定了。"},
+     per:"你很有主見，習慣自己做決定。你需要被在乎、被尊重。你不太喜歡處理人際或情緒的事，要就要，不要就不要，說話比較直接。",
+     perEx:{工作上:"同事一直繞圈子講感受，你心裡會想「所以重點是什麼？」",感情上:"另一半問你「你覺得呢」，你會直接給答案，而不是陪他慢慢想。",生活中:"被人忽略或不被尊重時，你會特別在意，甚至直接表達不滿。"},
+     dark:"壓力大的時候，可能會把話說得太滿，或是為了面子硬撐。被惹到時，翻臉比翻書快。",
+     darkEx:{工作上:"專案出狀況，為了不丟臉先說「沒問題我搞定」，最後自己扛到很累。",人際上:"一句話不合，當場冷掉，事後才後悔說太重。"},
+     off:"固執起來誰都勸不動，只能等自己想通。",
+     adv:["與其等別人說服你，不如問問自己「我真正在意的是什麼？」","重要決定前，給自己一個晚上再回覆。","練習在開口前先聽完對方三句話。"],
+     eye:"有主見、有自信，像是天生的帶頭者。",
+     eyeEx:"例如：第一次見面的人，常會以為你是主管或老闆。",
+     les:"學會為自己做決定，也為決定負責。",
+     lesWhy:"人生中會一再遇到「只能你自己決定」的時刻，沒有人能幫你扛。",
+     lesEx:{工作上:"換不換工作，最後要由你拍板，而不是一直問別人。",感情上:"要不要繼續這段關係，答案在你心裡，不在朋友的意見裡。"}},
+  2:{t:"溝通連結數",core:"人與人之間的橋樑",
+     tal:"你很會溝通，也很會讀空氣。別人的情緒你一下就感覺得到，很適合當中間人、和事佬。你讓身邊的人覺得被理解。",
+     talEx:{工作上:"兩個部門意見不合，常常是你在中間協調，讓事情走下去。",感情上:"對方一個表情不對，你就知道他今天不開心。",生活中:"兩個朋友吵架，你在中間傳話，最後幫他們和好。"},
+     per:"你很在意身邊的人怎麼想，也在意別人的眼光。很多決定，你會想先問問身邊的人。被喜歡，你才會覺得安心。",
+     perEx:{工作上:"提案前會先私下問同事意見，確定大家不反對才敢提出來。",感情上:"很在意對方有沒有回訊息，晚回一點就開始想是不是自己做錯什麼。",生活中:"買一件衣服，也想先拍照問朋友好不好看。"},
+     dark:"沒有安全感的時候，容易拖延、等別人先動。情緒起伏大時，可能會不自覺地要別人一直顧著你的感受。",
+     darkEx:{工作上:"事情遲遲不決定，等主管開口才動，結果被說不夠主動。",感情上:"心情不好卻不說，等對方猜，猜不到就更難過。"},
+     off:"太常配合別人，心裡會很矛盾，好像一直在跟自己打架。",
+     adv:["練習自己做一個小決定，並且為它負責，例如今天午餐吃什麼。","有情緒時，直接說「我現在需要你陪我」，而不是等對方猜。","每天問自己一次「這是我要的，還是別人要的？」"],
+     eye:"溫和、好相處，有你在氣氛就很好。",
+     eyeEx:"例如：大家都覺得跟你相處很舒服，有事也喜歡找你聊。",
+     les:"學會溝通與合作，也學會自己拿主意。",
+     lesWhy:"你會一再遇到「大家意見不同，要你選邊」的情況，練習的是說出自己的想法。",
+     lesEx:{工作上:"在團隊裡表達自己的想法，而不是一直說「都可以」。",感情上:"約會想吃什麼，直接說出來，不要每次都讓對方決定。"}},
+  3:{t:"創意活力數",core:"點子源源不絕的整合者",
+     tal:"你的靈感很多，創意源源不絕，也很會把不同的東西整合在一起。你的腦袋轉很快，常常一下就有好幾個想法。",
+     talEx:{工作上:"別人只看到一堆零散的資料，你可以把它整理成一份有趣的企劃。",感情上:"紀念日總能想出讓對方驚喜的小安排。",生活中:"冰箱剩一點東西，你也能變出一桌菜。"},
+     per:"你反應快、很幽默，親和力高，也願意分享。你在意形象，希望自己看起來是好的。",
+     perEx:{工作上:"簡報時會花很多時間在排版，希望看起來專業又漂亮。",感情上:"喜歡跟另一半分享生活中的趣事，讓相處充滿笑聲。",生活中:"聚會時常常是你在講笑話、炒熱氣氛。"},
+     dark:"失衡時，可能對自己和別人都很挑剔，要求一定要完美；也容易鑽牛角尖，或只聽親近的人的意見。",
+     darkEx:{工作上:"一份報告改了十次還是覺得不夠好，遲遲不敢交出去。",人際上:"看到朋友比自己好，心裡會有點酸，嘴上卻說「恭喜啊」。"},
+     off:"選項太多，總想選最好的，結果反而遲遲決定不了。",
+     adv:["先求有，再求好。完成比完美更重要。","給自己設定截止時間，時間到就先交出去。","選擇困難時，只留兩個選項再做決定。"],
+     eye:"有趣、反應快，很好親近。",
+     eyeEx:"例如：朋友常說「跟你聊天很開心，時間過好快」。",
+     les:"學會做選擇，也接受不完美。",
+     lesWhy:"你會一再遇到「好多選擇都不錯，只能選一個」的時刻。",
+     lesEx:{工作上:"簡報做到八十分就先交出去，不要一直改到最後一刻。",生活中:"買東西比價三家就好，不要比到半夜還在猶豫。"}},
+  4:{t:"穩定執著數",core:"穩穩打底的規劃者",
+     tal:"你很會規劃，做事有步驟，也習慣先準備好備案。交給你的事，大家都很放心。",
+     talEx:{工作上:"專案開始前，你已經把時程、分工和風險都列好了。",感情上:"會為兩個人的未來存錢、做計畫，讓對方很有安全感。",生活中:"出國旅行前，你已經把行程、交通和雨天備案都排好了。"},
+     per:"你很需要安全感，做事務實、保守。你相信親眼看到的，喜歡穩定踏實的生活。",
+     perEx:{工作上:"別人說有個賺錢機會，你第一個反應是「有證據嗎？風險多大？」",感情上:"比起浪漫驚喜，你更在意對方是不是穩定可靠。",生活中:"喜歡固定的作息，太多臨時變動會讓你不舒服。"},
+     dark:"太沒安全感時，可能會為了保護自己，而去算計或控制別人。",
+     darkEx:{工作上:"為了保住位子，偷偷把重要資料留在自己手上，不讓別人碰。",感情上:"一直查看另一半的行蹤，因為不知道他在哪就很不安。"},
+     off:"太怕風險，保守久了會變得固執，不願意改變。",
+     adv:["安全感可以從心裡長出來，不一定要靠掌控一切。","每個月試一件小小的新事情，練習接受變化。","計畫被打亂時，先問自己「最壞會怎樣？」通常沒有想像中可怕。"],
+     eye:"穩重、可靠，交給你很放心。",
+     eyeEx:"例如：同事有重要的事，第一個想到交給你處理。",
+     les:"學會從心裡建立安全感，也學會面對變化。",
+     lesWhy:"人生會一再出現「計畫趕不上變化」的時候，提醒你放鬆一點。",
+     lesEx:{工作上:"公司突然改組，練習先觀察，不要急著擔心最壞的情況。",生活中:"計畫臨時被打亂時，練習先深呼吸，再想下一步。"}},
+  5:{t:"自由無限數",core:"自由自在的天才",
+     tal:"你是天才型的人，潛力很大。反應快、口才好、有魅力，到新環境也很快就能適應。你對市場和流行很敏銳。",
+     talEx:{工作上:"換到新部門，不到一個月你就跟大家混熟，也上手了。",感情上:"很會聊天，跟你在一起從來不會冷場。",生活中:"什麼東西會流行，你常常比別人早一步發現。"},
+     per:"你很嚮往自由，不喜歡被管。別人給你意見時，你需要一點時間和空間消化。",
+     perEx:{工作上:"主管每天盯進度，你會覺得快喘不過氣。",感情上:"另一半管太多、太黏，你會想逃。",生活中:"說走就走的小旅行，最能讓你充電。"},
+     dark:"被逼急的時候，可能會突然爆炸，做出很極端的決定，甚至乾脆什麼都不要了。",
+     darkEx:{工作上:"壓力累積到極點，某天突然遞辭呈，什麼都不管了。",感情上:"覺得被綁住，一氣之下就說分手。"},
+     off:"一遇到壓力或被綁住，就很想逃。",
+     adv:["練習多撐一下，不因為一時的不舒服就放棄。","情緒快爆炸時，先離開現場走一走，再做決定。","把大目標切成小段，每完成一段就給自己一點自由時間。"],
+     eye:"受歡迎、人緣好，很有魅力。",
+     eyeEx:"例如：走到哪裡都有人想認識你，常被說「很會聊」。",
+     les:"學會堅持，不因為壓力或限制就放棄。",
+     lesWhy:"你會一再遇到「想放棄」的關卡，跨過去才會看到成果。",
+     lesEx:{工作上:"學一樣新技能卡關時，給自己多三個月再決定要不要停。",感情上:"關係遇到磨合期，先溝通，不要第一時間就想離開。"}},
+  6:{t:"關懷敏感數",core:"溫柔的照顧者",
+     tal:"你天生很會照顧人，別人沒說出口的需要，你都感覺得到。你的同理心很強，讓人覺得被接住。",
+     talEx:{工作上:"新同事不敢問問題，你會主動過去關心。",感情上:"另一半累了，你不用問就會先幫他準備好熱茶。",生活中:"朋友說「沒事」，你卻聽得出他其實很難過。"},
+     per:"你心很軟，承諾了就會做到。是人你就想照顧，很難拒絕別人的請求。你也很重視道理和承諾。",
+     perEx:{工作上:"明明自己很累了，同事拜託你幫忙，你還是說好。",感情上:"把對方的需要放在自己前面，常常忘了自己想要什麼。",生活中:"家裡大小事都是你在操心。"},
+     dark:"太敏感時，容易覺得大家都對自己不好；也可能用「我都是為你好」綁住身邊的人。",
+     darkEx:{家庭中:"對孩子或家人說「我為你付出這麼多」，讓對方很有壓力。",感情上:"付出很多卻沒被回應，心裡委屈，開始翻舊帳。"},
+     off:"一直付出到忘了自己，心裡又會期待對方同樣回報。",
+     adv:["先把自己照顧好，再去照顧別人。","被拜託時，先問自己「我現在真的有餘力嗎？」","練習溫柔地說「這次我沒辦法，下次可以」。"],
+     eye:"溫柔、體貼，很會照顧人。",
+     eyeEx:"例如：朋友有心事，常常第一個找你說。",
+     les:"學會關心別人，也關心自己；學會說不。",
+     lesWhy:"你會一再遇到「別人需要你，但你已經很累」的時刻。",
+     lesEx:{工作上:"不是每個忙都要幫，先把自己的事做好。",家庭中:"家人的情緒不是都要你負責，讓他們也學著照顧自己。"}},
+  7:{t:"真理幸運數",core:"追求真相的幸運兒",
+     tal:"你很會思考，喜歡找出事情的真相。你也是幸運體質，常常遇到貴人。",
+     talEx:{工作上:"遇到問題，你會一路追查，找出真正的原因。",運氣上:"別人要努力到 90 分才有成果，你努力到 60 分，常有好運補上。",生活中:"買東西前會先做功課，很少踩雷。"},
+     per:"你不是不相信別人，而是習慣自己查清楚、自己找答案。眼見不一定為憑，你會多方查證。",
+     perEx:{工作上:"主管說「照做就好」，你還是想知道為什麼要這樣做。",感情上:"對方說的話，你會在心裡默默驗證是不是真的。",生活中:"聽到一個消息，你會先上網查、多方確認，才相信。"},
+     dark:"失衡時，容易疑神疑鬼，只相信自己；也可能想走捷徑、以小博大。",
+     darkEx:{感情上:"伴侶晚回訊息，就開始腦補各種可能，越想越不安。",金錢上:"聽到「穩賺」的機會，忍不住想賭一把。"},
+     off:"想太多，被自己的懷疑卡住。",
+     adv:["查證之後，也要給自己和別人一點信任。","懷疑的時候，直接問清楚，比自己猜更快。","遇到「好到不像真的」的機會，先停一停。"],
+     eye:"聰明、有想法，運氣也很好。",
+     eyeEx:"例如：大家常說「你怎麼什麼都知道」或「你運氣真好」。",
+     les:"學會信任，也學會看清事實。",
+     lesWhy:"你會一再遇到「要不要相信」的考驗，練習在懷疑和信任之間找到平衡。",
+     lesEx:{感情上:"伴侶晚回訊息，先問清楚原因，而不是自己腦補一整晚。",工作上:"把工作交給同事後，給他空間，不要一直確認。"}},
+  8:{t:"老闆格局數",core:"有格局的資源整合者",
+     tal:"你像財富磁鐵，容易吸引資源和賺錢機會。你也願意培養人、帶人，眼光放得長遠。",
+     talEx:{工作上:"你身邊常有人介紹合作或案子給你。",團隊中:"你願意花時間教新人，因為你知道人才是最好的投資。",生活中:"對數字很敏感，記帳、理財都難不倒你。"},
+     per:"你重視資源和利益，但一旦認定是自己人，就會對他很好。你敢冒險，但需要穩紮穩打。",
+     perEx:{工作上:"做決定前會先算清楚划不划算。",感情上:"對另一半很大方，願意給他好的生活。",朋友間:"對自己人很照顧，有好機會會先想到他們。"},
+     dark:"失衡時，冒險會變成賭博；為了利益可能不擇手段，也會想控制一切。",
+     darkEx:{工作上:"為了業績，答應客戶做不到的事。",人際上:"把身邊的人當成棋子，什麼都要照你的意思來。"},
+     off:"太現實、太衝動，結果大好或大壞。",
+     adv:["賺錢和人情要平衡，先站穩再擴張。","大筆投入前，找一個你信任的人幫你看一遍。","給身邊的人一點空間，不是每件事都要你掌控。"],
+     eye:"有格局、有能力，像個老闆。",
+     eyeEx:"例如：大家會覺得你很有辦法，有事想找你商量。",
+     les:"學會在利益和人情之間找平衡。",
+     lesWhy:"你會一再遇到「錢和感情怎麼選」的情況。",
+     lesEx:{工作上:"跟朋友合作做生意，先把分工和分潤講清楚，關係才走得長。",生活中:"借錢給親友前，先想好借出去能不能當作沒拿回來。"}},
+  9:{t:"夢想智慧數",core:"有遠見的夢想家",
+     tal:"你充滿夢想，很愛學習，想像力豐富，眼光看得很遠。你希望自己的存在能幫助別人。",
+     talEx:{工作上:"別人只想這一季的業績，你已經在想三年後的方向。",學習上:"看到有興趣的課程，馬上就想報名。",生活中:"看到社會上需要幫助的人，會想出一份力。"},
+     per:"你很重視生命和夢想，容易被理想感動。只要能幫助夢想實現，什麼都想學。",
+     perEx:{工作上:"比起薪水，你更在意這份工作有沒有意義。",感情上:"希望另一半能跟你一起追夢，聊未來聊理想。",生活中:"看到一部感人的紀錄片，你會想「我也想為這個世界做點什麼」。"},
+     dark:"走到極端時，可能突然對一切失去熱情，覺得什麼都跟我無關。",
+     darkEx:{工作上:"理想跟現實差太多，某天突然覺得做什麼都沒意義。",生活中:"報了一堆課，每一門都只上一半。"},
+     off:"夢想太遠不夠務實；什麼都想學，卻不容易學精。",
+     adv:["挑一兩個目標專心做深，專精之後才能幫助更多人。","把大夢想拆成這個月可以做的一小步。","容易被感動也容易被影響，重要決定先冷靜一天。"],
+     eye:"有理想、善良，有智慧。",
+     eyeEx:"例如：朋友覺得你是個有想法、心地很好的人。",
+     les:"學會專心，把夢想一步一步落實。",
+     lesWhy:"你會一再遇到「想做的事太多」的時刻，提醒你聚焦。",
+     lesEx:{學習上:"今年只挑一門課認真學完，而不是同時報五門課。",工作上:"先把手上的一件事做到最好，再開始下一件。"}},
+  0:{t:"意識精神數",core:"心靈敏銳的感受者",
+     tal:"你對心靈、宇宙這類的事很敏感，也很有興趣。喜歡的事，你可以專心投入很久。",
+     talEx:{學習上:"看一本身心靈的書，你可以一口氣看完。",生活中:"到一個新地方，你很快就能感覺到那裡的氣氛好不好。"},
+     per:"你的精神很專注，做喜歡、好奇的事時最有能量。",
+     perEx:{生活中:"研究塔羅或星座時，常常一回神已經過了好幾個小時。",工作上:"有興趣的專案做得特別好，沒興趣的就提不起勁。"},
+     dark:"容易沉浸在自己的世界裡，跟現實生活脫節。",
+     darkEx:{生活中:"想太多心靈層面的事，反而忘了處理眼前的帳單和工作。"},
+     off:"0 多的時候，會把其他數字的能量放大，情緒起伏也更明顯。",
+     adv:["多和身體、生活連結，例如散步、做家事，讓自己落地。","把感受寫下來，幫助自己整理。"],
+     eye:"有靈性，很專注。",
+     eyeEx:"例如：朋友覺得你很有感覺，常問你「你覺得這樣好嗎」。",
+     les:"學會傾聽內在的聲音，找到心靈的方向。",
+     lesWhy:"你會一再遇到需要靜下來問自己的時刻。",
+     lesEx:{生活中:"每天睡前留五分鐘，問問自己今天的感受。"}}};
+const LINE_MEAN = {
+  "123":{m:"有藝術天分，也很獨立，習慣用自己的方式做事。",ex:{工作上:"同樣一份報告，你做出來就是特別有自己的風格。",生活中:"穿搭、布置房間都有自己的品味，不太跟流行。"},n:"太獨立時，容易什麼都自己扛，記得適時求助。"},
+  "456":{m:"很會組織和安排，做事要求完整到位。",ex:{工作上:"辦活動時，你會把每個細節都確認好幾次。",生活中:"家裡的東西都有固定位置，亂了會不舒服。"},n:"小心完美主義讓自己太累，八十分也可以先交出去。"},
+  "789":{m:"有權力運和貴人運，容易被看見、被提拔，也適合帶團隊。",ex:{工作上:"常常有前輩或主管主動拉你一把。",人際上:"遇到困難時，總會有人剛好出現幫忙。"},n:"有貴人也要自己努力，貴人只會幫準備好的人。"},
+  "147":{m:"重視安全感，也重視錢，很會守財、理財。",ex:{金錢上:"每個月固定存錢，帳戶有存款才會安心。",工作上:"比起高風險高報酬，更喜歡穩定的收入。"},n:"太在意安全，可能錯過一些好機會，可以留一小筆錢試試新東西。"},
+  "258":{m:"很能表達感情，願意說出自己的感受。",ex:{感情上:"生氣或開心，你都會直接讓對方知道。",人際上:"朋友覺得跟你相處很真誠，不用猜。"},n:"情緒來時先停三秒，說出來的話會更溫柔。"},
+  "369":{m:"創意和想像力很豐富，點子特別多。",ex:{工作上:"大家卡住時，你總能想出新的做法。",生活中:"很會想有趣的活動，朋友都愛找你出主意。"},n:"點子多也要記得落實，挑一個先做完。"},
+  "357":{m:"人緣好、很會溝通，容易和人打成一片。",ex:{人際上:"第一次見面的人，也很容易跟你聊開。",工作上:"適合需要跟人接觸的工作，例如業務、講師。"},n:"朋友多是好事，也要留時間給自己。"},
+  "159":{m:"事業心很強，一投入工作就停不下來。",ex:{工作上:"下班了腦袋還在想工作，假日也會回訊息。",生活中:"休假反而不知道要做什麼。"},n:"工作再重要，也要留時間休息和陪伴家人。"},
+  "1590":{m:"跟大自然、信仰、身心靈特別有緣。",ex:{生活中:"去山上或廟裡走走，就會覺得特別平靜。",學習上:"對身心靈、宗教的課程特別有興趣。"},n:"可以多接觸大自然，幫助自己充電。"},
+  "24":{m:"很靈活，會變通，遇到問題能找到替代方案。",ex:{生活中:"餐廳客滿，你馬上就能想到附近另一家。",工作上:"原本的方法行不通，你很快就能換一條路。"},n:"變通之餘，也要守住自己的原則。"},
+  "26":{m:"很重視公平和正義，看到不公平會想站出來。",ex:{工作上:"看到同事被欺負，你會忍不住幫他說話。",家庭中:"兄弟姊妹之間分配不公平，你會第一個提出來。"},n:"表達正義時，語氣溫和一點，對方更聽得進去。"},
+  "48":{m:"工作上是模範生，負責又踏實，值得信任。",ex:{工作上:"主管有重要的事，第一個想到交給你。",生活中:"答應別人的事，一定會做到。"},n:"責任感強也要量力而為，不要把所有事都攬在身上。"},
+  "68":{m:"誠實又親切，給人溫暖、可以信任的感覺。",ex:{人際上:"朋友有心事，常常第一個找你說。",工作上:"客戶特別喜歡找你，因為覺得你很真誠。"},n:"太誠實有時會傷人，說真話時也要顧到對方感受。"}};
+const EL_PLAIN = {
+  木:{s:"溫和善良",d:"你像一棵樹，溫和、善良，想一直往上長。你很重視彼此心意相通。被壓抑或被誤會的時候，會覺得特別煩躁。",ex:{人際上:"別人不小心犯錯你可以原諒，但如果是故意的，你就很難接受。",工作上:"喜歡有成長空間的環境，覺得停滯不前會很悶。"},tip:"多接觸植物、大自然，能幫你穩定心情。"},
+  火:{s:"熱情有活力",d:"你像一把火，熱情、溫暖，很有耐力，能撐過考驗。你重視禮貌和面子，希望被尊重。你也很在意跟人之間有沒有默契。",ex:{人際上:"朋友記得你說過的一句小事，你會非常感動。",工作上:"被當眾肯定時特別有動力，被當眾指正會很受傷。"},tip:"熱情是你的優點，但也要留意不要燃燒過度，記得休息。"},
+  土:{s:"包容可靠",d:"你像一片土地，很能包容，也很會照顧和栽培別人，讓人覺得可以依靠。你非常重視信用。信任一旦被打破，就很難再修復。",ex:{人際上:"朋友答應的事一再食言，你可能從此就不再相信他。",工作上:"適合帶新人、做需要耐心的工作。"},tip:"包容別人之外，也要記得照顧自己的消化和腸胃。"},
+  金:{s:"有彈性又講義氣",d:"你像金屬，看起來硬，其實很有彈性，可以隨環境調整。認定了一個人，就會義氣相挺到底。你也很重視外表和舉止。",ex:{人際上:"朋友有難，你會二話不說站出來幫忙。",生活中:"出門前會好好打扮，覺得外表也是對別人的尊重。"},tip:"多注意呼吸道的保養，深呼吸也能幫你放鬆。"},
+  水:{s:"專注鑽研",d:"你像水，喜歡往深處鑽研，也習慣把心事藏起來。你很重視專業，懂得很多。你很在意身體的感受。",ex:{工作上:"遇到不專業的店員或廠商，你會特別受不了。",人際上:"心事不太跟人說，熟了之後才會慢慢打開。"},tip:"多喝水、注意保暖，身體舒服你的狀態就會好。"}};
+const REL_PLAIN = {
+  父母:{p:"像父母一樣照顧你，資源和幫忙比較多",ex:"例如：這一年容易遇到願意提拔你的長輩，或是家人給你很大的支持。"},
+  錢財:{p:"像拿到資源，機會多，也比較好掌握",ex:"例如：這一年可能有加薪、接到好案子，或是投資有收穫的機會。"},
+  兄弟:{p:"像兄弟姊妹，可能互相幫忙，也可能互相牽絆",ex:"例如：跟同事、朋友合作的機會變多，但也要慎選合作對象。"},
+  子孫:{p:"像在照顧孩子，心力會花在別人身上",ex:"例如：這一年可能忙著照顧家人、帶新人，自己的事容易被往後放。"},
+  官鬼:{p:"像被管著，阻力比較多，要多付出一點",ex:"例如：可能遇到比較嚴格的主管，或是事情卡關，需要多一點耐心。"}};
+const FLOW_EX = {
+  1:{工作上:"終於提出想了很久的企劃，或是換到新的工作環境",感情上:"可能認識新的人，或是兩人一起開始新的生活計畫",生活中:"搬家、學新技能、養成新習慣，都很適合從這一年開始"},
+  2:{工作上:"跟同事或夥伴合作的機會變多，事情需要大家一起完成",感情上:"關係需要更多溝通和耐心，慢慢累積信任",生活中:"朋友聚會、團體活動變多，適合經營人脈"},
+  3:{工作上:"過去學的東西開始派上用場，可以整合成新的作品或服務",感情上:"相處變得輕鬆有趣，適合一起嘗試新鮮的事",生活中:"點子很多，適合寫作、創作、分享自己的經驗"},
+  4:{工作上:"適合把基本功練扎實，按部就班完成手上的事",感情上:"重視穩定，可能開始討論存錢、買房或長期規劃",生活中:"整理家裡、建立規律作息、存一筆預備金"},
+  5:{工作上:"可能有部門調動、職務改變，或突然出現新機會",感情上:"關係容易有起伏，需要給彼此一點空間",生活中:"出差、旅行、搬動的機會多，計畫常常臨時改變"},
+  6:{工作上:"同事或客戶的情緒事情多，需要花心力處理人際",感情上:"家人或伴侶需要你多陪伴，也要記得照顧自己",生活中:"家裡的大小事變多，可能要照顧長輩或孩子"},
+  7:{工作上:"適合進修、考證照、深入研究一個領域",感情上:"會想看清楚這段關係的真實樣子，不再只看表面",生活中:"想要獨處、沉澱，常常會問自己真正想要什麼"},
+  8:{工作上:"努力有成果，可能升遷、加薪或接到大案子",感情上:"關係進入談實際的階段，例如一起規劃財務",生活中:"跟錢有關的事變多，適合檢視收支、做投資規劃"},
+  9:{工作上:"一些案子或職位走到尾聲，準備交接或結束",感情上:"不適合的關係會自然淡掉，適合的會更確定",生活中:"斷捨離、清舊物、整理人際，為下一輪做準備"}};
+const MONTH_EX = {
+  1:{工作上:"提出一個新想法，或主動接下新任務",生活中:"開始一個小習慣，例如每天走路二十分鐘"},
+  2:{工作上:"多跟同事討論，不要一個人悶著做",感情上:"約重要的人吃頓飯，好好聊聊"},
+  3:{工作上:"把零散的資料整理成一份簡報或作品",生活中:"拍照、寫字、分享，把靈感記下來"},
+  4:{工作上:"把手上的事一件一件收好，不急著開新坑",生活中:"記帳、整理房間、固定作息"},
+  5:{工作上:"行程可能臨時變動，重要會議前多確認一次",生活中:"安排一趟小旅行，給自己換個環境"},
+  6:{感情上:"家人或伴侶需要你多陪伴",生活中:"情緒比較敏感時，先照顧好自己再照顧別人"},
+  7:{工作上:"適合看書、上課、研究一件事",生活中:"留一個晚上給自己，安靜想想接下來的方向"},
+  8:{工作上:"適合談加薪、談合作、看成果",生活中:"檢查這個月的收支，看看錢花到哪裡"},
+  9:{工作上:"把拖很久的案子結案或交接",生活中:"清掉不用的東西，也放下讓你累的人際"}};
+const MONTH_TXT = {
+  1:{k:"開始",d:"適合開始新的事情，主動提出想法",tip:"列出這個月想開始的一件事，然後去做"},
+  2:{k:"合作",d:"人際與合作的月份，需要耐心等待",tip:"多聽少急，約重要的人好好聊一次"},
+  3:{k:"整合",d:"點子多、適合整合資源與分享",tip:"把手上零散的事整理成一個清單"},
+  4:{k:"穩定",d:"按部就班、打基礎，照計畫走",tip:"整理財務或作息，把基本功做好"},
+  5:{k:"變動",d:"變化多、容易有臨時狀況",tip:"行程留一點彈性，重大決定緩一緩"},
+  6:{k:"關懷",d:"家人與人際的事情多，情緒較敏感",tip:"留時間陪家人，也留時間給自己"},
+  7:{k:"沉澱",d:"適合學習、思考、看清真相",tip:"安排一段獨處時間，問自己真正想要什麼"},
+  8:{k:"收穫",d:"看成果、收穫的月份，與錢財有關",tip:"檢視收入與成果，把握合作與談判"},
+  9:{k:"收尾",d:"收尾、整理、放下的月份",tip:"清掉拖著的事，為下個月的新開始做準備"}};
+const dim = (y,m) => new Date(y,m,0).getDate();
+const startOf = (inp,y,m) => new Date(y, m-1, Math.min(inp.d, dim(y,m)));   // 每個流月從「出生日」那天開始
+function afterBday(inp, dt){ const b = new Date(dt.getFullYear(), inp.m-1, Math.min(inp.d, dim(dt.getFullYear(),inp.m))); return dt >= b; }
+function pyOf(inp, r, dt){ const y = afterBday(inp,dt) ? dt.getFullYear() : dt.getFullYear()-1; return {y, py: reduce1(reduce1(dsum(y)) + reduce1(dsum(r.ms+r.ds)))}; }
+// 某一天屬於哪一個流月（流月從每月的出生日開始）
+function monthOf(inp, dt){ let y = dt.getFullYear(), m = dt.getMonth()+1; if (dt < startOf(inp,y,m)){ m--; if (m===0){ m=12; y--; } } return {y,m}; }
+function envOf(r, inp, dt){
+  let lyear = dt.getFullYear(); try{ lyear = Solar.fromYmd(dt.getFullYear(),dt.getMonth()+1,dt.getDate()).getLunar().getYear(); }catch(e){}
+  const ye = yearEl(lyear-1911);
+  let age = dt.getFullYear()-inp.y; if (!afterBday(inp,dt)) age--;
+  const me = (r.after.length>1 && age>=40 ? r.after[1] : r.after[0]).el;
+  return {ye, rel: relation(me, ye.el), me};
+}
+const judge = (n, rel) => { const fv = FLOW[n][1]==="good"?1:FLOW[n][1]==="bad"?-1:0, rv = rel[2]==="add"?1:rel[2]==="sub"?-1:0; const t = fv*0.3+rv*0.7; return t>=0.5?["順","add"]:t<=-0.5?["慢","sub"]:["平","flat"]; };
+const dayize = t => t.replace(/的月份/g,"的一天").replace(/月份/g,"日子").replace(/這個月/g,"今天").replace(/下個月/g,"明天").replace(/一段獨處時間/g,"一點獨處時間");
+function flowAt(inp, r, dt){
+  const {py, y:pyYear} = pyOf(inp, r, dt);
+  const M = monthOf(inp, dt);
+  const pm = reduce1(py + M.m);
+  const pd = reduce1(pm + dt.getDate());
+  return {py, pyYear, mo:M.m, pm, pd};
+}
+function flowMonths(inp, r, year){
+  const out = [];
+  for (let m=1; m<=12; m++){
+    const st = startOf(inp, year, m);
+    const nm = m===12 ? startOf(inp, year+1, 1) : startOf(inp, year, m+1);
+    const en = new Date(nm.getFullYear(), nm.getMonth(), nm.getDate()-1);
+    const {py, y:pyYear} = pyOf(inp, r, st);
+    const pm = reduce1(py + m);
+    const env = envOf(r, inp, st);
+    out.push({m, py, pyYear, pm, st, en, ye:env.ye, rel:env.rel, verdict: judge(pm, env.rel), bday: m===inp.m});
+  }
+  return out;
+}
+const FLOW_MORE = {
+  1:{do:["開始一個新計畫或新習慣","主動爭取想要的機會"],avoid:["想太多而不敢踏出第一步"],ex:"例如：一直想學的課，今年就報名吧"},
+  2:{do:["多跟人合作、多交流","耐心經營關係"],avoid:["太急著看到成果"],ex:"例如：跟朋友一起開一個小副業，慢慢累積"},
+  3:{do:["整合過去的經驗與資源","把想法分享出去"],avoid:["什麼都想做而分散力氣"],ex:"例如：把這幾年的專長整理成一門課或作品集"},
+  4:{do:["打好基礎、照計畫走","整理財務與生活"],avoid:["衝動做大改變"],ex:"例如：存一筆緊急預備金，把作息調整規律"},
+  5:{do:["保持彈性，接受變化","出去走走、看看新世界"],avoid:["衝動做重大決定"],ex:"例如：想換工作可以先觀察、先準備，不要一氣之下就辭職"},
+  6:{do:["多陪伴家人","照顧好自己的情緒"],avoid:["把所有人的情緒都攬在身上"],ex:"例如：每週留一天給家人，也留一個晚上給自己"},
+  7:{do:["學習、沉澱、看清楚真相","問自己真正想要什麼"],avoid:["只聽表面的說法就做決定"],ex:"例如：重要決定前多查資料、多問幾個人的意見"},
+  8:{do:["檢視成果、收割努力","把握跟錢有關的機會"],avoid:["貪快而冒太大的險"],ex:"例如：過去認真經營的客戶，今年開始回流"},
+  9:{do:["整理、收尾、放下不需要的","專注一兩個核心目標"],avoid:["同時開始太多新事情"],ex:"例如：清掉一直拖著的舊案子，為明年新開始做準備"}};
+const hl = t => esc(t).replace(/==(.+?)==/g,'$1');
+const GEN = {木:"火",火:"土",土:"金",金:"水",水:"木"};
+const KE  = {木:"土",土:"水",水:"火",火:"金",金:"木"};
+const MEAN = {0:"精神意識、心靈、宇宙意識",1:"創新、領導、獨立、自主",2:"合作、溝通、協助、情感",3:"智力、童心、完美、幽默",4:"計劃、安全感、穩定、保守",5:"靈活、自由、反應、堅持",6:"關懷、承諾、照顧、同理",7:"真理、信任、幸運、知識",8:"格局、利益、數字、冒險",9:"夢想、人道、學習、智慧"};
+const FLOW = {
+  1:["開創年","good",["創新、新的開始與新機會","有機會換到新的生活圈","適合學新專長，勇敢跨出第一步"]],
+  2:["合作年","good",["新的合作與連結來到","需要時間和耐心，慢慢累積","多協調、多與人合作會更順"]],
+  3:["發芽年","good",["前兩年種下的開始發芽","整合過去的經驗，看見不同的成長","較多整合機會，適合延伸發展"]],
+  4:["穩固年","flat",["穩紮穩打、打基礎的一年","按部就班照計畫走，適時調整","不急於求成，穩住就是進步"]],
+  5:["變動年","bad",["向外拓展，外在變化多","可能換工作、換環境","動盪較高，容易臨時有變故，凡事多留彈性"]],
+  6:["關懷年","bad",["內在變化多，注重家人與自己的感受","人際關係的事情多","先穩定自己的情緒，再照顧他人"]],
+  7:["真理年","flat",["Lucky 7，看事實、看真相","適合沉澱、學習與重新調整","問自己真正想要什麼，再決定行動"]],
+  8:["收成年","good",["看結果、看收穫的一年","過去踏實努力，就會有收成","較多與錢財相關的機運"]],
+  9:["總結年","good",["收尾與總結的一年","專注核心目標與學習","把經驗整理好，為下一輪新開始做準備"]]};
+// 數字連線（筆記：九宮格連線表）
+const LINES = [
+  {k:"123",name:"藝術線、獨立線",p:[1,2,3]},{k:"456",name:"組織線、完美主義",p:[4,5,6]},{k:"789",name:"權力線、貴人線",p:[7,8,9]},
+  {k:"147",name:"安全線、錢財線",p:[1,4,7]},{k:"258",name:"感情表達線",p:[2,5,8]},{k:"369",name:"創意線、想像線",p:[3,6,9]},
+  {k:"357",name:"人緣線、溝通線",p:[3,5,7]},{k:"159",name:"事業線、工作狂線",p:[1,5,9]},{k:"1590",name:"自然、宗教因緣線",p:[1,5,9,0]},
+  {k:"24",name:"靈巧變通線",p:[2,4],half:1},{k:"26",name:"公平正義線",p:[2,6],half:1},{k:"48",name:"工作模範線",p:[4,8],half:1},{k:"68",name:"誠實親切線",p:[6,8],half:1}];
+const POS = {1:[0,0],2:[1,0],3:[2,0],4:[0,1],5:[1,1],6:[2,1],7:[0,2],8:[1,2],9:[2,2],0:[3,2]};
+const CELL = 68, GAP = 8;
+const center = n => { const [c,r] = POS[n]; return [c*(CELL+GAP)+CELL/2, r*(CELL+GAP)+CELL/2]; };
+
+const digits = s => String(s).split("").map(Number);
+const dsum = n => digits(n).reduce((a,b)=>a+b,0);
+const reduce1 = n => { while(n>9) n = dsum(n); return n; };
+const mod9 = n => { const r = ((n%9)+9)%9; return r===0?9:r; };
+const starOf = (roc,sex) => sex==="M" ? mod9(7-(roc-64)) : mod9(8+(roc-64));
+function starInfo(roc,sex){ const s = starOf(roc,sex); const shown = s===5 ? (sex==="M"?2:8) : s; const [el,gua] = STAR[shown]; return {star:s,shown,el,gua}; }
+const yearEl = roc => starInfo(roc,"F");
+function relation(me,yr){
+  if (KE[me]===yr) return ["我剋","錢財","add","大運",["環境運勢有利於我，而且力道大","只有遇到我剋才是大運","把握時機，可以趕快努力往前衝"]];
+  if (GEN[yr]===me) return ["生我","父母","add","中運",["生我者加分，環境像父母般照顧你","身邊有很多資源、很多不錯的選擇","適合接受幫助，順勢而為"]];
+  if (me===yr) return ["比合","兄弟","flat","一般運勢",["與兄弟姊妹、同輩關係如何，運勢就如何","可能互相幫忙，也可能互相拖累","慎選合作對象，維持好同輩關係"]];
+  if (GEN[me]===yr) return ["我生","子孫","flat","一般運勢",["心思多投入在人際與照顧他人","資源在自己周遭，需要花心力經營","記得也把力氣留給自己"]];
+  return ["剋我","官鬼","sub","需努力",["環境較受壓抑，資源需加倍付出或阻礙多","須要更多努力：環境、選擇、行動","新發展要低調，保守做決定，善用個人優勢去加分"]];
+}
+const esc = s => String(s??"").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function lunarDay(d){ const t=["初一","初二","初三","初四","初五","初六","初七","初八","初九","初十"]; if(d<=10) return t[d-1]; if(d<20) return "十"+CN[d-10]; if(d===20) return "二十"; if(d<30) return "廿"+CN[d-20]; return "三十"; }
+const pad2 = n => String(n).padStart(2,"0");
+
+/* ---------- form ---------- */
+const opt = (sel,list) => { sel.innerHTML = list.map(([v,t]) => `<option value="${v}">${t}</option>`).join(""); };
+opt($("sm"), Array.from({length:12},(_,i)=>[i+1,(i+1)+" 月"]));
+opt($("sd"), Array.from({length:31},(_,i)=>[i+1,(i+1)+" 日"]));
+opt($("lm"), Array.from({length:12},(_,i)=>[i+1,LMON[i]+"月"]));
+opt($("ld"), Array.from({length:30},(_,i)=>[i+1,lunarDay(i+1)]));
+opt($("hour"), [["","請選擇時辰"]].concat(HOURS.map(([z,t],i)=>[i,`${z}時　${t}`])).concat([["ji","吉時（剖腹或擇時出生，知道時間）"],["jiu","吉時（不曉得明確時間）"]]));
+$("hour").addEventListener("change", () => { const v = $("hour").value, ji = v==="ji"; $("jiTime").hidden = !ji;
+  $("hourHint").textContent = ji ? "請填實際出生的精確時間，以醫院紀錄為準" : v==="jiu" ? "沒關係，靈數命盤以出生年月日計算，不影響主要結果；之後問到時間可再補上" : ""; });
+const hourLabel = (h, t) => h==="ji" ? `吉時 ${t||""}`.trim() : h==="jiu" ? "吉時（時間不詳）" : (HOURS[h] ? `${HOURS[h][0]}時` : "未填");
+let lunarTouched = false;
+["ly","lm","ld","leap"].forEach(id => $(id).addEventListener("change", () => { lunarTouched = true; }));
+["sy","sm","sd"].forEach(id => $(id).addEventListener("change", () => { if(!lunarTouched) fillLunar(); }));
+$("autoLunar").addEventListener("click", () => { lunarTouched = false; fillLunar(true); });
+["name","sy","sm","sd","hour","ly","sexM","sexF"].forEach(id => $(id).addEventListener("input", () => { $("sampleTag").textContent = "命主資料"; }));
+
+function solarFromForm(){
+  const y = parseInt($("sy").value,10), m = +$("sm").value, d = +$("sd").value;
+  if (!y || y<1900 || y>2100) return null;
+  const dt = new Date(y,m-1,d); if (dt.getMonth()!==m-1) return null;
+  return {y,m,d};
+}
+function convert(s){ try{ const l = Solar.fromYmd(s.y,s.m,s.d).getLunar(); return {roc:l.getYear()-1911,m:Math.abs(l.getMonth()),leap:l.getMonth()<0,d:l.getDay()}; }catch(e){ return null; } }
+function fillLunar(force){
+  const s = solarFromForm(); if (!s){ if(force) $("err").textContent = "請先填好正確的西元出生年月日。"; return; }
+  const l = convert(s); if (!l) return;
+  $("ly").value = l.roc; $("lm").value = l.m; $("ld").value = l.d; $("leap").checked = l.leap;
+  $("lunarHint").textContent = `已換算：民國 ${l.roc} 年${l.leap?"閏":""}${LMON[l.m-1]}月${lunarDay(l.d)}`;
+}
+function setForm(r){
+  $("name").value = r.name||""; $("sexM").checked = r.sex==="M"; $("sexF").checked = r.sex==="F";
+  $("sy").value = r.y; $("sm").value = r.m; $("sd").value = r.d;
+  $("hour").value = r.hour ?? ""; $("jiTime").value = r.jiTime||""; $("hour").dispatchEvent(new Event("change"));
+  $("ly").value = r.lroc; $("lm").value = r.lm; $("ld").value = r.ld; $("leap").checked = !!r.leap; lunarTouched = true;
+}
+
+/* ---------- calculation ---------- */
+function compute(inp){
+  const ys = String(inp.y).padStart(4,"0"), ms = pad2(inp.m), ds = pad2(inp.d);
+  const all = digits(ys+ms+ds);
+  const s1 = all.reduce((a,b)=>a+b,0), chain = [s1]; let cur = s1;
+  while (cur>9){ cur = dsum(cur); if (cur>9) chain.push(cur); }
+  const code = cur, mR = reduce1(dsum(ms)), dR = reduce1(dsum(ds));
+  const marks = {}; for (let i=0;i<=9;i++) marks[i] = {o:0,t:0,q:0};
+  all.forEach(n => marks[n].o++); chain.forEach(c => digits(c).forEach(n => marks[n].t++)); marks[code].q++;
+  const score = {}; for (let i=0;i<=9;i++) score[i] = marks[i].o + marks[i].t*2 + marks[i].q*4;
+  const missing = [1,2,3,4,5,6,7,8,9,0].filter(n => score[n]===0);
+  let lines = LINES.filter(L => L.p.every(n => score[n]>0));
+  const after = [starInfo(inp.lroc,inp.sex)];
+  const afterMid = inp.lm>8 || (inp.lm===8 && (inp.ld>15 || inp.leap));
+  const onMid = inp.lm===8 && inp.ld===15 && !inp.leap;
+  if (afterMid || onMid) after.push(Object.assign(starInfo(inp.lroc+1,inp.sex),{onMid}));
+  const elems = [...new Set(after.map(a=>a.el))];
+  const boost = elems.map(e => { const src = Object.keys(GEN).find(k => GEN[k]===e); return {me:e,src,colors:COLORS[src]}; });
+  return {ys,ms,ds,all,chain,code,lesson:Math.abs(mR-dR),influence:dR,marks,score,missing,lines,after,elems,boost};
+}
+function ageNow(inp){
+  const now = new Date(); let a = now.getFullYear()-inp.y;
+  if (now.getMonth()+1<inp.m || (now.getMonth()+1===inp.m && now.getDate()<inp.d)) a--;
+  return Math.max(a,0);
+}
+function flowYears(inp, r, start, count){
+  const out = [];
+  for (let y=start; y<start+count; y++){
+    const f = reduce1(reduce1(dsum(y)) + reduce1(dsum(r.ms+r.ds)));
+    const roc = y-1911, ye = yearEl(roc), age = y-inp.y;
+    const useAfter = r.after.length>1 && age>=40 ? r.after[1] : r.after[0];
+    const me = useAfter.el, rel = relation(me, ye.el);
+    const note = r.after.length>1 ? `這一年 ${age} 歲，看${age>=40?"40 歲以後":"40 歲以前"}的後天五行（${me}）` : "";
+    let cny = ""; try{ const s = Lunar.fromYmd(y,1,1).getSolar(); cny = `${s.getMonth()}/${s.getDay()}`; }catch(e){}
+    const fv = FLOW[f][1]==="good"?1:FLOW[f][1]==="bad"?-1:0;
+    const rv = rel[2]==="add"?1:rel[2]==="sub"?-1:0;
+    const tot = fv*0.3 + rv*0.7;
+    const verdict = tot>=0.5?["順勢","add"]:tot<=-0.5?["需調整","sub"]:["平穩","flat"];
+    const summary = {add:`環境給力，加上${FLOW[f][0]}的節奏，適合主動出擊、把握機會。`,
+                     flat:`環境平穩，順著${FLOW[f][0]}的節奏走，穩定經營就會有進展。`,
+                     sub:`環境阻力較多，${FLOW[f][0]}也需要多留意，先顧好自己，低調保守做決定。`}[verdict[1]];
+    out.push({y,roc,age,f,ye,me,rel,note,cny,verdict,summary});
+  }
+  return out;
+}
+
+/* ---------- render ---------- */
+const lvl = v => v===0?0:v===1?1:v===2?2:3;
+const elTag = e => `<span class="el e-${e}"><i class="dot d-${e}"></i>${e}</span>`;
+const pill = (t,cls) => `<span class="pill ${cls}">${t}</span>`;
+let current = null;
+
+function gridSVG(r){
+  const W = 4*CELL+3*GAP, H = 3*CELL+2*GAP;
+  const segs = r.lines.map(L => {
+    const pts = L.p.map(center);
+    const d = pts.map((p,i)=>(i?"L":"M")+p[0]+" "+p[1]).join(" ");
+    return `<path d="${d}" fill="none" style="stroke:var(--line-c)" stroke-opacity="${L.half?.55:.7}" stroke-width="${L.half?2:3.5}" vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" ${L.half?'stroke-dasharray="5 6"':''}/>`;
+  }).join("");
+  const cells = [1,2,3,4,5,6,7,8,9,0].map(n => {
+    const [c,rw] = POS[n], m = r.marks[n];
+    const mk = "○".repeat(m.o)+"△".repeat(m.t)+"□".repeat(m.q);
+    return `<div class="cell lv${lvl(r.score[n])}" style="left:${(c*(CELL+GAP)/W*100).toFixed(3)}%;top:${(rw*(CELL+GAP)/H*100).toFixed(3)}%"><span class="sc">${r.score[n]===0?"0":r.score[n]}</span><span class="n">${n}</span><span class="mk">${mk}</span></div>`;
+  }).join("");
+  return `<div class="nine" role="img" aria-label="九宮格分數">${cells}</div>`;
+}
+
+function analysis(inp, r, defStart){
+  const age = ageNow(inp);
+  const ranked = [1,2,3,4,5,6,7,8,9,0].filter(n=>r.score[n]>0).sort((a,b)=>r.score[b]-r.score[a]);
+  const strong = ranked.filter(n=>r.score[n]>=3);
+  const talents = ranked.filter(n=>r.score[n]>=2).slice(0,3);
+  const lessonN = r.lesson, inf = r.influence, code = r.code;
+  const pre = r.after[0], post = r.after[r.after.length-1], cur = age>=40 ? post : pre;
+  const srcOf = e => Object.keys(GEN).find(k=>GEN[k]===e);
+  const flows = flowYears(inp, r, defStart, 3);
+  const P = t => t ? `<p>${t}</p>` : "";
+  const EXS = (o, title="生活中的例子") => {
+    if (!o) return "";
+    if (typeof o==="string") return `<div class="ex"><span class="ex-t">${title}</span><p>${o.replace(/^例如：/,"")}</p></div>`;
+    return `<div class="ex"><span class="ex-t">${title}</span>${Object.entries(o).map(([k,v])=>`<p><span class="ex-k">${k}</span>${v}</p>`).join("")}</div>`;
+  };
+  const NOTE = t => `<div class="note"><span class="note-t">小註解</span><p>${t}</p></div>`;
+  const TODO = (arr, title="可以這樣做") => `<div class="todo"><span class="todo-t">${title}</span><ul>${arr.map(x=>`<li>${x}</li>`).join("")}</ul></div>`;
+  let anN = 0;
+  const sec = (t, sub, body) => `<div class="an pbreak" id="an${++anN}"><h3 class="an-h">${t}<span class="an-sub">${sub}</span></h3><div class="an-b">${body}</div></div>`;
+  const item = (h, ...ps) => `<li><b>${h}</b>${ps.join("")}</li>`;
+
+  /* 1 連線 */
+  const lineTxt = NOTE("九宮格裡，如果一條直線、橫線或斜線上的數字都有分數，就叫做「連線」。連線代表這幾種能量會互相支援，一起發揮，變成你特別明顯、別人也看得到的能力。")
+    + (r.lines.length
+      ? P(`你的命盤共有 ${r.lines.length} 條連線。`)+P("連線越多，代表你的能力越容易串在一起使用，做事比較有整體感。")
+        + `<ul class="an-list">${r.lines.map(L=>{const M=LINE_MEAN[L.k]; return item(`${L.k}　${L.name}${L.half?"・兩數連線":""}`, P(M.m), EXS(M.ex), `<p class="tip">提醒：${M.n}</p>`);}).join("")}</ul>`
+      : P("你的命盤沒有連成線。")+P("這代表每個數字的能力比較獨立，各自發揮。")+P("好處是很有彈性，不會被某一種模式綁住。")+P("需要的時候，你可以自己把不同的能力組合起來用。")
+        +EXS("同時需要規劃和創意的工作，你可以先用規劃的能力排好步驟，再用創意的能力把內容做得有趣。"));
+
+  /* 2 人生功課 */
+  const lessonTxt = NOTE("人生功課＝出生月份與日期各自加到個位數後，兩數相減。它代表這輩子一定會碰到的考題，逃不掉，但每過一關，你就會成長一點。功課不是懲罰，而是你這一生特別有機會練好的能力。")
+    + P(`你的人生功課是 <b>${lessonN}</b>，「${NUM[lessonN].t}」。`)
+    + P(`這個功課要你：${NUM[lessonN].les}`)
+    + P(`為什麼會遇到？${NUM[lessonN].lesWhy}`)
+    + EXS(NUM[lessonN].lesEx,"功課出現的樣子")
+    + P(r.score[lessonN]===0 ? `你的命盤裡 ${lessonN} 是 0 分。這份能力天生比較少，所以要多花一點力氣練習。不過一旦練起來，會是你最驕傲的成長。` : `你的命盤裡 ${lessonN} 有 ${r.score[lessonN]} 分。你本身就有一點這份能力，練習起來會比較有方向。`)
+    + TODO(NUM[lessonN].adv)
+    + P("當同樣的事情一再發生時，就是功課來了，提醒你該練習了。");
+
+  /* 3 影響最大的數 */
+  const infTxt = NOTE("影響最大的數＝出生日期加到個位數。它代表最容易影響你的能量。你身邊的人、所處的環境，也常常帶著這個數字的特質，形成一種連帶影響。")
+    + P(`影響你最大的數字是 <b>${inf}</b>，也就是「${NUM[inf].t}」，${NUM[inf].core}。`)
+    + P(`意思是你很容易被 ${inf} 的能量帶著走。`)
+    + P(`${inf} 的樣子是：${NUM[inf].per}`)
+    + EXS(NUM[inf].perEx)
+    + (r.score[inf]>=3 ? P(`${inf} 在你的命盤裡有 ${r.score[inf]} 分，本身已經有，又被環境強化，所以這個特質會特別明顯。`) + P(`要留意的是：${NUM[inf].off}`)
+       : r.score[inf]===0 ? P(`${inf} 在你的命盤裡是 0 分。這份能量多半是環境帶給你的，例如家人或工作環境。可以慢慢練習，把它變成自己的。`) : P(`${inf} 在你的命盤裡有 ${r.score[inf]} 分，是剛剛好、比較容易平衡的狀態。`));
+
+  /* 4 別人眼中的你 */
+  const eyeTxt = NOTE("別人眼中的你，跟影響最大的數是同一個數字。它是不熟的人看到的你、你刻意表現出來的樣子，或是被刺激時的反應。它不一定是真正的你，但會影響第一印象。")
+    + P(`別人眼中的你是 <b>${inf}</b>。`)
+    + P(`在別人眼中，你給人的感覺是：${NUM[inf].eye}`)
+    + EXS(NUM[inf].eyeEx,"第一印象")
+    + (inf!==code
+      ? P(`不過你的生命密碼是 ${code}，內心其實更像「${NUM[code].t}」，${NUM[code].core}。`)
+        + P("所以有時候別人會說「你跟我想的不太一樣」，這是很正常的。")
+        + EXS({第一次見面:`覺得你是「${NUM[inf].eye.replace(/。$/,"")}」的人`,熟了以後:`發現你其實${NUM[code].eye.replace(/。$/,"")}`},"外在和內在的差別")
+        + P("了解這個差別，可以幫你在人際中少一點誤會。")+TODO([`想讓別人更懂你時，可以主動分享一點 ${code} 那一面的你`,`第一印象不如預期時，不用急著解釋，相處久了自然會看見`])
+      : P(`你的生命密碼也是 ${code}，裡外一致。別人看到的你，就很接近真正的你。`)+P("這讓你給人一種很真實、不做作的感覺。"));
+
+  /* 5 天賦 */
+  const talTxt = NOTE("九宮格的分數：出生年月日的每個數字算 1 分，三者之合的數字算 2 分，生命密碼算 4 分。分數越高，代表這份能量天生越多。2 分剛剛好，3 分以上很強，但也容易用過頭。")
+    + (talents.length
+      ? P("命盤裡分數比較高的數字，就是你天生比較強的能力。")+P("這些是不用太費力，就能自然發揮的地方。")
+        + `<ul class="an-list">${talents.map(n=>item(`${n}　${NUM[n].t}・${r.score[n]} 分`, P(NUM[n].tal), EXS(NUM[n].talEx,"天賦發揮的樣子"))).join("")}</ul>`
+      : P("你的數字分布很平均，沒有特別突出的一項。")+P("你的天賦是能靈活運用各種能力，什麼都能做一點。"))
+    + (r.missing.length ? P(`你缺少的數字是 ${r.missing.join("、")}。`)+P("這些能力天生比較少，不是不能有，而是需要後天多練習，或從環境中慢慢補起來。")
+        + `<ul class="an-list">${r.missing.map(n=>item(`缺 ${n}　${NUM[n].t}`, P(`比較不擅長：${MEAN[n]}`), `<p class="tip">練習方向：${NUM[n].les}</p>`)).join("")}</ul>` : "");
+
+  /* 6 性格 */
+  const others = strong.filter(n=>n!==code);
+  const perTxt = NOTE("生命密碼＝出生年月日每個數字加總，再一路加到個位數。它是影響力最大的數字，代表這輩子要走的方向，也是你最核心的性格。")
+    + P(`你的生命密碼是 <b>${code}</b>，「${NUM[code].t}」，${NUM[code].core}。`)
+    + P(NUM[code].per)
+    + EXS(NUM[code].perEx)
+    + P(`你的優勢是：${NUM[code].tal}`)
+    + (others.length ? P(`另外，${others.join("、")} 的分數也很高，你身上也會看到這些特質：`)+`<ul class="an-list">${others.map(n=>item(`${n}　${NUM[n].t}・${r.score[n]} 分`, P(NUM[n].per), EXS(NUM[n].perEx))).join("")}</ul>`
+        + P(`這幾種特質混在一起，就是獨一無二的你。有時候它們會互相拉扯，例如 ${code} 想這樣、${others[0]} 想那樣，這時候先停下來，問自己現在最需要哪一個。`) : "");
+
+  /* 7 陰暗面 */
+  const darkNums = [...new Set([code, ...strong])];
+  const darkTxt = NOTE("陰暗面不是壞，也不是缺點，而是能量失衡時的樣子。它通常在壓力很大、很累、被刺激的時候才會跑出來。早一點認出它，就能早一點把自己拉回來。")
+    + P("每個數字都有好的一面，也有累了、失衡時出現的另一面。")
+    + P("以下是你命盤中最需要留意的部分。")
+    + `<ul class="an-list">${darkNums.map(n=>item(`${n}　${NUM[n].t}・${n===code?"生命密碼":r.score[n]+" 分"}`,
+        P(NUM[n].dark), r.score[n]>=3?P("分數高的時候，也要留意："+NUM[n].off):"", EXS(NUM[n].darkEx,"失衡時可能的樣子"), TODO(NUM[n].adv,"拉回來的方法"))).join("")}</ul>`
+    + P("當你發現自己出現這些狀況時，不用責怪自己。這只是身體和心在提醒你：該休息、該調整了。");
+
+  /* 8 後天五行 */
+  const twoEl = r.after.length>1 && pre.el!==post.el;
+  const elTxt = NOTE("後天五行是用農曆出生年和性別，對照九星表算出來的。它代表成長環境帶給你的個性和做事方式，也會影響你用什麼態度對待別人。農曆八月十五以後出生的人，40 歲前後會有兩個不同的五行。")
+    + (twoEl ? P(`你 40 歲以前是 <b>${pre.el}（${pre.gua}）</b>，40 歲以後會轉成 <b>${post.el}（${post.gua}）</b>。`) : P(`你的後天五行是 <b>${pre.el}（${pre.gua}）</b>。`))
+    + P(`${pre.el}行的你：${EL_PLAIN[pre.el].d}`) + EXS(EL_PLAIN[pre.el].ex)
+    + (twoEl ? P(`40 歲以後的${post.el}行：${EL_PLAIN[post.el].d}`)+EXS(EL_PLAIN[post.el].ex)
+        +P("這代表中年以後，你在意的事和做事方式會慢慢改變。")+EXS({四十歲以前:`比較${EL_PLAIN[pre.el].s}`,四十歲以後:`會變得更${EL_PLAIN[post.el].s}`},"前後的轉變") : "")
+    + P(`你現在 ${age} 歲，正在${cur.el}行的階段。`)
+    + P(`五行裡，${srcOf(cur.el)}能生${cur.el}，就像有人在背後支持你。所以${COLORS[srcOf(cur.el)]}這些顏色，可以幫你加分。`)
+    + TODO([`重要的面試、談判或約會，可以穿戴${COLORS[srcOf(cur.el)].split("、")[0]}色系的衣服或飾品`,`手機桌布、包包、辦公小物也可以選這些顏色`,EL_PLAIN[cur.el].tip]);
+
+  /* 9 流年 */
+  const flowTxt = NOTE("每一年的運勢看兩個部分。先天流年＝當年年份＋出生月＋出生日，是你自己這一年的節奏，從生日那天開始算，占 30%。後天大運是環境給你的助力或阻力，從農曆春節開始算，占 70%。兩個加起來，就是這一年的整體狀態。")
+    + `<ul class="an-list">${flows.map(o=>{const FM=FLOW_MORE[o.f]; const RP=REL_PLAIN[o.rel[1]]; return item(`${o.y} 年・${o.age} 歲　${FLOW[o.f][0]} × ${o.ye.el}（${o.rel[3]}）`,
+        P(`你自己的節奏是「${FLOW[o.f][0]}」：${FLOW[o.f][2].join("，")}。`),
+        P(`環境是${o.ye.el}年，對你的${o.me}行來說，${RP.p}。`),
+        EXS({自己的節奏:FM.ex.replace(/^例如：/,""),環境的狀態:RP.ex.replace(/^例如：/,"")},"這一年可能的樣子"),
+        TODO([...FM.do, "避免："+FM.avoid[0]],"這一年適合"),
+        `<p class="tip">${o.summary}</p>`);}).join("")}</ul>`;
+
+  /* 10 總結 */
+  const best = flows.filter(o=>o.verdict[1]==="add").map(o=>o.y), hard = flows.filter(o=>o.verdict[1]==="sub").map(o=>o.y);
+  const step = (h, ...ps) => `<li><b>${h}</b>${ps.join("")}</li>`;
+  const sumTxt = P("把整張命盤放在一起看，給你幾個方向。")
+    + `<ol class="an-steps">
+      ${step("認識自己", P(`你的核心數字是 ${code}，「${NUM[code].t}」，${NUM[code].core}。`), P(NUM[code].tal))}
+      ${step("發揮天賦", talents.length?P(`${talents.map(n=>NUM[n].t).join("、")}是你最自然的力量，多把它們用在工作和生活中。`):P("你的能力很平均，適合多方嘗試。"))}
+      ${step("面對功課", P(`你的人生功課是 ${lessonN}：${NUM[lessonN].les}`), P("同樣的事一再出現時，就是練習的時候。"))}
+      ${step("留意失衡", P(NUM[code].adv[0]), others.length?P(`${others.join("、")} 的分數偏高，也要小心用力過頭。`):"")}
+      ${r.missing.length?step("補足能量", P(`你缺少 ${r.missing.join("、")} 的能量。`), P(`可以在生活中刻意練習：${r.missing.slice(0,3).map(n=>`${n} 的${MEAN[n].split("、").slice(0,2).join("、")}`).join("；")}。`)):""}
+      ${step("順著時間走", best.length?P(`${best.join("、")} 年環境比較幫你，適合主動出擊。`):"", hard.length?P(`${hard.join("、")} 年阻力比較多，低調一點，先照顧好自己。`):"", (!best.length&&!hard.length)?P("接下來幾年整體平穩，穩穩經營就會有進展。"):"")}
+      ${step("加分小行動", P(`生活中多用${COLORS[srcOf(cur.el)]}。`), P("30% 的運氣加上 70% 的努力，就是 100% 的成功。"))}
+    </ol>`
+    + P("命盤是一張地圖，不是一張判決書。")
+    + P("它讓你知道自己從哪裡出發、擅長什麼、容易卡在哪裡。")
+    + P("真正決定方向的，永遠是你自己。");
+
+  const html = `<section class="card reveal" aria-labelledby="t5">
+    <div class="eyebrow"><span>解析</span><span>05 / 05</span></div>
+    <div class="an-top"><h2 id="t5">命盤解析</h2><button type="button" class="btn line sm editBtn" aria-pressed="false">編輯內容</button></div>
+    <p class="edit-hint" hidden>直接點文字就能修改，改完按「完成編輯」，下載的圖片與報告書會用你改過的內容</p>
+    <p class="small muted" style="margin:8px 0 0">依靈數命盤師課程重點自動整理，解盤時可依實際狀況調整說法</p>
+    <div class="ans">
+      ${sec("連線的意義","能力怎麼串在一起",lineTxt)}
+      ${sec("人生功課","這輩子一定會遇到的考題",lessonTxt)}
+      ${sec("影響最大的數","最容易影響你的能量",infTxt)}
+      ${sec("別人眼中的你","第一印象",eyeTxt)}
+      ${sec("天賦","天生就擅長的事",talTxt)}
+      ${sec("性格","最核心的你",perTxt)}
+      ${sec("陰暗面","失衡時的提醒",darkTxt)}
+      ${sec("後天五行的影響","環境帶給你的個性",elTxt)}
+      ${sec("流年大運分析","接下來三年",flowTxt)}
+      ${sec("總結與建議","給你的方向",sumTxt)}
+    </div>
+  </section>`;
+  return html.replace(/。(?=[^<\s」）])/g, "<br>").replace(/。/g, "");
+}
+
+function calcExample(inp, r, now){
+  const dt = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const f = flowAt(inp, r, dt);
+  const yd = String(f.pyYear).split("").map(Number), ys = yd.reduce((a,b)=>a+b,0), yr = reduce1(ys);
+  const bd = (r.ms+r.ds).replace(/^0/,"").split("").map(Number);
+  const md = [...digits(+r.ms), ...digits(+r.ds)], mds = md.reduce((a,b)=>a+b,0), mdr = reduce1(mds);
+  const sumPy = yr + mdr, monthSum = f.py + f.mo, daySum = f.pm + dt.getDate();
+  const red = n => n>9 ? `${n} → ${digits(n).join("+")} ＝ ${reduce1(n)}` : `${n}`;
+  return `<div class="calc">
+    <span class="calc-t">計算範例・以今天 ${dt.getFullYear()}/${dt.getMonth()+1}/${dt.getDate()} 為例</span>
+    <div class="calc-row"><b>流年</b><span>${f.pyYear} 年：${yd.join("+")} ＝ ${red(ys)}；生日 ${+r.ms}/${+r.ds}：${md.join("+")} ＝ ${red(mds)}；${yr} ＋ ${mdr} ＝ ${red(sumPy)}</span></div>
+    <div class="calc-row"><b>流月</b><span>流年 ${f.py} ＋ ${f.mo} 月 ＝ ${red(monthSum)}${f.mo!==dt.getMonth()+1?`<br><small class="calc-s">今天 ${dt.getMonth()+1}/${dt.getDate()} 還沒到 ${dt.getMonth()+1}/${+r.ds}，所以屬於 ${f.mo} 月的流月</small>`:""}</span></div>
+    <div class="calc-row"><b>流日</b><span>流月 ${f.pm} ＋ ${dt.getDate()} 日 ＝ ${red(daySum)}</span></div>
+    <p class="calc-n">${f.pyYear===dt.getFullYear()?"今年生日已經過了，所以用今年的年份算流年":`今年生日 ${+r.ms}/${+r.ds} 還沒到，所以流年還是用 ${f.pyYear} 年算`}</p>
+  </div>`;
+}
+
+function render(inp, r){
+  current = {inp, r};
+  const hourTxt = hourLabel(inp.hour, inp.jiTime);
+  const lunarTxt = `民國 ${inp.lroc} 年${inp.leap?"閏":""}${LMON[inp.lm-1]}月${lunarDay(inp.ld)}`;
+  const age = ageNow(inp);
+  const pre = r.after[0], post = r.after[r.after.length-1];
+  const periods = [{k:"40 歲以前",a:pre,on:age<40},{k:"40 歲以後",a:post,on:age>=40}];
+  const srcOf = e => Object.keys(GEN).find(k => GEN[k]===e);
+  const starRow = periods.map(P => `<div class="per ${P.on?"on":""}"><span class="pk">${P.k}${P.on?'<span class="now">目前</span>':''}</span><span class="pv">${elTag(P.a.el)}<span class="gua">${P.a.gua}</span></span>${P.a.onMid?'<span class="sub">中秋當日出生，請解盤時確認</span>':''}</div>`).join("");
+  const colorRow = periods.map(P => { const src = srcOf(P.a.el); return `<div class="per ${P.on?"on":""}"><span class="pk">${P.k}${P.on?'<span class="now">目前</span>':''}</span><span class="pv sw">${COLOR_LIST[src].map(c=>`<span class="swc"><i style="background:${SW[c]}"></i>${c==="靛"?"靛（極深藍）":c}</span>`).join("")}</span><span class="sub">${src}生${P.a.el}，生我者加分</span></div>`; }).join("");
+  const now = new Date();
+  const passed = (now.getMonth()+1>inp.m) || (now.getMonth()+1===inp.m && now.getDate()>=inp.d);
+  const defStart = passed ? now.getFullYear() : now.getFullYear()-1;
+  const yearOpts = Array.from({length:21},(_,i)=>defStart-5+i).map(y=>`<option value="${y}" ${y===defStart?"selected":""}>${y}（民國 ${y-1911}）</option>`).join("");
+
+  $("out").innerHTML = `
+  <nav class="jump" aria-label="快速跳轉">
+    <span class="jump-t">快速跳轉</span>
+    <div class="jump-g">
+      <button type="button" data-go="sChart">命盤</button><button type="button" data-go="sEl">後天五行</button><button type="button" data-go="sFlow">流年</button><button type="button" data-go="sMonth">流月</button><button type="button" data-go="sDay">流日</button><button type="button" data-go="sEnergy">能量對照</button>
+    </div>
+    <div class="jump-g sub">
+      <span class="jump-s">解析</span>${["連線","人生功課","影響最大數","別人眼中的你","天賦","性格","陰暗面","後天五行影響","流年大運","總結建議"].map((t,i)=>`<button type="button" data-go="an${i+1}">${t}</button>`).join("")}
+    </div>
+  </nav>
+
+  <section class="card reveal" id="sChart" aria-labelledby="t1">
+    <div class="eyebrow"><span>命盤</span><span>01 / 05</span></div>
+    <div class="an-top"><div class="who"><span class="nm" id="t1">${esc(inp.name)}</span><span class="tag">${inp.sex==="M"?"男":"女"}</span></div><button type="button" class="btn line sm editBtn" aria-pressed="false">編輯內容</button></div>
+    <p class="edit-hint" hidden>直接點有虛線框的文字就能修改，改完按「完成編輯」，下載的圖片與報告書會用你改過的內容</p>
+    <div class="meta"><span>西元 <b>${r.ys}/${r.ms}/${r.ds}</b></span><span>農曆 <b>${lunarTxt}</b></span><span>時辰 <b>${esc(hourTxt)}</b></span></div>
+    <div class="board">
+      <div class="blk">
+        <div class="blk-h"><h3>九宮格與數字連線</h3><span class="tiny">${r.lines.length} 條連線</span></div>
+        <div class="gridwrap">${gridSVG(r)}
+          <div class="marklegend"><span>○ 生日 1 分</span><span>△ 三者之合 2 分</span><span>□ 生命密碼 4 分</span></div>
+        </div>
+        ${r.lines.length ? `<div class="chips" style="justify-content:center;margin-top:16px">${r.lines.map(L=>`<span class="chip ${L.half?"half":""}"><b>${L.k}</b>${L.name}</span>`).join("")}</div>` : `<p class="small muted" style="margin:14px 0 0;text-align:center">沒有連線，數字能量比較分散，各自發揮。</p>`}
+        <p class="tiny" style="margin:10px 0 0;text-align:center">連線上每個數字都有分數才成立，虛框為兩數連線</p>
+      </div>
+      <div class="blk">
+        <div class="blk-h"><h3>命盤資料</h3><span class="tiny">西元出生年月日</span></div>
+        <div class="birth">
+          <div class="dg"><span class="cap">年</span><div class="box">${r.all.slice(0,4).map(n=>`<span>${n}</span>`).join("")}</div></div>
+          <div class="dg"><span class="cap">月</span><div class="box">${r.all.slice(4,6).map(n=>`<span>${n}</span>`).join("")}</div></div>
+          <div class="dg"><span class="cap">日</span><div class="box">${r.all.slice(6,8).map(n=>`<span>${n}</span>`).join("")}</div></div>
+        </div>
+        <div class="sums">
+          <div class="sum"><div class="cap">三者之合</div><div class="v">${r.chain.join(" / ")}</div></div>
+          <div class="sum key"><div class="cap">生命密碼</div><div class="v">${r.code}</div></div>
+        </div>
+        <dl class="kv" style="margin-top:10px">
+          <div><dt>人生功課</dt><dd>${r.lesson}</dd></div>
+          <div><dt>補數</dt><dd>${r.missing.length?r.missing.join("、"):"無"}</dd></div>
+          <div><dt>影響最大的數</dt><dd>${r.influence}</dd></div>
+          <div><dt>別人眼中的你</dt><dd>${r.influence}</dd></div>
+        </dl>
+        <div class="wide">
+          <div class="wide-h"><span>九星五行</span><span class="tiny">${r.after.length>1?"中秋後出生，前後各一個後天五行":"一生同一個後天五行"}・目前 ${age} 歲</span></div>
+          <div class="pers">${starRow}</div>
+        </div>
+        <div class="wide">
+          <div class="wide-h"><span>帶來加分的顏色</span><span class="tiny">取生我的五行顏色</span></div>
+          <div class="pers">${colorRow}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card reveal" id="sEl" aria-labelledby="t2">
+    <div class="eyebrow"><span>後天</span><span>02 / 05</span></div>
+    <div class="an-top"><h2 id="t2">後天五行</h2><button type="button" class="btn line sm editBtn" aria-pressed="false">編輯內容</button></div>
+    <p class="edit-hint" hidden>直接點有虛線框的文字就能修改，改完按「完成編輯」，下載的圖片與報告書會用你改過的內容</p>
+    <p class="small muted" style="margin:8px 0 0">${r.after.length>1?"農曆八月十五中秋節以後出生，有兩個後天五行（當年與下一年）。":"農曆八月十五中秋節以前出生，只有一個後天五行。"}</p>
+    <div class="els">${(r.after.length>1?periods:[{k:"一生",a:pre}]).map(P=>{const e=P.a.el; return `<div class="elbox">
+      <div class="elbox-h"><span class="big">${elTag(e)}行<span class="gua">${P.a.gua}</span></span><span class="tag">${P.k}</span></div>
+      <ul class="traits">${TRAIT[e].map(t=>`<li>${hl(t)}</li>`).join("")}</ul>
+      <div class="elfoot">${BODY[e]?`<div><span class="fk">身體</span><span>${BODY[e]}</span></div>`:""}<div><span class="fk">代表色</span><span>${COLORS[e]}</span></div></div>
+    </div>`;}).join("")}</div>
+  </section>
+
+  <section class="card reveal" id="sFlow" aria-labelledby="t3">
+    <div class="eyebrow"><span>流年</span><span>03 / 05</span></div>
+    <div class="an-top"><h2 id="t3">流年試算</h2><button type="button" class="btn line sm editBtn" aria-pressed="false">編輯內容</button></div>
+    <p class="edit-hint" hidden>直接點流年、流月、流日卡片裡有虛線框的文字就能修改；編輯時年份選單會暫停，改完按「完成編輯」</p>
+    ${calcExample(inp, r, now)}
+    <div class="explain">
+      <div><b>先天流年 30%</b><span>西元流年加總到個位數，再加上出生月日，從當年生日起算。代表這一年自己的節奏與課題。</span></div>
+      <div><b>後天大運 70%</b><span>以農曆年的九星五行，對照自己的後天五行，從農曆春節起算。代表這一年環境給你的助力或阻力。</span></div>
+    </div>
+    <div class="flowctl">
+      <div class="field"><label class="label" for="fyStart">起始年</label><select id="fyStart">${yearOpts}</select></div>
+      <div class="field"><label class="label" for="fyCount">年數</label><select id="fyCount">${[2,3,4,5].map(n=>`<option value="${n}" ${n===3?"selected":""}>${n} 年</option>`).join("")}</select></div>
+    </div>
+    <div class="stack" id="flowList"></div>
+    <div class="months pbreak" id="sMonth">
+      <div class="months-h">
+        <h3>流月運勢</h3>
+        <div class="field"><label class="label" for="fmYear">年份</label><select id="fmYear">${Array.from({length:7},(_,i)=>now.getFullYear()-1+i).map(y=>`<option value="${y}" ${y===now.getFullYear()?"selected":""}>${y}（民國 ${y-1911}）</option>`).join("")}</select></div>
+      </div>
+      <div class="note"><span class="note-t">小註解</span><p>流年＝當年年份＋出生月＋出生日。流月＝流年＋當月月份。流日＝流月＋當日日期。全部都從出生的日期算起：流年從生日那天換，每個流月也從每個月的出生日那天開始。後天大運以農曆春節換年。</p></div>
+      <div class="mgrid" id="monthList"></div>
+      <div class="mlegend"><span><i class="lv-add"></i>順：適合主動</span><span><i class="lv-flat"></i>平：穩穩走</span><span><i class="lv-sub"></i>慢：放慢腳步</span></div>
+    </div>
+    <div class="months pbreak" id="sDay">
+      <div class="months-h">
+        <h3>流日查詢</h3>
+        <div class="field"><label class="label" for="fdDate">日期</label><input type="date" id="fdDate" value="${now.getFullYear()}-${pad2(now.getMonth()+1)}-${pad2(now.getDate())}"></div>
+      </div>
+      <div id="dayBox"></div>
+      <div class="dgrid" id="dayGrid"></div>
+    </div>
+  </section>
+
+  <section class="card reveal" id="sEnergy" aria-labelledby="t4">
+    <div class="eyebrow"><span>對照</span><span>04 / 05</span></div>
+    <div class="an-top"><h2 id="t4">數字能量對照</h2><button type="button" class="btn line sm editBtn" aria-pressed="false">編輯內容</button></div>
+    <p class="edit-hint" hidden>直接點有虛線框的文字就能修改，改完按「完成編輯」，下載的圖片與報告書會用你改過的內容</p>
+    <div class="scale">
+      <div class="lv0"><b>0 分</b><span>沒有先天能量，須靠後天努力與環境</span></div>
+      <div class="lv1"><b>1 分</b><span>有先天能量，稍微努力就明顯提升</span></div>
+      <div class="lv2"><b>2 分</b><span>剛剛好，較容易做到平衡</span></div>
+      <div class="lv3"><b>3 分以上</b><span>先天能量很多，容易失衡，要用心拿捏</span></div>
+    </div>
+    <ul class="numlist">${[1,2,3,4,5,6,7,8,9,0].map(n=>`<li class="lv${lvl(r.score[n])}"><span class="k">${n}</span><span class="m">${MEAN[n]}</span><span class="pts">${r.score[n]} 分</span></li>`).join("")}</ul>
+  </section>
+
+  ${analysis(inp, r, defStart)}
+
+  <div class="actions">
+    <button type="button" class="btn line editBtn" aria-pressed="false">編輯內容</button>
+    <button type="button" class="btn" id="pdfBtn">報告書下載</button>
+    <button type="button" class="btn line" id="imgBtn">儲存圖片</button>
+    <button type="button" class="btn line" id="copyBtn">複製命盤文字</button>
+    <button type="button" class="btn line" id="saveBtn" ${adminReady?"":"hidden"}>存入個案後台</button>
+    <span class="status" id="actStatus" role="status"></span>
+  </div>`;
+
+  const drawFlow = () => {
+    const list = flowYears(inp, r, +$("fyStart").value, +$("fyCount").value);
+    current.flow = list;
+    $("flowList").innerHTML = list.map(o => {
+      const F = FLOW[o.f];
+      const fCls = F[1]==="good"?"add":F[1]==="bad"?"sub":"flat";
+      const x = o.rel;
+      return `<article class="year">
+        <header class="yh"><div><b>${o.y}</b><span class="roc">民國 ${o.roc} 年・${o.age} 歲</span></div><span class="verdict ${o.verdict[1]}">綜合參考　${o.verdict[0]}</span></header>
+        <div class="ybody">
+          <section class="ybox">
+            <div class="yk">先天流年<span>30%・${o.y}/${r.ms}/${r.ds} 起</span></div>
+            <div class="yv"><span class="yn">${o.f}</span><span>${F[0]}</span>${pill(F[1]==="good"?"順":F[1]==="bad"?"需留意":"平",fCls)}</div>
+            <ul class="ylist">${F[2].map(t=>`<li>${t}</li>`).join("")}</ul>
+          </section>
+          <section class="ybox">
+            <div class="yk">後天大運<span>70%・${o.cny?o.cny+" 春節起":""}</span></div>
+            <div class="yv">${elTag(o.ye.el)}<span class="gua">${o.ye.gua}</span><span class="vs">對照 ${o.me}行</span>${pill(x[3],x[2])}</div>
+            <div class="yrel">${o.me}對${o.ye.el}＝${x[0]}，像「${x[1]}」</div>
+            <ul class="ylist">${x[4].map(t=>`<li>${t}</li>`).join("")}</ul>
+            ${o.note?`<p class="tiny" style="margin:6px 0 0">${o.note}</p>`:""}
+          </section>
+        </div>
+        <div class="fex"><span class="fex-t">這一年可能的樣子</span>${Object.entries(FLOW_EX[o.f]).map(([k,v])=>`<p><span class="ex-k">${k}</span>${v}</p>`).join("")}<p><span class="ex-k">環境上</span>${REL_PLAIN[x[1]].ex.replace(/^例如：/,"")}</p></div>
+        <p class="ysum">${o.summary}</p>
+      </article>`;
+    }).join("");
+  };
+  $("fyStart").addEventListener("change", drawFlow);
+  $("fyCount").addEventListener("change", drawFlow);
+  drawFlow();
+  const drawMonths = () => {
+    const y = +$("fmYear").value;
+    const list = flowMonths(inp, r, y);
+    current.months = {y, list};
+    $("monthList").innerHTML = list.map(o => {
+      const T = MONTH_TXT[o.pm];
+      return `<article class="mcard v-${o.verdict[1]}">
+        <div class="mside"><span class="mm">${o.m}<small>月</small></span><span class="mr">${o.st.getMonth()+1}/${o.st.getDate()}–${o.en.getMonth()+1}/${o.en.getDate()}</span><span class="mv">${o.verdict[0]}</span></div>
+        <div class="mbody">
+          <div class="mk"><span class="mn" title="流月數">${o.pm}</span>${T.k}${o.bday?'<span class="bd">生日月・換新流年</span>':''}</div>
+          <p>${T.d}</p>
+          <p class="mt">${T.tip}</p>
+          <div class="fex sm"><span class="fex-t">例如</span>${Object.entries(MONTH_EX[o.pm]).map(([k,v])=>`<p><span class="ex-k">${k}</span>${v}</p>`).join("")}</div>
+          <p class="mf">流年 ${o.py} ＋ ${o.m} 月 ＝ 流月 ${o.pm}　｜　${o.ye.el}年，對你是「${o.rel[1]}」</p>
+        </div>
+      </article>`;
+    }).join("");
+  };
+  $("fmYear").addEventListener("change", drawMonths);
+  drawMonths();
+  const drawDay = () => {
+    const v = $("fdDate").value; if (!v) return;
+    const [Y,Mo,D] = v.split("-").map(Number); const dt = new Date(Y,Mo-1,D);
+    const f = flowAt(inp, r, dt), env = envOf(r, inp, dt), T = MONTH_TXT[f.pd], vd = judge(f.pd, env.rel);
+    const st = startOf(inp, monthOf(inp,dt).y, f.mo);
+    $("dayBox").innerHTML = `<div class="dbox v-${vd[1]}">
+      <div class="dchain">
+        <div><span class="dk">流年</span><b>${f.py}</b><small>${f.pyYear}/${r.ms}/${r.ds} 起</small></div><i>＋</i>
+        <div><span class="dk">月份</span><b>${f.mo}</b><small>${st.getMonth()+1}/${st.getDate()} 起</small></div><i>＝</i>
+        <div><span class="dk">流月</span><b>${f.pm}</b><small>${MONTH_TXT[f.pm].k}</small></div><i>＋</i>
+        <div><span class="dk">日期</span><b>${D}</b><small>${Mo}/${D}</small></div><i>＝</i>
+        <div class="hl"><span class="dk">流日</span><b>${f.pd}</b><small>${T.k}</small></div>
+      </div>
+      <p><b>${Y}/${Mo}/${D}　${T.k}日</b>${pill(vd[0], vd[1])}</p>
+      <p>${dayize(T.d)}</p>
+      <p class="mt">${dayize(T.tip)}</p>
+      <p class="tiny">這天屬於${env.ye.el}年，對你的${env.me}行是「${env.rel[1]}」</p>
+    </div>`;
+    // 該流月期間的每日
+    const M = monthOf(inp, dt); const s0 = startOf(inp, M.y, M.m);
+    const nm = M.m===12 ? startOf(inp, M.y+1, 1) : startOf(inp, M.y, M.m+1);
+    const days = []; for (let d = new Date(s0); d < nm; d = new Date(d.getFullYear(), d.getMonth(), d.getDate()+1)) days.push(d);
+    $("dayGrid").innerHTML = `<div class="dg-h">流月 ${f.pm}（${MONTH_TXT[f.pm].k}）期間的每一天</div>` + days.map(d => {
+      const n = reduce1(f.pm + d.getDate()); const on = d.getDate()===D && d.getMonth()===Mo-1;
+      return `<button type="button" class="dcell n${n} ${on?"on":""}" data-d="${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}"><span>${d.getMonth()+1}/${d.getDate()}</span><b>${n}</b><small>${MONTH_TXT[n].k}</small></button>`;
+    }).join("");
+  };
+  $("fdDate").addEventListener("change", drawDay);
+  $("dayGrid").addEventListener("click", e => { if (editing) return; const b = e.target.closest("[data-d]"); if (!b) return; $("fdDate").value = b.dataset.d; drawDay(); });
+  drawDay();
+
+  const jump = document.querySelector(".jump");
+  jump.addEventListener("click", e => { const b = e.target.closest("[data-go]"); if (!b) return; const t = $(b.dataset.go); if (t) t.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth", block:"start"}); });
+  if ("IntersectionObserver" in window){
+    const btns = [...jump.querySelectorAll("[data-go]")];
+    const io = new IntersectionObserver(ents => { ents.forEach(en => { if (en.isIntersecting){ btns.forEach(b => b.classList.toggle("on", b.dataset.go===en.target.id)); } }); }, {rootMargin:"-30% 0px -60% 0px"});
+    btns.forEach(b => { const t = $(b.dataset.go); if (t) io.observe(t); });
+  }
+  $("imgBtn").addEventListener("click", saveImage);
+  $("pdfBtn").addEventListener("click", saveReport);
+  document.querySelectorAll(".editBtn").forEach(b => b.addEventListener("click", () => setEdit(!editing)));
+  current.edited = null;
+  $("copyBtn").addEventListener("click", () => {
+    const text = summaryText();
+    const done = () => status("已複製");
+    const fallback = () => { const t=$("clip"); t.value=text; t.select(); try{ document.execCommand("copy"); done(); }catch(e){ status("無法自動複製，請手動選取",true); } };
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done,fallback); else fallback();
+  });
+  $("saveBtn").addEventListener("click", saveRecord);
+}
+let editing = false;
+// 可編輯區塊：解析、流年卡、流月卡、流日、後天五行
+const EDIT_SEL = ".an-b, .an-h, .year .ybody, .year .ysum, .mcard .mbody, .dbox p, .elbox .traits, .elbox .elfoot, #out .meta, #out .chips, #out .kv dd, #out .pers .per, .explain div, .scale div, .numlist .m, #out .small.muted, .months .note p, .months-h h3, .mlegend, .year .fex, .calc";
+const KEEP = [["ans",".ans"],["flow","#flowList"],["months","#monthList"],["day","#dayBox"],["els",".els"],["board",".board"],["meta",".meta"],["explain",".explain"],["scale",".scale"],["nums",".numlist"],["mnote",".months .note"],["mlegend",".mlegend"],["calc",".calc"]];
+function setEdit(on){
+  editing = on;
+  const out = $("out"); if (!out) return;
+  out.querySelectorAll(EDIT_SEL).forEach(el => { if (on) el.setAttribute("contenteditable","true"); else el.removeAttribute("contenteditable"); });
+  out.classList.toggle("editing", on);
+  document.querySelectorAll(".editBtn").forEach(b => { b.textContent = on ? "完成編輯" : "編輯內容"; b.setAttribute("aria-pressed", String(on)); });
+  document.querySelectorAll(".edit-hint").forEach(h => h.hidden = !on);
+  ["fyStart","fyCount","fmYear","fdDate"].forEach(id => { const e = $(id); if (e) e.disabled = on; });
+  if (!on && current){
+    const snap = {};
+    KEEP.forEach(([k,sel]) => { const el = out.querySelector(sel); if (el) snap[k] = el.innerHTML; });
+    snap.fy = $("fyStart")?.value; snap.fc = $("fyCount")?.value; snap.fm = $("fmYear")?.value; snap.fd = $("fdDate")?.value;
+    current.edited = snap; status("已套用你修改的內容");
+  }
+}
+function applyEdited(saved){
+  if (!saved) return;
+  let snap = saved;
+  if (typeof saved === "string"){ try{ snap = saved.trim().startsWith("{") ? JSON.parse(saved) : {ans:saved}; }catch(e){ snap = {ans:saved}; } }
+  // 先把選單切回存檔時的年份，再蓋上編輯過的內容
+  [["fyStart","fy"],["fyCount","fc"],["fmYear","fm"],["fdDate","fd"]].forEach(([id,k]) => { if (snap[k] && $(id)){ $(id).value = snap[k]; $(id).dispatchEvent(new Event("change")); } });
+  KEEP.forEach(([k,sel]) => { const el = $("out").querySelector(sel); if (el && snap[k]) el.innerHTML = snap[k]; });
+  $("out").querySelectorAll("[contenteditable]").forEach(el=>el.removeAttribute("contenteditable"));
+  current.edited = snap;
+}
+
+/* ---------- 檔案輸出 ---------- */
+const SNAP_W = 820;                 // 固定以電腦版寬度排版，手機與電腦輸出一致
+const MAX_AREA = 12e6, MAX_SIDE = 14000;   // 手機（特別是 iPhone）畫布上限約 1600 萬像素
+const ignoreEl = el => el.classList && (el.classList.contains("actions") || el.classList.contains("editBtn") || el.classList.contains("edit-hint") || el.classList.contains("jump"));
+async function snap(el){
+  const r = el.getBoundingClientRect();
+  const area = Math.max(1, r.width * r.height);
+  const estH = area / Math.min(SNAP_W, Math.max(r.width, 1)) ;
+  const sc = Math.max(0.6, Math.min(2, Math.sqrt(MAX_AREA / area), MAX_SIDE / Math.max(estH, r.height)));
+  const bgc = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim() || "#f4ecec";
+  return html2canvas(el, {scale:sc, backgroundColor:bgc, logging:false, useCORS:true, windowWidth:SNAP_W, ignoreElements:ignoreEl});
+}
+async function getDownloads(){
+  if (downloads) return downloads;
+  try{ if (window.claude && window.claude.use) downloads = await window.claude.use("downloads"); }catch(e){}
+  return downloads;
+}
+const DL_MSG = {declined:"你取消了儲存", rate_limited:"已經有一個儲存視窗開著，請先完成或關閉它再試", too_large:"檔案太大，請改用儲存圖片", rejected_extension:"這個檔案格式無法儲存", extension_not_enabled:"這個檢視模式不支援 PDF 下載", bad_request:"檔案內容有問題，請重新整理頁面後再試"};
+// 回傳 "saved" | "declined" | "fallback"
+async function offerFile(blob, fname){
+  const dl = await getDownloads();
+  if (!dl) return "fallback";
+  try{ await dl.save({filename:fname, data:blob}); return "saved"; }
+  catch(e){
+    const code = e && e.code;
+    if (code==="declined"){ status(DL_MSG.declined); return "declined"; }
+    if (code==="rate_limited" || code==="too_large"){ status(DL_MSG[code], true); return "declined"; }
+    console.warn("downloads.save", e);
+    return "fallback";
+  }
+}
+
+async function saveReport(){
+  if (typeof html2canvas==="undefined" || !window.jspdf){ status("報告書元件載入失敗，請重新整理頁面", true); return; }
+  if (editing) setEdit(false);
+  const btn = $("pdfBtn"); btn.disabled = true; status("報告書製作中，請稍候…");
+  const bg = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim() || "#f4ecec";
+  const head = document.createElement("div");
+  head.className = "rpt-head";
+  const d = new Date();
+  head.innerHTML = `<div class="rh-brand">Meng.喵　調頻 × 靈數解盤</div><div class="rh-title">後天五行靈數命盤報告書</div><div class="rh-meta">${esc(current.inp.name)}　製作日期 ${d.getFullYear()}/${pad2(d.getMonth()+1)}/${pad2(d.getDate())}</div>`;
+  $("out").prepend(head);
+  const hide = [...document.querySelectorAll("#out .flowctl, #out .months-h .field, #out .dgrid")];
+  hide.forEach(el => el.style.display = "none");
+  const pages = [];
+  try{
+    if (document.fonts && document.fonts.ready) await document.fonts.ready;
+    // 把內容切成適合一頁的小區塊：太高的區塊往下拆成子元素
+    const blocks = [];
+    const collect = (el, brk) => {
+      if (!el || ignoreEl(el) || (el.offsetParent===null && el!==head)) return;
+      brk = brk || el.classList.contains("pbreak");
+      const h = el.getBoundingClientRect().height;
+      const kids = [...el.children].filter(k => !ignoreEl(k) && k.offsetParent!==null);
+      const hasBreakInside = el.querySelector(".pbreak");
+      if ((h > 1700 || hasBreakInside) && kids.length > 1) kids.forEach((k,i) => collect(k, i===0 ? brk : false));
+      else blocks.push({el, brk});
+    };
+    collect(head, false);
+    [...$("out").children].forEach(sec => { if (sec!==head && !sec.classList.contains("actions") && !sec.classList.contains("jump")) collect(sec, true); });
+
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({unit:"mm", format:"a4", compress:true});
+    const PW = 210, PH = 297, M = 14, CW = PW - M*2;
+    const paint = () => { pdf.setFillColor(bg); pdf.rect(0,0,PW,PH,"F"); };
+    let y = M, page = 1;
+    const footer = () => { pdf.setFontSize(8); pdf.setTextColor(122,98,104); pdf.text(String(page), PW/2, PH-6, {align:"center"}); };
+    const newPage = () => { footer(); pdf.addPage(); page++; paint(); y = M; };
+    paint();
+    let i = 0;
+    for (const {el, brk} of blocks){
+      i++;
+      if (brk && y > M + 60) newPage();
+      status(`報告書製作中… ${Math.round(i/blocks.length*100)}%`);
+      const cv = await snap(el);
+      if (!cv.width || !cv.height) continue;
+      const h = cv.height * CW / cv.width;
+      if (h <= PH - M - y){ pdf.addImage(cv.toDataURL("image/jpeg",0.9), "JPEG", M, y, CW, h); y += h + 4; continue; }
+      if (h <= PH - M*2){ newPage(); pdf.addImage(cv.toDataURL("image/jpeg",0.9), "JPEG", M, y, CW, h); y += h + 4; continue; }
+      if (y > M) newPage();
+      const pxPerMm = cv.width / CW, sliceH = Math.floor((PH - M*2) * pxPerMm);
+      for (let sy = 0; sy < cv.height; sy += sliceH){
+        const part = document.createElement("canvas"); part.width = cv.width; part.height = Math.min(sliceH, cv.height - sy);
+        part.getContext("2d").drawImage(cv, 0, sy, cv.width, part.height, 0, 0, cv.width, part.height);
+        if (sy > 0) newPage();
+        const ph = part.height / pxPerMm;
+        pdf.addImage(part.toDataURL("image/jpeg",0.9), "JPEG", M, y, CW, ph); y += ph + 4;
+      }
+    }
+    footer();
+    const blob = pdf.output("blob");
+    const fname = `命盤報告書_${current.inp.name}_${current.r.ys}${current.r.ms}${current.r.ds}.pdf`;
+    const res = await offerFile(blob, fname);
+    if (res==="saved") status(`報告書已儲存，共 ${page} 頁`);
+    else if (res==="fallback"){
+      // 無法直接下載時：把每一頁做成圖片，讓使用者長按另存
+      status("這個檢視模式無法直接下載 PDF，已改為顯示報告書圖片，可長按或右鍵另存", true);
+      const cv = await snap($("out"));
+      const b2 = await new Promise(res2 => cv.toBlob(res2, "image/png"));
+      if (b2) showPreview(URL.createObjectURL(b2), "報告書圖片");
+    }
+  }catch(e){ console.error(e); status("報告書製作失敗："+(e.message||e)+"。請重新整理頁面再試一次", true); }
+  finally{ head.remove(); hide.forEach(el => el.style.display = ""); btn.disabled = false; }
+}
+
+async function saveImage(){
+  if (editing) setEdit(false);
+  if (typeof html2canvas==="undefined"){ status("圖片元件載入失敗，請重新整理頁面", true); return; }
+  const btn = $("imgBtn"); btn.disabled = true; status("圖片製作中…");
+  const hide = [...document.querySelectorAll("#out .flowctl, #out .months-h .field, #out .dgrid")];
+  hide.forEach(el => el.style.display = "none");
+  try{
+    if (document.fonts && document.fonts.ready) await document.fonts.ready;
+    const canvas = await snap($("out"));
+    // 補上底色（snap 為透明背景）
+    const bg = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim() || "#f4ecec";
+    const c2 = document.createElement("canvas"); c2.width = canvas.width; c2.height = canvas.height;
+    const g = c2.getContext("2d"); g.fillStyle = bg; g.fillRect(0,0,c2.width,c2.height); g.drawImage(canvas,0,0);
+    const blob = await new Promise(res => c2.toBlob(res, "image/png"));
+    if (!blob){ status("圖片太大，裝置無法產生。請改用「報告書下載」", true); return; }
+    const fname = `命盤_${current.inp.name}_${current.r.ys}${current.r.ms}${current.r.ds}.png`;
+    const res = await offerFile(blob, fname);
+    if (res==="saved") status("圖片已儲存");
+    else if (res==="fallback"){ showPreview(URL.createObjectURL(blob), "命盤圖片"); status("請在圖片上長按或按右鍵另存"); }
+  }catch(e){ console.error(e); status("圖片製作失敗："+(e.message||e), true); }
+  finally{ hide.forEach(el => el.style.display = ""); btn.disabled = false; }
+}
+function showPreview(url, title){
+  let ov = $("imgOverlay");
+  if (!ov){ ov = document.createElement("div"); ov.id = "imgOverlay"; ov.className = "overlay"; document.body.appendChild(ov);
+    ov.addEventListener("click", e => { if (e.target===ov || e.target.dataset.close!==undefined) ov.hidden = true; }); }
+  ov.innerHTML = `<div class="ov-box"><div class="ov-h"><span>${title||"圖片"}：長按或右鍵另存</span><button class="btn line sm" data-close>關閉</button></div><img src="${url}" alt="命盤圖片"></div>`;
+  ov.hidden = false;
+}
+function status(t,bad){ const s=$("actStatus"); if(!s) return; s.textContent=t; s.className="status"+(bad?" bad":""); }
+function summaryText(){
+  const {inp,r,flow} = current;
+  const hourTxt = hourLabel(inp.hour, inp.jiTime);
+  return [
+    `【後天五行靈數命盤】${inp.name}（${inp.sex==="M"?"男":"女"}）`,
+    `西元 ${r.ys}/${r.ms}/${r.ds}｜農曆 民國${inp.lroc}年${inp.leap?"閏":""}${inp.lm}月${inp.ld}日｜${hourTxt}`,
+    `三者之合 ${r.chain.join("/")}｜生命密碼 ${r.code}`,
+    `人生功課 ${r.lesson}｜影響最大的數 ${r.influence}｜別人眼中的你 ${r.influence}｜補數 ${r.missing.join("、")||"無"}`,
+    `九星五行 40歲以前 ${r.after[0].el}（${r.after[0].gua}）／40歲以後 ${r.after[r.after.length-1].el}（${r.after[r.after.length-1].gua}）｜加分顏色 ${r.boost.map(b=>b.colors).join("；")}`,
+    `數字連線 ${r.lines.map(L=>L.k+L.name).join("、")||"無"}`,
+    `九宮格 ${[1,2,3,4,5,6,7,8,9,0].map(n=>n+":"+r.score[n]).join(" ")}`,
+    ...(flow||[]).map(o=>`${o.y}｜先天流年 ${o.f}${FLOW[o.f][0]}｜後天大運 ${o.ye.el}（${o.ye.gua}）${o.rel[1]}・${o.rel[3]}｜${o.verdict[0]}`),
+    ...(current.months ? [`${current.months.y} 流月｜` + current.months.list.map(o=>`${o.m}月(${o.st.getMonth()+1}/${o.st.getDate()}起) ${o.pm}${MONTH_TXT[o.pm].k}（${o.verdict[0]}）`).join("　")] : [])
+  ].join("\n");
+}
+
+function read(){
+  const s = solarFromForm(); const sex = $("sexM").checked?"M":$("sexF").checked?"F":"";
+  const errs = [];
+  if (!$("name").value.trim()) errs.push("姓名");
+  if (!sex) errs.push("生理性別");
+  if (!s) errs.push("正確的西元出生年月日");
+  if ($("hour").value==="") errs.push("出生時辰");
+  if ($("hour").value==="ji" && !$("jiTime").value) errs.push("吉時的精確時間");
+  const lroc = parseInt($("ly").value,10);
+  if (isNaN(lroc)) errs.push("農曆出生年（民國）");
+  if (errs.length){ $("err").textContent = "請填寫：" + errs.join("、") + "。"; return null; }
+  const inp = {name:$("name").value.trim(),sex,...s,hour:$("hour").value,jiTime:$("jiTime").value,lroc,lm:+$("lm").value,ld:+$("ld").value,leap:$("leap").checked};
+  const c = convert(s);
+  $("err").textContent = (c && (c.roc!==inp.lroc||c.m!==inp.lm||c.d!==inp.ld||c.leap!==inp.leap))
+    ? `提醒：農曆與西元換算結果（民國 ${c.roc} 年${c.leap?"閏":""}${LMON[c.m-1]}月${lunarDay(c.d)}）不一致，已依你填寫的農曆計算，請再確認。` : "";
+  return inp;
+}
+$("f").addEventListener("submit", e => {
+  e.preventDefault();
+  if (typeof Solar==="undefined"){ $("err").textContent = "農曆換算元件載入失敗，請重新整理頁面。"; return; }
+  const inp = read(); if (!inp) return;
+  render(inp, compute(inp));
+  $("out").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth", block:"start"});
+});
+
+/* ---------- 個案後台 (owner only, db) ---------- */
+let db = null, adminReady = false, records = [], downloads = null;
+function route(){
+  const admin = location.hash==="#admin" && adminReady;
+  $("viewCalc").style.display = admin ? "none" : "flex";
+  $("viewAdmin").hidden = !admin; $("viewAdmin").style.display = admin ? "flex" : "none";
+  $("navCalc").classList.toggle("on", !admin); $("navAdmin").classList.toggle("on", admin);
+  document.title = admin ? "個案後台" : "後天五行靈數命盤";
+  window.scrollTo(0,0);
+}
+function showTab(which){ if (which==="admin") location.hash = "admin"; else { if (location.hash) history.replaceState(null,"",location.pathname+location.search); route(); } }
+window.addEventListener("hashchange", route);
+$("navCalc").addEventListener("click", e => { e.preventDefault(); showTab("calc"); });
+document.querySelector(".admin-hero .btn").addEventListener("click", e => { e.preventDefault(); showTab("calc"); });
+
+async function initAdmin(){
+  if (!window.claude?.use) return;
+  try{
+    const user = await claude.use("user");
+    const allowed = user ? (await user.isOwner()) || (await user.canEdit()) : false;
+    if (!allowed) return;
+    db = await claude.use("db"); if (!db) return;
+    adminReady = true; $("navAdmin").hidden = false; route();
+    const sb = $("saveBtn"); if (sb) sb.hidden = false;
+    db.collection("clients").orderBy("createdAt","desc").onSnapshot(snap => {
+      records = snap.docs.map(d => ({id:d.id, ...d.data()}));
+      drawRecords();
+    }, e => { $("adminStatus").textContent = "無法讀取個案資料：" + e.message; $("adminStatus").className = "status bad"; });
+    downloads = await claude.use("downloads");
+    if (downloads) $("exportBtn").hidden = false;
+  }catch(e){}
+}
+async function saveRecord(){
+  if (!db || !current) return;
+  const {inp,r} = current;
+  const dup = records.find(x => x.name===inp.name && x.y===inp.y && x.m===inp.m && x.d===inp.d);
+  if (editing) setEdit(false);
+  const body = {...inp, analysisHtml: current.edited ? JSON.stringify(current.edited) : null, code:r.code, chain:r.chain.join("/"), elements:r.after.map(a=>a.el+"（"+a.gua+"）").join("、"),
+    missing:r.missing.join("、"), lines:r.lines.map(L=>L.k).join(" "), updatedAt:new Date().toISOString()};
+  status("儲存中…");
+  try{
+    if (dup) await db.collection("clients").doc(dup.id).update(body);
+    else await db.collection("clients").add({...body, note:"", createdAt:new Date().toISOString()});
+    status(dup ? "已更新個案資料" : "已存入個案後台");
+  }catch(e){ status("儲存失敗：" + (e.message||e.code), true); }
+}
+const noteTimers = {};
+const confirming = new Set();
+function drawRecords(){
+  const q = $("q").value.trim();
+  const list = records.filter(x => !q || [x.name,`${x.y}/${x.m}/${x.d}`,x.note].join(" ").includes(q));
+  $("recCount").textContent = `共 ${records.length} 位`;
+  const ym = new Date().toISOString().slice(0,7);
+  const thisMonth = records.filter(x => (x.createdAt||"").startsWith(ym)).length;
+  const withNote = records.filter(x => (x.note||"").trim()).length;
+  const codeCount = {}; records.forEach(x => { codeCount[x.code] = (codeCount[x.code]||0)+1; });
+  const topCode = Object.entries(codeCount).sort((a,b)=>b[1]-a[1])[0];
+  $("stats").innerHTML = `<div><span>個案總數</span><b>${records.length}</b></div><div><span>本月新增</span><b>${thisMonth}</b></div><div><span>已寫備註</span><b>${withNote}</b></div><div><span>最多的生命密碼</span><b>${topCode?topCode[0]:"–"}</b></div>`;
+  if (!records.length){ $("recs").innerHTML = `<div class="empty">還沒有個案。到「排盤」頁排出命盤後，按「存入個案後台」。</div>`; return; }
+  if (!list.length){ $("recs").innerHTML = `<div class="empty">找不到符合「${esc(q)}」的個案。</div>`; return; }
+  $("recs").innerHTML = list.map(x => `
+    <div class="rec" data-id="${x.id}">
+      <div style="min-width:0">
+        <div class="nm">${esc(x.name)} <span class="tag">${x.sex==="M"?"男":"女"}</span></div>
+        <div class="facts"><span>西元 ${x.y}/${pad2(x.m)}/${pad2(x.d)}</span><span>農曆 民國${x.lroc}年${x.leap?"閏":""}${x.lm}月${x.ld}日</span><span>${x.hour==="ji"||x.hour==="jiu"?esc(hourLabel(x.hour,x.jiTime)):(HOURS[x.hour]?HOURS[x.hour][0]+"時":"")}</span></div>
+        <div class="facts"><span>生命密碼 ${x.code}</span><span>三者之合 ${esc(x.chain)}</span><span>後天五行 ${esc(x.elements)}</span><span>補數 ${esc(x.missing)||"無"}</span></div>
+        <textarea data-note="${x.id}" placeholder="備註：諮詢主題、聯絡方式、解盤重點">${esc(x.note)}</textarea>
+        <div class="tiny">存入 ${x.createdAt?x.createdAt.slice(0,10):""}</div>
+      </div>
+      <div class="ops">
+        <button class="btn line sm" data-open="${x.id}">開啟命盤</button>
+        ${confirming.has(x.id)
+          ? `<span class="confirm">確定刪除？<button class="btn line sm danger" data-delyes="${x.id}">刪除</button><button class="btn line sm" data-delno="${x.id}">取消</button></span>`
+          : `<button class="btn line sm danger" data-del="${x.id}">刪除</button>`}
+      </div>
+    </div>`).join("");
+}
+$("q").addEventListener("input", drawRecords);
+$("recs").addEventListener("click", async e => {
+  const t = e.target.closest("button"); if (!t) return;
+  if (t.dataset.open){ const x = records.find(r=>r.id===t.dataset.open); if(!x) return; setForm(x); showTab("calc"); const inp = read(); if(inp){ render(inp,compute(inp)); if (x.analysisHtml) applyEdited(x.analysisHtml); $("out").scrollIntoView({block:"start"}); } }
+  if (t.dataset.del){ confirming.add(t.dataset.del); drawRecords(); }
+  if (t.dataset.delno){ confirming.delete(t.dataset.delno); drawRecords(); }
+  if (t.dataset.delyes){ const id = t.dataset.delyes; confirming.delete(id); try{ await db.collection("clients").doc(id).delete(); }catch(err){ $("adminStatus").textContent = "刪除失敗："+err.message; } }
+});
+$("recs").addEventListener("input", e => {
+  const id = e.target.dataset?.note; if (!id) return;
+  clearTimeout(noteTimers[id]);
+  const val = e.target.value;
+  noteTimers[id] = setTimeout(async () => {
+    try{ await db.collection("clients").doc(id).update({note:val}); $("adminStatus").textContent = "備註已保存"; $("adminStatus").className="status"; }
+    catch(err){ $("adminStatus").textContent = "備註保存失敗："+err.message; $("adminStatus").className="status bad"; }
+  }, 900);
+});
+$("exportBtn").addEventListener("click", async () => {
+  const head = ["姓名","性別","西元生日","出生時辰","農曆生日","三者之合","生命密碼","後天五行","補數","數字連線","備註","存入日期"];
+  const q = v => `"${String(v??"").replace(/"/g,'""')}"`;
+  const rows = records.map(x => [x.name, x.sex==="M"?"男":"女", `${x.y}/${pad2(x.m)}/${pad2(x.d)}`, x.hour==="ji"||x.hour==="jiu"?hourLabel(x.hour,x.jiTime):(HOURS[x.hour]?HOURS[x.hour][0]+"時":""),
+    `民國${x.lroc}年${x.leap?"閏":""}${x.lm}月${x.ld}日`, x.chain, x.code, x.elements, x.missing, x.lines, x.note, (x.createdAt||"").slice(0,10)].map(q).join(","));
+  const csv = "﻿" + [head.map(q).join(","), ...rows].join("\r\n");
+  try{ await downloads.save({filename:`個案資料_${new Date().toISOString().slice(0,10)}.csv`, data:new Blob([csv],{type:"text/csv"})}); }
+  catch(e){ $("adminStatus").textContent = "匯出未完成"; $("adminStatus").className="status bad"; }
+});
+
+/* ---------- start with the course example ---------- */
+setTimeout(initAdmin, 0);
+setTimeout(async()=>{ try{ if(!downloads && window.claude?.use) downloads = await claude.use("downloads"); }catch(e){} }, 0);
+$("name").value = "王小花"; $("sexF").checked = true; $("sy").value = 1995; $("sm").value = 9; $("sd").value = 14; $("hour").value = 6;
+if (typeof Solar!=="undefined"){ fillLunar(); lunarTouched = false; const inp = read(); if (inp) render(inp, compute(inp)); }
+else $("out").innerHTML = '<p class="err">農曆換算元件載入失敗，請重新整理頁面。</p>';
+})();
+</script>
