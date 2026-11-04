@@ -1,0 +1,11 @@
+{
+  "name": "amber-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Amber 行銷顧問個人網站（純靜態）",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "dev": "node scripts/build.js && python3 -m http.server 4173"
+  }
+}
