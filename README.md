@@ -4,6 +4,8 @@ Aira 艾拉｜喵選拾光的能量手串與單顆水晶介紹網站。
 
 - `index.html`：網站本體，手串與水晶資料直接存在頁面裡。
 - `services/`：服務項目頁（牌卡占卜、靈數命盤、脈輪檢測價目與預約須知），網址為 `/services/`。
+- `articles/`：文章頁（網址 `/articles/`）。文章內容只要改 `articles/posts.js`，再執行 `node tools/build-articles.mjs`，文章頁、`sitemap.xml`、`robots.txt` 會自動更新。
+- `vercel.json`：Vercel 部署設定（資安標頭、自動產生文章頁）。
 - `tools/build_shop.py`：把後台資料寫進 `index.html` 的工具。
 - 內容請在後台編輯，再由 Claude 更新這個網站，不需要手動修改 `index.html`。
 - 給 Claude 的完整交接說明在 `CLAUDE.md`。

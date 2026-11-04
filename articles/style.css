@@ -1,0 +1,72 @@
+:root{
+  color-scheme:light;
+  --blush:#F3E0E2; --paper:#F8ECEE; --bar:#E9C9D0; --rail:#D9C3C7; --gold:#C9A66B;
+  --ink:#4A3440; --soft:#8C7680; --rose:#A3536A; --rose-deep:#7E3A50; --white:#fff;
+  --f:"Noto Serif TC","Songti TC","PMingLiU",serif;
+}
+*{box-sizing:border-box}
+html{background:var(--blush);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--blush);color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.9;
+  padding:16px calc(16px + env(safe-area-inset-right)) 40px calc(16px + env(safe-area-inset-left));overflow-x:hidden}
+a{color:var(--rose);text-decoration:none}
+a:hover{color:var(--rose-deep)}
+:focus-visible{outline:1.5px solid var(--rose);outline-offset:3px}
+
+/* 雙線外框 */
+.sheet{max-width:720px;margin:0 auto;background:var(--paper);border:1px solid var(--rail);outline:1px solid var(--gold);outline-offset:-7px;padding:28px 28px 24px}
+
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;white-space:nowrap;
+  padding-bottom:12px;border-bottom:1px solid var(--rail);margin-bottom:28px}
+.brand{letter-spacing:.3em;font-size:14px;color:var(--soft)}
+.top nav{display:flex;gap:18px;font-size:14px}
+.top nav a{color:var(--soft);letter-spacing:.15em;padding:2px 0;border-bottom:1px solid transparent}
+.top nav a[aria-current],.top nav a:hover{color:var(--rose);border-bottom-color:var(--gold)}
+
+/* 列表頁 */
+.intro{text-align:center;margin-bottom:28px}
+.eyebrow{margin:0;font-size:12px;letter-spacing:.5em;color:var(--soft)}
+.intro h1{margin:2px 0 6px;font-weight:500;font-size:30px;letter-spacing:.3em;text-indent:.3em}
+.lead{margin:0;color:var(--soft);font-size:14px}
+.list{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.card{display:block;background:var(--white);border:1px solid var(--rail);border-top:3px solid var(--bar);padding:18px 20px;color:var(--ink);transition:border-color .2s,transform .2s}
+.card:hover{border-top-color:var(--rose);transform:translateY(-1px)}
+.card time,.post-head time{display:block;font-size:13px;color:var(--soft);letter-spacing:.1em}
+.card h2{margin:2px 0 6px;font-size:19px;line-height:1.55;font-weight:500;letter-spacing:.04em;overflow-wrap:anywhere}
+.card p{margin:0 0 8px;font-size:14px;color:var(--soft);line-height:1.8}
+.more{font-size:13px;color:var(--rose);letter-spacing:.2em}
+.more::after{content:" →"}
+
+/* 文章頁 */
+.crumb{margin:0 0 18px;font-size:13px;color:var(--soft)}
+.post-head{margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid var(--rail)}
+.post-head h1{margin:4px 0 0;font-weight:500;font-size:26px;line-height:1.5;letter-spacing:.04em;overflow-wrap:anywhere}
+.post p{margin:0 0 1.2em}
+.post h2{margin:2em 0 .6em;font-size:19px;font-weight:600;color:var(--rose-deep);letter-spacing:.06em;
+  padding:6px 12px;background:var(--bar);border-left:3px solid var(--rose)}
+.post ol,.post ul{margin:0 0 1.2em;padding-left:1.5em}
+.post li{margin-bottom:.5em}
+.post li::marker{color:var(--rose)}
+.post blockquote{margin:0 0 1.2em;padding:8px 16px;border-left:3px solid var(--gold);color:var(--soft)}
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:36px;padding-top:20px;border-top:1px solid var(--rail)}
+.pager a{display:block;font-size:14px;line-height:1.6;color:var(--ink);padding:10px 12px;border:1px solid var(--rail);background:var(--white);overflow-wrap:anywhere}
+.pager a:hover{border-color:var(--rose)}
+.pager small{display:block;font-size:12px;color:var(--soft);letter-spacing:.2em}
+.pager .next{text-align:right;grid-column:2}
+.pager .prev{grid-column:1}
+.back{text-align:center;margin:24px 0 0;font-size:14px}
+
+.foot{margin-top:32px;padding-top:14px;border-top:1px solid var(--rail);text-align:center;font-size:12px;letter-spacing:.2em;color:var(--soft)}
+
+@media (max-width:600px){
+  body{font-size:15px;padding-top:10px}
+  .sheet{padding:20px 16px 18px;outline-offset:-5px}
+  .brand{letter-spacing:.2em;font-size:13px}
+  .top nav{gap:14px}
+  .intro h1{font-size:26px}
+  .post-head h1{font-size:22px}
+  .post h2{font-size:17px}
+  .pager{grid-template-columns:1fr}
+  .pager .next,.pager .prev{grid-column:auto;text-align:left}
+  .foot{letter-spacing:.1em}
+}
+@media (prefers-reduced-motion:reduce){.card{transition:none}}
