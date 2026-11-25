@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Aira 艾拉 服務項目</title>
-<meta name="description" content="Aira 艾拉｜牌卡占卜、後天五行靈數命盤、脈輪檢測服務項目與預約須知。">
+<meta name="description" content="Aira 艾拉｜牌卡占卜、後天五行靈數命盤、脈輪檢測、靈擺調頻服務項目與預約須知。">
 <meta property="og:title" content="Aira 艾拉 服務項目">
-<meta property="og:description" content="牌卡占卜、後天五行靈數命盤、脈輪檢測服務項目與預約須知。">
+<meta property="og:description" content="牌卡占卜、後天五行靈數命盤、脈輪檢測、靈擺調頻服務項目與預約須知。">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://meng-cat7777.github.io/-/services/cover-aira-wide2.jpg">
 <meta name="theme-color" content="#f6e9ec">
@@ -114,6 +114,51 @@ ol{margin:0;padding-left:1.4em;display:grid;gap:4px}
 .view{animation:rise .45s ease both}
 @keyframes rise{from{opacity:0;transform:translateY(12px)}}
 section.view{margin-top:28px}
+
+/* tabs: one row; scroll sideways on narrow screens */
+.views{display:flex;flex-wrap:nowrap;justify-content:flex-start;margin:0;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:2px}
+.views::-webkit-scrollbar{display:none}
+.views button{flex:1 0 auto;white-space:nowrap;padding:9px 14px}
+@media (max-width:600px){.views{margin-inline:-16px;padding-inline:16px}}
+.bar-top{justify-content:space-between}
+.bar-top .contact{margin-left:auto}
+/* pendulum rows in price list */
+.plan-link{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-decoration:underline dotted var(--line);text-underline-offset:5px;white-space:nowrap}
+.plan-link:hover{color:var(--rose)}
+.plan-link:focus-visible{outline:2px solid var(--rose);outline-offset:2px}
+.price .amt.ask{font-family:var(--serif);font-size:14px;letter-spacing:.1em}
+.price .amt.ask::before{content:none}
+/* pendulum view */
+.chips{display:flex;flex-wrap:nowrap;justify-content:flex-start;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 0 16px;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+@media (max-width:600px){.chips{margin-inline:-16px;padding-inline:16px}}
+.chips button{flex:0 0 auto;white-space:nowrap;font:inherit;font-size:13px;color:var(--rose);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:4px 12px;cursor:pointer}
+.chips button:hover{background:var(--band)}
+.chips button:focus-visible,.pick button:focus-visible,.book:focus-visible{outline:2px solid var(--rose);outline-offset:2px}
+.plans{display:grid;gap:18px}
+.plan,.guide{scroll-margin-top:16px}
+.hook{font-family:var(--serif);font-size:18px;line-height:1.6;text-align:center;margin:0;text-wrap:balance}
+.plan-body{display:grid;gap:10px}
+.plan-body p{margin:0}
+.plan-body .lead{color:var(--rose);font-family:var(--serif);margin-top:4px}
+.ticks{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.ticks li{position:relative;padding-left:1.3em}
+.ticks li::before{content:"✦";position:absolute;left:0;top:.1em;font-size:11px;color:var(--rose)}
+.close{margin:0;text-align:center;font-family:var(--serif);color:var(--rose);text-wrap:balance}
+.book{justify-self:center;display:inline-block;font-family:var(--serif);font-size:15px;letter-spacing:.15em;color:#fff;background:linear-gradient(135deg,#d77c97,#a2475f);border-radius:999px;padding:9px 26px;text-decoration:none;box-shadow:0 8px 20px -10px rgba(162,71,95,.8)}
+.book:hover{filter:brightness(1.07)}
+.pick{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.pick li{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 12px;border-bottom:1px dotted var(--line);padding-bottom:8px}
+.pick button{font:inherit;font-family:var(--serif);font-size:14px;color:var(--rose);background:var(--band);border:0;border-radius:8px;padding:3px 12px;cursor:pointer;white-space:nowrap}
+.small-note{margin:0;font-size:13px;color:var(--muted);text-align:center}
+@media (max-width:520px){
+  .price.pend li{display:grid;grid-template-columns:auto 1fr auto;column-gap:8px;row-gap:0}
+  .price.pend .name{grid-column:1;grid-row:1}
+  .price.pend .dots{grid-column:2;grid-row:1}
+  .price.pend .amt{grid-column:3;grid-row:1}
+  .price.pend .note{grid-column:1/-1;grid-row:2;display:block;white-space:normal;line-height:1.4}
+}
+.disclaimer{margin:4px 0 0;font-size:12px;color:var(--muted);text-align:center}
 footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-family:var(--latin);letter-spacing:.25em;color:var(--muted)}
 @media (max-width:420px){.price .note{display:block;white-space:normal}.price li{flex-wrap:wrap}}
 html{-webkit-text-size-adjust:100%}
@@ -123,62 +168,26 @@ body{margin:0}
 </head>
 <body>
 
-<div class="backdrop play" id="cover">
+<div class="backdrop inside" id="cover" aria-hidden="true">
   <div class="frame">
     <div class="stage">
       <picture>
         <source media="(max-aspect-ratio: 4/5)" srcset="cover-aira-mobile.jpg" width="1124" height="1882">
         <img src="cover-aira-wide2.jpg" width="2753" height="1185" decoding="async" alt="長髮女孩披著粉色毛毯，抱住發光的水晶球">
       </picture>
-      <svg class="ov-w" viewBox="0 0 1089 469" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <radialGradient id="orb">
-            <stop offset="0" stop-color="#fff8e8" stop-opacity=".95"/>
-            <stop offset=".45" stop-color="#ffd9ec" stop-opacity=".55"/>
-            <stop offset="1" stop-color="#ffc4e0" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-
-        <!-- crystal-ball glow -->
-        <circle class="glow" cx="497" cy="182" r="68" fill="url(#orb)"/>
-
-        <!-- sparkles around the ball -->
-        <g fill="#fffaf0">
-          <path class="spark" style="animation-delay:2s" d="M450 141 L453.0 147.0 L459 150 L453.0 153.0 L450 159 L447.0 153.0 L441 150 L447.0 147.0Z"/>
-          <path class="spark" style="animation-delay:2.25s" d="M545 158 L547.3333333333334 162.66666666666666 L552 165 L547.3333333333334 167.33333333333334 L545 172 L542.6666666666666 167.33333333333334 L538 165 L542.6666666666666 162.66666666666666Z"/>
-          <path class="spark" style="animation-delay:2.45s" d="M465 222 L467.0 226.0 L471 228 L467.0 230.0 L465 234 L463.0 230.0 L459 228 L463.0 226.0Z"/>
-          <path class="spark" style="animation-delay:2.6s" d="M528 214 L530.6666666666666 219.33333333333334 L536 222 L530.6666666666666 224.66666666666666 L528 230 L525.3333333333334 224.66666666666666 L520 222 L525.3333333333334 219.33333333333334Z"/>
-          <path class="spark" style="animation-delay:2.15s" d="M500 122.5 L501.8333333333333 126.16666666666667 L505.5 128 L501.8333333333333 129.83333333333334 L500 133.5 L498.1666666666667 129.83333333333334 L494.5 128 L498.1666666666667 126.16666666666667Z"/>
-        </g>
-      </svg>
-      <svg class="ov-m" viewBox="0 0 562 941" preserveAspectRatio="none" aria-hidden="true">
-        <circle class="glow" cx="216" cy="477" r="90" fill="url(#orb)"/>
-        <g fill="#fffaf0">
-          <path class="spark" style="animation-delay:2s" d="M158 428 L161.66666666666666 435.3333333333333 L169 439 L161.66666666666666 442.6666666666667 L158 450 L154.33333333333334 442.6666666666667 L147 439 L154.33333333333334 435.3333333333333Z"/>
-          <path class="spark" style="animation-delay:2.25s" d="M278 448 L281.0 454.0 L287 457 L281.0 460.0 L278 466 L275.0 460.0 L269 457 L275.0 454.0Z"/>
-          <path class="spark" style="animation-delay:2.45s" d="M176 533 L178.66666666666666 538.3333333333334 L184 541 L178.66666666666666 543.6666666666666 L176 549 L173.33333333333334 543.6666666666666 L168 541 L173.33333333333334 538.3333333333334Z"/>
-          <path class="spark" style="animation-delay:2.6s" d="M262 525 L265.3333333333333 531.6666666666666 L272 535 L265.3333333333333 538.3333333333334 L262 545 L258.6666666666667 538.3333333333334 L252 535 L258.6666666666667 531.6666666666666Z"/>
-          <path class="spark" style="animation-delay:2.15s" d="M222 396 L224.33333333333334 400.6666666666667 L229 403 L224.33333333333334 405.3333333333333 L222 410 L219.66666666666666 405.3333333333333 L215 403 L219.66666666666666 400.6666666666667Z"/>
-        </g>
-      </svg>
     </div>
   </div>
   <div class="veil"></div>
-
-    <div class="cover-ui" id="ui">
-      <button class="cta" id="enter" type="button">查看服務 ✦</button>
-    </div>
   </div>
 
 <div class="wrap">
-  <div class="page-bar" id="bar" hidden>
+  <div class="page-bar" id="bar">
     <div class="bar-top">
-      <button type="button" class="back" id="back">← 首頁</button>
       <span class="brand bar-brand">A i r a 艾拉</span>
       <a class="contact" href="https://line.me/R/ti/p/@556gtcjg" target="_blank" rel="noopener">聯絡我們</a>
     </div>
     <nav class="views" id="views" aria-label="服務頁面">
-      <button type="button" data-go="price">價目表</button><button type="button" data-go="numerology">靈數解盤內容</button><button type="button" data-go="tarot-rules">占卜預約須知</button><button type="button" data-go="num-rules">靈數解盤須知</button>
+      <button type="button" data-go="price">價目表</button><button type="button" data-go="pendulum">靈擺調頻方案</button><button type="button" data-go="numerology">靈數解盤內容</button><button type="button" data-go="tarot-rules">占卜預約須知</button><button type="button" data-go="num-rules">靈數解盤須知</button>
     </nav>
   </div>
 
@@ -207,12 +216,170 @@ body{margin:0}
       </ul>
 
       <h3>靈擺調頻</h3>
-      <div class="pending">
-        <span class="soon">籌備中</span>
-        <span>服務內容與價格即將公布，敬請期待</span>
-      </div>
+      <ul class="price pend">
+        <li><button type="button" class="name plan-link" data-go="pendulum" data-plan="pl-wealth">財富突破</button><span class="note">金錢限制信念</span><span class="dots"></span><span class="amt ask">價格洽詢</span></li>
+        <li><button type="button" class="name plan-link" data-go="pendulum" data-plan="pl-relation">關係修復</button><span class="note">反覆出現的關係模式</span><span class="dots"></span><span class="amt ask">價格洽詢</span></li>
+        <li><button type="button" class="name plan-link" data-go="pendulum" data-plan="pl-love">姻緣與正緣</button><span class="note">姻緣狀態與正緣樣貌</span><span class="dots"></span><span class="amt ask">價格洽詢</span></li>
+        <li><button type="button" class="name plan-link" data-go="pendulum" data-plan="pl-career">事業與轉折</button><span class="note">留任、轉職、創業的方向</span><span class="dots"></span><span class="amt ask">價格洽詢</span></li>
+        <li><button type="button" class="name plan-link" data-go="pendulum" data-plan="pl-worth">自我價值與信念清理</button><span class="note">心裡那句「我不夠」</span><span class="dots"></span><span class="amt ask">價格洽詢</span></li>
+        <li><button type="button" class="name plan-link" data-go="pendulum" data-plan="pl-pastlife">前世探索</button><span class="note">八大主題前世靈魂藍圖</span><span class="dots"></span><span class="amt ask">價格洽詢</span></li>
+        <li><button type="button" class="name plan-link" data-go="pendulum" data-plan="pl-space">空間與元辰宮調頻</button><span class="note">內在與實體空間能量</span><span class="dots"></span><span class="amt ask">價格洽詢</span></li>
+        <li><button type="button" class="name plan-link" data-go="pendulum" data-plan="pl-yearly">流年運勢</button><span class="note">今年最該關注的 2–3 項</span><span class="dots"></span><span class="amt ask">價格洽詢</span></li>
+      </ul>
 
-      <p class="tip">靈數詳細服務內容請見 <button type="button" class="link" data-go="numerology">靈數解盤內容</button></p>
+      <p class="tip">靈擺方案介紹請見 <button type="button" class="link" data-go="pendulum">靈擺調頻方案</button>，靈數詳細服務內容請見 <button type="button" class="link" data-go="numerology">靈數解盤內容</button></p>
+    </div>
+  </section>
+
+  <section id="pendulum" class="view" hidden>
+    <h2>靈擺調頻方案<small>PENDULUM</small></h2>
+    <div class="chips" aria-label="方案一覽"><button type="button" data-plan="pl-wealth">財富突破</button><button type="button" data-plan="pl-relation">關係修復</button><button type="button" data-plan="pl-love">姻緣與正緣</button><button type="button" data-plan="pl-career">事業與轉折</button><button type="button" data-plan="pl-worth">自我價值與信念清理</button><button type="button" data-plan="pl-pastlife">前世探索</button><button type="button" data-plan="pl-space">空間與元辰宮調頻</button><button type="button" data-plan="pl-yearly">流年運勢</button></div>
+    <div class="plans">
+    <article class="card plan" id="pl-wealth">
+      <h3>財富突破</h3>
+      <p class="hook">「錢很難賺。」你說了多少年，它就應驗了多少年。</p>
+      <div class="plan-body">
+        <p>薪水一進來就不見。想漲價卻開不了口。好不容易存了一筆，就剛好發生什麼事花掉。你不是不努力，而是每次錢要留下來的時候，心裡都有個聲音把它推開。</p>
+        <p>這些聲音可能是「有錢會引來麻煩」、「我不配」，甚至是父母輩、祖先輩傳下來的對錢的恐懼。</p>
+        <p class="lead">這次，我們會：</p>
+        <ul class="ticks">
+          <li>從 40 個最常見的金錢限制信念中，找出你最核心的那一個</li>
+          <li>依你的狀況深入：賺不到、存不了、負債，還是累積不了大錢</li>
+          <li>必要時往家族與前世的財富印記追根源</li>
+          <li>判讀你最容易進財的管道，並給你一句每天念的豐盛肯定語</li>
+        </ul>
+      </div>
+      <p class="close">與其再多學一個理財技巧，不如先看見是什麼在擋著錢。</p>
+      <a class="book" href="https://line.me/R/ti/p/@556gtcjg" target="_blank" rel="noopener">預約財富突破</a>
+    </article>
+    <article class="card plan" id="pl-relation">
+      <h3>關係修復</h3>
+      <p class="hook">為什麼同一種爭吵，換了人還是一直發生？</p>
+      <div class="plan-body">
+        <p>你試過忍耐，也試過大聲說出來。你試過對他好一點，也試過乾脆不說話。結果一樣：累的人還是你。</p>
+        <p>關係裡反覆出現的卡點，常常來自很早以前，和父母之間的相處、一次沒被接住的受傷，讓你學會了用某種方式保護自己。而那個方式，現在正在推開你想靠近的人。</p>
+        <p class="lead">這次，我們會：</p>
+        <ul class="ticks">
+          <li>找出卡住關係的核心模式：控制、討好、冷戰、依附…</li>
+          <li>追溯這個模式的根源</li>
+          <li>看見你在關係裡習慣的自我保護方式</li>
+          <li>判讀修復的方向，以及這段關係可能的走向</li>
+        </ul>
+      </div>
+      <p class="close">你換不了對方，但可以換一種方式在關係裡。</p>
+      <a class="book" href="https://line.me/R/ti/p/@556gtcjg" target="_blank" rel="noopener">預約關係修復</a>
+    </article>
+    <article class="card plan" id="pl-love">
+      <h3>姻緣與正緣</h3>
+      <p class="hook">身邊的人一個個穩定了，只有你還在等？</p>
+      <div class="plan-body">
+        <p>朋友說「緣分到了就會來」，但你已經等了好一陣子。不是沒有人靠近，而是每次快要開始，就有什麼讓你退後了：怕再受傷、放不下前一段，或是自己也說不出來的「就是不對」。</p>
+        <p class="lead">這次，我們會依序回答你最想問的問題：</p>
+        <ul class="ticks">
+          <li>你現在的姻緣狀態是什麼？卡在哪裡？</li>
+          <li>你可以開始做什麼？</li>
+          <li>正緣是什麼樣的人？個性、氣質、說話方式</li>
+          <li>可能在哪裡、透過誰遇見？之後會怎麼發展？</li>
+        </ul>
+      </div>
+      <p class="close">與其一直等，不如先知道該往哪個方向看。</p>
+      <a class="book" href="https://line.me/R/ti/p/@556gtcjg" target="_blank" rel="noopener">預約姻緣與正緣</a>
+    </article>
+    <article class="card plan" id="pl-career">
+      <h3>事業與轉折</h3>
+      <p class="hook">「再撐一下就好」，這句話你已經說了幾年？</p>
+      <div class="plan-body">
+        <p>每天上班很累，要走又怕下一個不會更好。想創業、想轉行、想學新東西，計畫寫了又改，就是踏不出第一步。該停下來嗎？還是只是累了？</p>
+        <p class="lead">這次，我們會：</p>
+        <ul class="ticks">
+          <li>針對你正在考慮的那條路：留任、轉職、創業、進修或暫停，判讀它可能怎麼發展</li>
+          <li>方向還不清楚，就從 80 個產業中找出最適合你的領域</li>
+          <li>如果是「不敢」在拖住你，找出它，並重新連結你曾經做到過的經驗</li>
+        </ul>
+      </div>
+      <p class="close">先看清楚每條路的樣子，再決定要不要走。</p>
+      <a class="book" href="https://line.me/R/ti/p/@556gtcjg" target="_blank" rel="noopener">預約事業與轉折</a>
+    </article>
+    <article class="card plan" id="pl-worth">
+      <h3>自我價值與信念清理</h3>
+      <p class="hook">別人說你很好，你心裡卻一直重複一句「不，我不夠」。</p>
+      <div class="plan-body">
+        <p>你很會照顧別人，卻不太會收下別人的好。做得再多，也覺得是應該的；一點做不好，就想很久。生活沒有什麼大問題，就是一直很累。</p>
+        <p>這句「我不夠」，很可能就是你在金錢、感情、工作上都卡在類似地方的原因。</p>
+        <p class="lead">這次，我們會：</p>
+        <ul class="ticks">
+          <li>找出你心裡反覆出現的那句話，和它帶來的核心情緒</li>
+          <li>追溯它來自哪段成長經驗</li>
+          <li>找回你生命中曾經被肯定、被愛的記憶</li>
+          <li>判讀一句取代舊台詞的肯定語，讓你帶回家練習</li>
+        </ul>
+      </div>
+      <p class="close">你不需要更努力，而是需要換一句對自己說的話。</p>
+      <a class="book" href="https://line.me/R/ti/p/@556gtcjg" target="_blank" rel="noopener">預約自我價值與信念清理</a>
+    </article>
+    <article class="card plan" id="pl-pastlife">
+      <h3>前世探索</h3>
+      <p class="hook">有些恐懼沒有理由，有些人一見就放不下。</p>
+      <div class="plan-body">
+        <p>你從小就怕水、怕被關住，或是對某個時代、某種文化有說不出的親切感。你和某個人明明剛認識，卻像認識了很久。這些，今生的經歷很難解釋。</p>
+        <p class="lead">這次，我們會用八大主題拼出你的前世故事：</p>
+        <ul class="ticks">
+          <li>你活在哪個時代與文明、做什麼職業、是什麼樣的人</li>
+          <li>你帶了哪些天賦來到今生，又留下了哪些印記</li>
+          <li>想了解和某人的關係，可以加入前世關係與緣分判讀</li>
+          <li>結果填進一張專屬的前世靈魂藍圖，並以一句療癒語收尾</li>
+        </ul>
+      </div>
+      <p class="close">看見你從哪裡來，會更明白你為什麼是現在的你。</p>
+      <a class="book" href="https://line.me/R/ti/p/@556gtcjg" target="_blank" rel="noopener">預約前世探索</a>
+    </article>
+    <article class="card plan" id="pl-space">
+      <h3>空間與元辰宮調頻</h3>
+      <p class="hook">一回到家就悶、一坐到桌前就累？</p>
+      <div class="plan-body">
+        <p>有些空間讓人一進去就放鬆，有些則讓人越待越沉。外在的家是這樣，你內在的元辰宮也是。</p>
+        <p class="lead">這次，我們會：</p>
+        <ul class="ticks">
+          <li>判讀元辰宮中需要檢視的空間：客廳、主臥、金庫，或記憶室、誓言室等靈性空間</li>
+          <li>看它現在是乾淨明亮、堆積雜物，還是陰暗潮濕</li>
+          <li>實體空間在調頻前後各測一次能量，讓你看得到變化</li>
+        </ul>
+      </div>
+      <p class="close">空間整理好了，人才有地方放鬆。</p>
+      <a class="book" href="https://line.me/R/ti/p/@556gtcjg" target="_blank" rel="noopener">預約空間與元辰宮調頻</a>
+    </article>
+    <article class="card plan" id="pl-yearly">
+      <h3>流年運勢</h3>
+      <p class="hook">新的一年，你想把力氣花在對的地方嗎？</p>
+      <div class="plan-body">
+        <p>財運、感情、工作、身心……每一塊都想顧好，最後常常哪一塊都沒顧好。</p>
+        <p class="lead">這次，我們會：</p>
+        <ul class="ticks">
+          <li>從 40 個運勢項目中，判讀今年或本月最需要關注的 2–3 項</li>
+          <li>看每一項現在的狀態：平衡穩定、動盪調整，還是正在收穫</li>
+          <li>正處在低迷的項目，建議你先從哪個方案處理</li>
+        </ul>
+      </div>
+      <p class="close">年初、月初各檢視一次，先知道該把力氣放在哪裡。</p>
+      <a class="book" href="https://line.me/R/ti/p/@556gtcjg" target="_blank" rel="noopener">預約流年運勢</a>
+    </article>
+    <div class="card guide" id="pl-guide">
+      <h3>不確定該選哪一個？</h3>
+      <p class="hook">沒關係。問問自己：最近最常讓你失眠的是哪件事？</p>
+      <ul class="pick">
+          <li><span>想到錢就焦慮</span><button type="button" data-plan="pl-wealth">財富突破</button></li>
+          <li><span>某個人讓你心累</span><button type="button" data-plan="pl-relation">關係修復</button></li>
+          <li><span>一個人太久了</span><button type="button" data-plan="pl-love">姻緣與正緣</button></li>
+          <li><span>工作要留還是要走</span><button type="button" data-plan="pl-career">事業與轉折</button></li>
+          <li><span>說不上哪裡不對，就是很累</span><button type="button" data-plan="pl-worth">自我價值與信念清理</button></li>
+          <li><span>什麼都想看一下</span><button type="button" data-plan="pl-yearly">流年運勢</button></li>
+      </ul>
+      <p class="small-note">「什麼都想看一下」可以從流年運勢開始，先找出今年最該關注的那一項。</p>
+      <p class="center">還是不確定，就直接告訴我你的狀況，我會幫你選。</p>
+      <a class="book" href="https://line.me/R/ti/p/@556gtcjg" target="_blank" rel="noopener">預約／諮詢</a>
+      <p class="close">你已經自己撐很久了，這一次，讓我們一起看。</p>
+    </div>
+    <p class="disclaimer">本服務為身心靈探索與自我覺察，不取代醫療、心理、法律或財務專業建議。</p>
     </div>
   </section>
 
@@ -292,29 +459,26 @@ body{margin:0}
 </div>
 <script>
 (function(){
-  var ui=document.getElementById('ui'), cover=document.getElementById('cover'), cta=document.getElementById('enter');
-  var bar=document.getElementById('bar'), views=document.getElementById('views'), footer=document.querySelector('footer');
+  var views=document.getElementById('views');
   var sections=[].slice.call(document.querySelectorAll('section.view'));
-  footer.hidden=true;
-  cta.addEventListener('animationend',function(){cover.classList.add('ready')});
-  cta.addEventListener('click',function(){go('price')});
-  function go(id){
-    cover.classList.add('inside'); ui.hidden=true; bar.hidden=false; footer.hidden=false;
+  var ids=sections.map(function(x){return x.id;});
+  function go(id,plan){
+    if(ids.indexOf(id)<0)id='price';
     sections.forEach(function(sec){sec.hidden=sec.id!==id;});
     [].forEach.call(views.querySelectorAll('button'),function(b){
-      if(b.dataset.go===id)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');
+      if(b.dataset.go===id){b.setAttribute('aria-current','page');var l=b.offsetLeft-views.offsetLeft,r=l+b.offsetWidth;if(l<views.scrollLeft+16||r>views.scrollLeft+views.clientWidth-16)views.scrollLeft=Math.max(0,l-16);}
+      else b.removeAttribute('aria-current');
     });
-    window.scrollTo(0,0);
-  }
-  function home(){
-    sections.forEach(function(sec){sec.hidden=true;});
-    bar.hidden=true; footer.hidden=true; cover.classList.remove('inside'); ui.hidden=false;
-    window.scrollTo(0,0);
+    var t=plan&&document.getElementById(plan);
+    if(t){t.scrollIntoView({behavior:'smooth',block:'start'});}else{window.scrollTo(0,0);}
   }
   document.addEventListener('click',function(e){
-    var b=e.target.closest('[data-go]'); if(b)go(b.dataset.go);
+    var b=e.target.closest('[data-go],[data-plan]'); if(!b)return;
+    if(b.dataset.go){go(b.dataset.go,b.dataset.plan);}
+    else{var t=document.getElementById(b.dataset.plan); if(t)t.scrollIntoView({behavior:'smooth',block:'start'});}
   });
-  document.getElementById('back').addEventListener('click',home);
+  var h=(location.hash||'').slice(1);
+  if(h.indexOf('pl-')===0)go('pendulum',h);else go(h||'price');
 })();
 </script>
 

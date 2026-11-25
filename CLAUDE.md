@@ -63,7 +63,7 @@ https://meng-cat7777.github.io/-/
 ## 檔案
 
 - `index.html`：網站本體（手串與水晶商品頁）。
-- `services/`：服務項目頁（牌卡占卜、靈數命盤、脈輪檢測價目與預約須知），網址 https://meng-cat7777.github.io/-/services/ 。這一頁的內容直接寫在 `services/index.html` 裡，不經過後台，可以直接修改；圖片放在同一個資料夾。
+- `services/`：服務項目頁（牌卡占卜、靈數命盤、脈輪檢測價目與預約須知），網址 https://meng-cat7777.github.io/-/services/ 。這一頁的內容直接寫在 `services/index.html` 裡，不經過後台，可以直接修改；圖片放在同一個資料夾。 打開直接是價目表（沒有首頁動畫），分頁有價目表、靈擺調頻方案、靈數解盤內容、占卜預約須知、靈數解盤須知。靈擺八個方案的價格目前顯示「價格洽詢」，有定價後改 `class="amt ask"` 那幾行。可用網址結尾直接開某一頁，例如 `#pendulum`、`#pl-love`（姻緣與正緣）。
 - `tools/build_shop.py`：把後台資料寫進 `index.html` 的工具。
 - `tools/order-script.gs`：接收訂單的 Google Apps Script 程式（貼到 Meng 的 Google 試算表用）。
 - `img/`：商品照片（還沒有照片時這個資料夾不存在）。
