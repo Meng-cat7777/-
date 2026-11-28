@@ -38,6 +38,20 @@ https://meng-cat7777.github.io/-/
 
 如果這個對話沒有 ArtifactData／Artifact 工具，讀不到後台，就直接告訴 Meng，請她回到建立網站的那段 Claude 對話更新。
 
+## 從服務頁後台更新
+
+服務項目頁的價格和文字由 Meng 在 Claude 上的私人頁面「Aira 服務項目 後台」編輯（資料存在該頁資料庫 `content` 集合的 `main` 文件）。`services/index.html` 裡 `<!--SERVICES-DATA-START-->` 到 `<!--SERVICES-DATA-END-->` 之間的 JSON 是從後台產生的，不要手改；頁面程式會依這份資料畫出所有內容。
+
+當 Meng 說「服務頁後台改好了，更新網站」：
+
+1. 用 Artifact list 找標題為「Aira 服務項目 後台」的頁面（網址不寫在這裡，因為程式庫是公開的）。
+2. 用 ArtifactData 的 `list` 讀 `content` 集合（out_dir 指到暫存資料夾，例如 `WORK/svc`）。
+3. `python3 tools/build_services.py WORK/svc services/index.html`
+4. 在手機和電腦寬度看過後 commit 推到 `main`。
+5. Claude 上也有一份服務項目頁（標題「Aira 艾拉 服務項目」）：用 Artifact list 找到後，把 `services/index.html` 去掉 `<html>`、`<head>`、`<body>` 外殼（從 `<title>` 開始，去掉 description 與 og 的 meta）發布到同一個網址，圖片 `cover-aira-wide2.jpg`、`cover-aira-mobile.jpg` 已在該頁，不用重傳。
+
+資料格式：`groups`（價目分類，每項 `name`、`note`、`price`，價格為 null 顯示「價格洽詢」，`plan` 連到靈擺方案）、`plans`（靈擺方案 `id`、`title`、`hook`、`paras`、`lead`、`items`、`close`、`show`）、`guide`（選擇引導）、`numerology`、`tarotRules`、`numRules`、`priceTip`、`disclaimer`、`line`（官方 LINE ID）。
+
 ## 設計與文字慣例
 
 - 風格：霧粉色價目表風，襯線字 Noto Serif TC，雙線外框，金色細線，深梅色主按鈕。
@@ -63,7 +77,8 @@ https://meng-cat7777.github.io/-/
 ## 檔案
 
 - `index.html`：網站本體（手串與水晶商品頁）。
-- `services/`：服務項目頁（牌卡占卜、靈數命盤、脈輪檢測價目與預約須知），網址 https://meng-cat7777.github.io/-/services/ 。這一頁的內容直接寫在 `services/index.html` 裡，不經過後台，可以直接修改；圖片放在同一個資料夾。 打開直接是價目表（沒有首頁動畫），分頁有價目表、靈擺調頻方案、靈數解盤內容、占卜預約須知、靈數解盤須知。靈擺八個方案的價格目前顯示「價格洽詢」，有定價後改 `class="amt ask"` 那幾行。可用網址結尾直接開某一頁，例如 `#pendulum`、`#pl-love`（姻緣與正緣）。
+- `services/`：服務項目頁（牌卡占卜、靈數命盤、脈輪檢測、靈擺調頻價目與預約須知），網址 https://meng-cat7777.github.io/-/services/ 。打開直接是價目表，分頁有價目表、靈擺調頻方案、靈數解盤內容、占卜預約須知、靈數解盤須知。可用網址結尾直接開某一頁，例如 `#pendulum`、`#pl-love`（姻緣與正緣）。**內容由「服務項目 後台」管理**，見下方「從服務頁後台更新」；版面和樣式可以直接改 `services/index.html`，但不要手改資料區塊。
+- `tools/build_services.py`：把服務項目後台的資料寫進 `services/index.html`。
 - `tools/build_shop.py`：把後台資料寫進 `index.html` 的工具。
 - `tools/order-script.gs`：接收訂單的 Google Apps Script 程式（貼到 Meng 的 Google 試算表用）。
 - `img/`：商品照片（還沒有照片時這個資料夾不存在）。
