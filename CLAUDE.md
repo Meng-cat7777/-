@@ -50,7 +50,7 @@ https://meng-cat7777.github.io/-/
 4. 在手機和電腦寬度看過後 commit 推到 `main`。
 5. Claude 上也有一份服務項目頁（標題「Aira 艾拉 服務項目」）：用 Artifact list 找到後，把 `services/index.html` 去掉 `<html>`、`<head>`、`<body>` 外殼（從 `<title>` 開始，去掉 description 與 og 的 meta）發布到同一個網址，圖片 `cover-aira-wide2.jpg`、`cover-aira-mobile.jpg` 已在該頁，不用重傳。
 
-資料格式：`groups`（價目分類，每項 `name`、`note`、`price`，價格為 null 顯示「價格洽詢」，`plan` 連到靈擺方案）、`plans`（靈擺方案 `id`、`title`、`hook`、`paras`、`lead`、`items`、`close`、`show`）、`guide`（選擇引導）、`numerology`、`tarotRules`、`numRules`、`priceTip`、`disclaimer`、`line`（官方 LINE ID）。
+資料格式：`groups`（價目分類，每項 `name`、`note`、`price`，價格為 null 顯示「價格洽詢」，`plan` 連到靈擺方案）、`plans`（靈擺方案 `id`、`title`、`hook`、`paras`、`lead`、`items`、`close`、`show`）、`guide`（選擇引導）、`numerology`、`tarotRules`、`numRules`、`priceTip`、`disclaimer`、`line`（官方 LINE ID）、`bookMsg`（預約按鈕預填文字，`{方案}` 換成方案名稱）、`contactMsg`（聯絡我們預填文字，空字串表示只開啟對話）。按鈕用 `https://line.me/R/oaMessage/<LINE ID>/?<文字>` 開啟官方帳號聊天並預填文字。
 
 ## 設計與文字慣例
 
