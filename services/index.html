@@ -193,13 +193,13 @@ body{margin:0}
       <a class="contact" href="https://line.me/R/ti/p/@556gtcjg" target="_blank" rel="noopener">聯絡我們</a>
     </div>
     <nav class="views" id="views" aria-label="服務頁面">
-      <button type="button" data-go="price">價目表</button><button type="button" data-go="pendulum">靈擺調頻方案</button><button type="button" data-go="numerology">靈數解盤方案</button><button type="button" data-go="tarot-rules">占卜預約須知</button><button type="button" data-go="num-rules">靈數解盤須知</button>
+      <button type="button" data-go="tarot">牌卡占卜方案</button><button type="button" data-go="pendulum">靈擺調頻方案</button><button type="button" data-go="numerology">靈數解盤方案</button><button type="button" data-go="tarot-rules">占卜預約須知</button><button type="button" data-go="num-rules">靈數解盤須知</button>
     </nav>
   </div>
 
-  <section id="price" class="view" hidden>
-    <h2>服務價目表<small>LIST</small></h2>
-    <div class="card" id="price-card"></div>
+  <section id="tarot" class="view" hidden>
+    <h2>牌卡占卜方案<small>TAROT</small></h2>
+    <div class="plans" id="tarotplan-card"></div>
   </section>
 
   <section id="pendulum" class="view" hidden>
@@ -248,38 +248,27 @@ body{margin:0}
   var plans=arr(D.plans).filter(function(p){return p&&p.id&&p.show!==false;});
   var planIds={};plans.forEach(function(p){planIds[p.id]=p;});
 
-  // 價目表
-  var pc=document.getElementById('price-card');
+  // 牌卡占卜方案：價目表中標題含「牌卡」的分類，附一個預約按鈕
+  function priceSpan(it){var p=it&&it.price,has=(typeof p==='number'&&p>0);
+    return h('span',{cls:'amt'+(has?'':' ask'),text:has?String(p):(str(it&&it.priceText)||'價格洽詢')});}
+  var tc=document.getElementById('tarotplan-card');
   arr(D.groups).forEach(function(g){
-    if(!g||g.show===false)return;
-    pc.appendChild(h('h3',{text:str(g.title)}));
-    if(g.pending){
-      pc.appendChild(h('div',{cls:'pending'},[h('span',{cls:'soon',text:'籌備中'}),h('span',{text:str(g.pendingText)||'服務內容與價格即將公布，敬請期待'})]));
-      return;
-    }
-    var isPend=arr(g.items).some(function(it){return it&&it.plan;});
-    var ul=h('ul',{cls:'price'+(isPend?' pend':'')});
-    arr(g.items).forEach(function(it){
-      if(!it||it.show===false)return;
-      var name=(it.plan&&planIds[it.plan])
-        ?h('button',{type:'button',cls:'name plan-link','data-go':'pendulum','data-plan':'pl-'+it.plan,text:str(it.name)})
-        :h('span',{cls:'name',text:str(it.name)});
-      var p=it.price, has=(typeof p==='number'&&p>0);
-      ul.appendChild(h('li',null,[name,str(it.note)?h('span',{cls:'note',text:str(it.note)}):null,h('span',{cls:'dots'}),
-        h('span',{cls:'amt'+(has?'':' ask'),text:has?String(p):(str(it.priceText)||'價格洽詢')})]));
-    });
-    pc.appendChild(ul);
+    if(!g||g.show===false||str(g.title).indexOf('牌卡')<0)return;
+    var kids=[h('h3',{text:str(g.title)})];
+    if(g.pending){kids.push(h('div',{cls:'pending'},[h('span',{cls:'soon',text:'籌備中'}),h('span',{text:str(g.pendingText)||'服務內容與價格即將公布，敬請期待'})]));}
+    else{var ul=h('ul',{cls:'price'});
+      arr(g.items).forEach(function(it){if(!it||it.show===false)return;
+        ul.appendChild(h('li',null,[h('span',{cls:'name',text:str(it.name)}),str(it.note)?h('span',{cls:'note',text:str(it.note)}):null,h('span',{cls:'dots'}),priceSpan(it)]));});
+      kids.push(ul);
+      kids.push(h('p',{cls:'tip'},['預約前請先看 ',h('button',{type:'button',cls:'link','data-go':'tarot-rules',text:'占卜預約須知'})]));
+      kids.push(h('a',{cls:'book',href:LINE,target:'_blank',rel:'noopener',text:'預約'+str(g.title)}));}
+    tc.appendChild(h('article',{cls:'card plan'},kids));
   });
-  if(str(D.priceTip)){
-    var tip=h('p',{cls:'tip'}), t=str(D.priceTip), re=/靈擺調頻方案|靈數解盤方案|靈數解盤內容|占卜預約須知|靈數解盤須知/g, last=0, m;
-    var map={'靈擺調頻方案':'pendulum','靈數解盤方案':'numerology','靈數解盤內容':'numerology','占卜預約須知':'tarot-rules','靈數解盤須知':'num-rules'};
-    while((m=re.exec(t))){tip.appendChild(document.createTextNode(t.slice(last,m.index)));
-      tip.appendChild(h('button',{type:'button',cls:'link','data-go':map[m[0]],text:m[0]}));last=m.index+m[0].length;}
-    tip.appendChild(document.createTextNode(t.slice(last)));
-    pc.appendChild(tip);
-  }
 
   // 靈擺方案
+  function planPrice(pid){var hit=null;arr(D.groups).forEach(function(g){if(!g||g.show===false||g.pending)return;
+    arr(g.items).forEach(function(it){if(!hit&&it&&it.show!==false&&it.plan===pid)hit=it;});});
+    return hit?h('p',{cls:'plan-price'},[priceSpan(hit)]):null;}
   var chips=document.getElementById('chips'), box=document.getElementById('plans');
   plans.forEach(function(p){
     chips.appendChild(h('button',{type:'button','data-plan':'pl-'+p.id,text:str(p.title)}));
@@ -290,6 +279,7 @@ body{margin:0}
     body.appendChild(ul);
     box.appendChild(h('article',{cls:'card plan',id:'pl-'+p.id},[
       h('h3',{text:str(p.title)}),
+      planPrice(p.id),
       str(p.hook)?h('p',{cls:'hook',text:str(p.hook)}):null,
       body,
       str(p.close)?h('p',{cls:'close',text:str(p.close)}):null,
@@ -345,7 +335,7 @@ body{margin:0}
   var sections=[].slice.call(document.querySelectorAll('section.view'));
   var ids=sections.map(function(x){return x.id;});
   function go(id,plan){
-    if(ids.indexOf(id)<0)id='price';
+    if(ids.indexOf(id)<0)id='tarot';
     sections.forEach(function(sec){sec.hidden=sec.id!==id;});
     [].forEach.call(views.querySelectorAll('button'),function(b){
       if(b.dataset.go===id){b.setAttribute('aria-current','page');var l=b.offsetLeft-views.offsetLeft,r=l+b.offsetWidth;if(l<views.scrollLeft+16||r>views.scrollLeft+views.clientWidth-16)views.scrollLeft=Math.max(0,l-16);}
@@ -360,7 +350,7 @@ body{margin:0}
     else{var t=document.getElementById(b.dataset.plan); if(t)t.scrollIntoView({behavior:'smooth',block:'start'});}
   });
   var hs=(location.hash||'').slice(1);
-  if(hs.indexOf('pl-')===0)go('pendulum',hs);else go(hs||'price');
+  if(hs.indexOf('pl-')===0)go('pendulum',hs);else go(hs||'tarot');
 })();
 </script>
 

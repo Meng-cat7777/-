@@ -77,7 +77,7 @@ https://meng-cat7777.github.io/-/
 ## 檔案
 
 - `index.html`：網站本體（手串與水晶商品頁）。
-- `services/`：服務項目頁（牌卡占卜、靈數命盤、脈輪檢測、靈擺調頻價目與預約須知），網址 https://meng-cat7777.github.io/-/services/ 。打開直接是價目表，分頁有價目表、靈擺調頻方案、靈數解盤方案、占卜預約須知、靈數解盤須知。靈擺和靈數的每個方案都是一張卡片，下方有預約按鈕（連到官方 LINE）；靈數方案名稱和價目表項目名稱相同時，卡片自動顯示該價格。可用網址結尾直接開某一頁，例如 `#pendulum`、`#pl-love`（姻緣與正緣）。**內容由「服務項目 後台」管理**，見下方「從服務頁後台更新」；版面和樣式可以直接改 `services/index.html`，但不要手改資料區塊。
+- `services/`：服務項目頁（牌卡占卜、靈數命盤、脈輪檢測、靈擺調頻價目與預約須知），網址 https://meng-cat7777.github.io/-/services/ 。打開直接是牌卡占卜方案（沒有總價目表），分頁有牌卡占卜方案、靈擺調頻方案、靈數解盤方案、占卜預約須知、靈數解盤須知。每個方案都是一張卡片，下方有預約按鈕（連到官方 LINE）。價格都來自資料裡的 `groups`：標題含「牌卡」的分類畫在牌卡占卜方案頁；靈擺方案顯示 `plan` 連到它的項目價格；靈數方案顯示同名項目的價格。其他分類（目前是脈輪檢測）不會出現在網站上，`priceTip` 也已不顯示。可用網址結尾直接開某一頁，例如 `#tarot`、`#pendulum`、`#numerology`、`#pl-love`（姻緣與正緣）。**內容由「服務項目 後台」管理**，見下方「從服務頁後台更新」；版面和樣式可以直接改 `services/index.html`，但不要手改資料區塊。
 - `tools/build_services.py`：把服務項目後台的資料寫進 `services/index.html`。
 - `tools/build_shop.py`：把後台資料寫進 `index.html` 的工具。
 - `tools/order-script.gs`：接收訂單的 Google Apps Script 程式（貼到 Meng 的 Google 試算表用）。
